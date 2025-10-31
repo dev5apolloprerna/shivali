@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use App\Models\Category;
 use App\Models\SubCategory;
-use App\Models\Video;
-use App\Models\PodcastEpisode;
-use App\Models\Gallery;
-use App\Models\Document;
 
 use Carbon\Carbon;
 
@@ -43,16 +39,11 @@ class HomeController extends Controller
             $counts = [
             'categories'    => Category::count(),
             'subcategories' => SubCategory::count(),
-            'videos'        => Video::count(),
-            'podcasts'      => PodcastEpisode::count(),
-            'galleries'     => Gallery::count(), 
-            'documents'     => Document::count(), 
 
         ];
 
-    $latestGalleries = Gallery::orderByDesc('gallery_id')->limit(6)->get(['image','title']);
 
-            return view('home', compact('counts','latestGalleries'));
+            return view('home', compact('counts'));
 
         } catch (\Exception $e) {
         report($e);
