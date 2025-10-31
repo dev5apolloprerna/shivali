@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductImageController;
+use App\Http\Controllers\Admin\ProductVideoController;
 
 
 Route::fallback(function () {
@@ -84,8 +87,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         );
     })->name('admin.fetch-subcategories');
 
-
-
     
 Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () {
         Route::get('Inquiry/index', [InquiryController::class, 'index'])->name('index');
@@ -93,3 +94,40 @@ Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () 
         Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
 });
 
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/products',                [ProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/products/create',         [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products',               [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/products/{product}',      [ProductController::class, 'update'])->name('admin.products.update');
+    Route::post('/products/{product}/delete',        [ProductController::class, 'destroy'])->name('admin.products.delete');
+    Route::post('/products/{product}/toggle-status', [ProductController::class, 'toggleStatus'])->name('admin.products.toggle-status');
+
+
+});
+
+
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    // Product image manager
+    Route::get('/products/{product}/images', [ProductImageController::class, 'index'])->name('admin.product-images.index');
+    Route::post('/products/{product}/images', [ProductImageController::class, 'store'])->name('admin.product-images.store');
+
+    Route::post('/products/images/{image}/toggle', [ProductImageController::class, 'toggleStatus'])->name('admin.product-images.toggle');
+    Route::post('/products/images/{image}/delete', [ProductImageController::class, 'destroy'])->name('admin.product-images.delete');
+
+    Route::post('/products/image/{id}/delete', [ProductImageController::class, 'deleteOne'])
+    ->name('admin.product-images.deleteOne');
+
+});
+
+
+
+
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/products/{product}/videos', [ProductVideoController::class, 'index'])->name('admin.product-videos.index');
+    Route::post('/products/{id}/videos', [ProductVideoController::class, 'store'])->name('admin.product-videos.store');
+    Route::post('/products/videos/{id}/delete', [ProductVideoController::class, 'deleteOne'])->name('admin.product-videos.deleteOne');
+});

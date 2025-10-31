@@ -45,42 +45,24 @@ if (! function_exists('anx_upload')) {
      * @param string $subdir (e.g. 'gallery', 'documents')
      * @param array|null $allowedExt override allowed extensions
      */
-    function anx_upload(UploadedFile $file, string $subdir, ?array $allowedExt = null): array
-    {
-        $allowed = $allowedExt ?: [
-            // images
-            'jpg','jpeg','png','webp','gif',
-            // docs
-            'pdf','doc','docx','xls','xlsx','ppt','pptx','txt'
-        ];
+    function anx_upload($file, $folder)
+        {
+            // Make sure the folder exists
+            $uploadPath = public_path('uploads/' . $folder . '/');
+            if (!file_exists($uploadPath)) {
+                mkdir($uploadPath, 0777, true);
+            }
 
-        $ext = strtolower($file->getClientOriginalExtension());
-        if (!in_array($ext, $allowed, true)) {
-            abort(422, "File type .$ext not allowed.");
+            // Generate unique file name
+            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+            // Move file to uploads directory
+            $file->move($uploadPath, $fileName);
+
+            // ✅ Return string path (NOT array)
+            return 'uploads/' . $folder . '/' . $fileName;
         }
 
-        $root   = anx_target_root();                                 // filesystem root
-        $dirRel = 'uploads/' . trim($subdir, '/');                   // relative dir under anvixa
-        $dirAbs = rtrim($root, '/') . '/' . $dirRel;                 // absolute dir
-        ensure_dir($dirAbs);                                         // from your snippet
-
-        $baseName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        $slug     = Str::slug($baseName) ?: 'file';
-        $filename = uniqid().'-'.$slug.'.'.$ext;
-
-        $file->move($dirAbs, $filename);
-
-        $relative = $dirRel . '/' . $filename;                       // store in DB (portable)
-        $url      = anx_base_url($relative);                          // public url
-
-        return [
-            'relative' => $relative,
-            'url'      => $url,
-            'filename' => $filename,
-            'mime'     => File::mimeType($dirAbs . '/' . $filename) ?: $file->getMimeType(),
-            'size'     => File::size($dirAbs . '/' . $filename),
-        ];
-    }
 }
 
 if (! function_exists('anx_delete')) {
