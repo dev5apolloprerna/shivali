@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Role;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\Product;
+use App\Models\Inquiry;
 
 use Carbon\Carbon;
 
@@ -39,6 +41,8 @@ class HomeController extends Controller
             $counts = [
             'categories'    => Category::count(),
             'subcategories' => SubCategory::count(),
+            'products' => Product::count(),
+            'inquiries'       => Inquiry::where('isDelete', 0)->count(),
 
         ];
 

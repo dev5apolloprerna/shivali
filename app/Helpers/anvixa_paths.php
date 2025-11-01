@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\File;
 if (! function_exists('anvixa_base_path')) {
     function anvixa_base_path(string $append = ''): string
     {
-        $root = rtrim(base_path('../public_html/anvixa'), '/');
+        $root = rtrim(base_path('../public_html/Shivali'), '/');
         return $append ? $root.'/'.ltrim($append, '/') : $root;
     }
 }
@@ -13,7 +13,7 @@ if (! function_exists('anvixa_base_path')) {
 if (! function_exists('anvixa_base_url')) {
     function anvixa_base_url(string $append = ''): string
     {
-        $base = rtrim(config('app.url'), '/') . '/anvixa';
+        $base = rtrim(config('app.url'), '/') . '/Shivali';
         return $append ? $base.'/'.ltrim($append, '/') : $base;
     }
 }

@@ -45,33 +45,42 @@
             @if(isset($row)) @method('PUT') @endif
 
           {{-- Row 1: Category + Subcategory --}}
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Category <span class="text-danger">*</span></label>
-                <select name="category_id" class="form-select @error('category_id') is-invalid @enderror">
-                  <option value="">-- Select Category --</option>
-                  @foreach($categories as $id => $name)
-                    <option value="{{ $id }}" @selected(old('category_id', $row->category_id ?? '') == $id)>
-                      {{ $name }}
-                    </option>
-                  @endforeach
-                </select>
-                @error('category_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
-              </div>
+            
+             @php
+                      $selectedCategory    = old('category_id', $row->category_id ?? '');
+                      $selectedSubcategory = old('subcategory_id', $row->subcategory_id ?? '');
+                    @endphp
+                    
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Category <span class="text-danger">*</span></label>
+                        <select id="jsCategory"
+                                name="category_id"
+                                class="form-select @error('category_id') is-invalid @enderror"
+                                data-selected="{{ $selectedCategory }}">
+                          <option value="">-- Select Category --</option>
+                          @foreach($categories as $id => $name)
+                            <option value="{{ $id }}" @selected($selectedCategory == $id)>{{ $name }}</option>
+                          @endforeach
+                        </select>
+                        @error('category_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                      </div>
+                    
+                      <div class="col-md-6 mb-3">
+                        <label class="form-label">Subcategory <span class="text-danger">*</span></label>
+                        <select id="jsSubcategory"
+                                name="subcategory_id"
+                                class="form-select @error('subcategory_id') is-invalid @enderror"
+                                data-selected="{{ $selectedSubcategory }}"
+                                {{ $selectedCategory ? '' : 'disabled' }}>
+                          <option value="">-- Select Subcategory --</option>
+                          {{-- options injected by JS --}}
+                        </select>
+                        @error('subcategory_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                        <div class="form-text" id="jsSubcatHelp" style="display:none;">Loading subcategories…</div>
+                      </div>
+                    </div>
 
-              <div class="col-md-6 mb-3">
-                <label class="form-label">Subcategory <span class="text-danger">*</span></label>
-                <select name="subcategory_id" class="form-select @error('subcategory_id') is-invalid @enderror">
-                  <option value="">-- Select Subcategory --</option>
-                  @foreach($subcategories as $id => $name)
-                    <option value="{{ $id }}" @selected(old('subcategory_id', $row->subcategory_id ?? '') == $id)>
-                      {{ $name }}
-                    </option>
-                  @endforeach
-                </select>
-                @error('subcategory_id')<div class="invalid-feedback">{{ $message }}</div>@enderror
-              </div>
-            </div>
 
             {{-- Row 1: Product Name + Description --}}
             <div class="row">
@@ -172,6 +181,67 @@
     if (!v) preview.classList.add('text-muted'); else preview.classList.remove('text-muted');
   });
 })();
+
+
+(function () {
+  const catSel  = document.getElementById('jsCategory');
+  const subSel  = document.getElementById('jsSubcategory');
+  const helpTxt = document.getElementById('jsSubcatHelp');
+  if (!catSel || !subSel) return;
+
+  // Build route URL from your named route, replacing placeholder
+  const ROUTE_TEMPLATE = @json(route('admin.fetch-subcategories', ['category' => '__ID__']));
+
+  async function loadSubcategories(categoryId, preselectId) {
+    // reset
+    subSel.innerHTML = '<option value="">-- Select Subcategory --</option>';
+    subSel.disabled = true;
+    if (helpTxt) { helpTxt.style.display = 'inline'; helpTxt.textContent = 'Loading subcategories…'; }
+
+    if (!categoryId) { if (helpTxt) helpTxt.style.display = 'none'; return; }
+
+    const url = ROUTE_TEMPLATE.replace('__ID__', encodeURIComponent(categoryId));
+
+    try {
+      const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
+      if (!res.ok) throw new Error('Bad response');
+      const list = await res.json(); // [{iSubCategoryId, strSubCategoryName}, ...]
+
+      for (const it of list) {
+        const opt = document.createElement('option');
+        opt.value = String(it.iSubCategoryId);
+        opt.textContent = it.strSubCategoryName;
+        if (preselectId && String(preselectId) === String(it.iSubCategoryId)) {
+          opt.selected = true;
+        }
+        subSel.appendChild(opt);
+      }
+
+      subSel.disabled = false;
+      if (helpTxt) helpTxt.style.display = 'none';
+    } catch (err) {
+      console.error(err);
+      if (helpTxt) {
+        helpTxt.style.display = 'inline';
+        helpTxt.textContent = 'Failed to load subcategories. Please try again.';
+      }
+    }
+  }
+
+  // On first load (covers Edit + validation errors)
+  const initialCategoryId    = catSel.getAttribute('data-selected') || catSel.value || '';
+  const initialSubcategoryId = subSel.getAttribute('data-selected') || '';
+  if (initialCategoryId) {
+    loadSubcategories(initialCategoryId, initialSubcategoryId);
+  }
+
+  // On Category change
+  catSel.addEventListener('change', function () {
+    subSel.setAttribute('data-selected', ''); // clear previous
+    loadSubcategories(this.value, '');
+  });
+})();
+
 </script>
 
 @endsection

@@ -159,7 +159,7 @@
         $('#editStrCategoryName').val(name);
         $('#editStrSlug').val(slug);
  
-        $('#editCategoryForm').attr('action', '/admin/category/' + id);
+        $('#editCategoryForm').attr('action', '/Shivali/admin/category/' + id);
         $('#editCategoryModal').modal('show');
     });
  

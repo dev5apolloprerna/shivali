@@ -68,28 +68,40 @@ public function store(Request $request)
     ]);
 
 
+       // store() or update()
         $imageRel = null;
-        $uploadFile = $request->file('product_image') ?: $request->file('product_image');
-        if ($uploadFile) {
-            $meta = anx_upload($uploadFile, 'products');
-            $imageRel = $meta['relative']; // store relative path
+        
+        if ($request->hasFile('product_image')) {
+            $file = $request->file('product_image');
+        
+            // Call your helper
+            $meta = anx_upload($file, 'product');
+        
+            // Normalize: accept string OR array
+            if (is_array($meta)) {
+                // try common keys you might use in your helper
+                $imageRel = $meta['relative'] ?? $meta['path'] ?? $meta['rel'] ?? null;
+            } else {
+                // if the helper returns a string, just store it
+                $imageRel = (string) $meta;
+            }
         }
+        
+        // Example usage in store():
+        $product = new \App\Models\Product();
+        $product->product_name   = $request->product_name;
+        $product->slug = Product::makeUniqueSlug($request->product_name);
+        $product->category_id    = $request->category_id;
+        $product->subcategory_id = $request->subcategory_id;
+        $product->description    = $request->description;
+        
+        // Only set if uploaded
+        if ($imageRel) {
+            $product->product_image = $imageRel;
+        }
+        
+        $product->save();
 
-    $p = new Product();
-    $p->product_name   = $request->product_name;
-    $p->slug           = Product::makeUniqueSlug($p->product_name);
-    $p->description    = $request->input('description') ?: null;
-    $p->category_id    = (int)$request->input('category_id');
-    $p->subcategory_id = (int)$request->input('subcategory_id');
-    $p->product_image = $imageRel;
-
-    /*if ($request->hasFile('product_image')) {
-
-
-        $p->product_image = anx_upload($request->file('product_image'), 'products');
-    }*/
-
-    $p->save();
     return redirect()->route('admin.products.index')->with('success','Product added.');
 }
 
@@ -119,18 +131,41 @@ public function update(Request $request, \App\Models\Product $product)
     $product->updated_at     = now();
 
 
-        $uploadFile = $request->file('product_image') ?: $request->file('product_image');
-        if ($uploadFile) {
-            // delete old file if present
-            anx_delete($product->product_image);
-
-            $meta = anx_upload($uploadFile, 'products');
-            $product->product_image = $meta['relative'];
+       // Only handle image if a new file was sent
+        if ($request->hasFile('product_image')) {
+            $file = $request->file('product_image');
+        
+            // Upload (may return array OR string)
+            $res = anx_upload($file, 'product');
+        
+            // Normalize to a relative path string
+            $newPath = is_array($res)
+                ? ($res['relative'] ?? $res['path'] ?? $res['rel'] ?? null)
+                : (string) $res;
+        
+            if (!empty($newPath)) {
+                // delete old file if present and different
+                if (!empty($product->product_image) && $product->product_image !== $newPath) {
+                    try {
+                        anx_delete($product->product_image);
+                    } catch (\Throwable $e) {
+                        // optional: log but don't break the update
+                        \Log::warning('Failed to delete old product image', [
+                            'product_id' => $product->product_id ?? $product->id ?? null,
+                            'path' => $product->product_image,
+                            'error' => $e->getMessage(),
+                        ]);
+                    }
+                }
+        
+                // assign new relative path
+                $product->product_image = $newPath;
+            }
         }
+        
+        // save the rest of the fields as you already do...
+        $product->save();
 
-
-
-    $product->save();
     $product->image_url = anx_url($product->product_image);
 
 

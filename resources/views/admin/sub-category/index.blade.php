@@ -182,7 +182,7 @@
         $('#editStrSubCategoryName').val(name);
         $('#editStrSlug').val(slug);
  
-        $('#editSubCategoryForm').attr('action', '/admin/sub-category/' + id);
+        $('#editSubCategoryForm').attr('action', '/Shivali/admin/sub-category/' + id);
         $('#editSubCategoryModal').modal('show');
     });
  

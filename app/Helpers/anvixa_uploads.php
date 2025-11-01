@@ -2,87 +2,91 @@
 
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
+/**
+ * Resolve the absolute filesystem root where "Shivali" lives.
+ * Live:   /.../public_html/Shivali
+ * Local:  {project}/public/Shivali  (fallback)
+ */
 if (! function_exists('anx_target_root')) {
-    /**
-     * Pick the correct disk root for writes:
-     * - If live dir exists (../public_html/anvixa), use that
-     * - Else fallback to local public/anvixa
-     */
     function anx_target_root(): string
     {
-        $live = anvixa_base_path(); // from your snippet
+        // Try to locate cPanel-like path relative to the project
+        $live = realpath(base_path('../public_html/Shivali')) ?: base_path('../public_html/Shivali');
+
+        // If that exists/useable, prefer it
         if (File::isDirectory($live)) {
-            return $live;
+            return rtrim($live, '/\\');
         }
-        return public_path('anvixa');
+
+        // Fallback to local public/Shivali
+        return rtrim(public_path('Shivali'), '/\\');
     }
 }
 
+/**
+ * Base public URL that maps to anx_target_root()
+ * Live:   {APP_URL}/Shivali
+ * Local:  {APP_URL}/Shivali
+ */
 if (! function_exists('anx_base_url')) {
-    /**
-     * Public base URL for the same content.
-     * Uses your anvixa_base_url(), and falls back to app url + /anvixa
-     */
     function anx_base_url(string $append = ''): string
     {
-        $base = anvixa_base_url(); // from your snippet
-        // If you're running locally and the above already resolves correctly, remove the fallback:
-        if (!$base) {
-            $base = rtrim(config('app.url'), '/') . '/anvixa';
-        }
-        return $append ? rtrim($base, '/') . '/' . ltrim($append, '/') : rtrim($base, '/');
+        $base = rtrim(config('app.url'), '/') . '/Shivali';
+        return $append ? $base . '/' . ltrim($append, '/') : $base;
     }
 }
 
+/**
+ * Upload a file under {anx_target_root()}/uploads/{folder}/{filename}
+ * Returns the relative DB path like: uploads/{folder}/{filename}
+ */
 if (! function_exists('anx_upload')) {
-    /**
-     * Move an uploaded file to anvixa/uploads/{subdir}/{filename}
-     * Returns array: [relative, url, filename, mime, size]
-     *
-     * @param UploadedFile $file
-     * @param string $subdir (e.g. 'gallery', 'documents')
-     * @param array|null $allowedExt override allowed extensions
-     */
-    function anx_upload($file, $folder)
-        {
-            // Make sure the folder exists
-            $uploadPath = public_path('uploads/' . $folder . '/');
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
-            }
+    function anx_upload(UploadedFile $file, string $folder, ?array $allowedExt = null): string
+    {
+        $allowedExt = $allowedExt ?: ['jpg','jpeg','png','webp','gif','pdf','doc','docx','xls','xlsx','csv','txt'];
 
-            // Generate unique file name
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-
-            // Move file to uploads directory
-            $file->move($uploadPath, $fileName);
-
-            // ✅ Return string path (NOT array)
-            return 'uploads/' . $folder . '/' . $fileName;
+        $ext = strtolower($file->getClientOriginalExtension() ?: $file->extension());
+        if (!in_array($ext, $allowedExt, true)) {
+            throw new \RuntimeException("File type .$ext not allowed.");
         }
 
+        $root = anx_target_root(); // e.g., /home/USER/public_html/Shivali
+        $dir  = $root . '/uploads/' . trim($folder, '/');
+
+        if (!File::isDirectory($dir)) {
+            File::makeDirectory($dir, 0775, true);
+        }
+
+        $filename = time() . '_' . uniqid('', true) . '.' . $ext;
+        $absPath  = $dir . '/' . $filename;
+
+        // Move the file
+        $file->move($dir, $filename);
+
+        // Return relative path to be stored in DB
+        return 'uploads/' . trim($folder, '/') . '/' . $filename;
+    }
 }
 
+/**
+ * Delete previously stored relative path (uploads/...)
+ */
 if (! function_exists('anx_delete')) {
-    /**
-     * Delete a previously stored file using its DB 'relative' path (uploads/...).
-     */
     function anx_delete(?string $relative): void
     {
         if (!$relative) return;
-        $abs = rtrim(anx_target_root(), '/') . '/' . ltrim($relative, '/');
+        $abs = anx_target_root() . '/' . ltrim($relative, '/');
         if (File::exists($abs)) {
             File::delete($abs);
         }
     }
 }
 
+/**
+ * Build a public URL from a stored relative path
+ */
 if (! function_exists('anx_url')) {
-    /**
-     * Build public URL from stored relative path.
-     */
     function anx_url(?string $relative): ?string
     {
         return $relative ? anx_base_url($relative) : null;

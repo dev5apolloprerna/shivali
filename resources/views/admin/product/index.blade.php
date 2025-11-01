@@ -59,7 +59,7 @@
                   <td>{{ $list->firstItem() + $i }}</td>
                   <td>
                      @if($p->product_image)
-                            <img src="{{ asset('anvixa/'.$p->product_image) }}" style="width:70px;height:50px;object-fit:cover;border-radius:4px;">
+                            <img src="{{ asset($p->product_image) }}" style="width:70px;height:50px;object-fit:cover;border-radius:4px;">
                           @else — @endif
                   </td>
                   <td>
