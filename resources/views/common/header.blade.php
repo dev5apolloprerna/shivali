@@ -12,7 +12,7 @@ $roleid = auth()->user()->role_id;
             <div class="navbar-brand-box horizontal-logo">
                     <a href="{{ route('home') }}" class="logo logo-dark">
                         <span class="logo-lg">
-                            <img src="{{ asset ('assets/images/logo.png')}}" alt="" height="70">
+                            <img src="{{ asset ('assets/images/logo.png')}}" alt="" height="72">
                         </span>
                     </a>
                 </div>    
