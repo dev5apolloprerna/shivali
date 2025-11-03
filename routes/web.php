@@ -1,10 +1,13 @@
 <?php
+
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\FrontviewController;
+
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +22,7 @@ use App\Http\Controllers\Admin\ProductVideoController;
 
 
 Route::fallback(function () {
-     return view('errors.404');
+    return view('errors.404');
 });
 
 Route::get('/login', function () {
@@ -28,6 +31,10 @@ Route::get('/login', function () {
 
 
 Auth::routes(['register' => false]);
+
+Route::get('/', [FrontviewController::class, 'index'])->name('index');
+Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('about');
+
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -64,51 +71,44 @@ Route::middleware('auth')->prefix('users')->name('users.')->group(function () {
 
 
 Route::prefix('admin')->name('admin.')->group(function () {
- 
+
     // Category
     Route::resource('category', CategoryController::class);
     Route::post('category/bulk-delete', [CategoryController::class, 'bulkDelete'])->name('category.bulk-delete');
- 
+
     // Sub Category
     Route::resource('sub-category', SubCategoryController::class);
     Route::post('sub-category/bulk-delete', [SubCategoryController::class, 'bulkDelete'])->name('sub-category.bulk-delete');
     Route::get('sub-category/by-category/{iCategoryId}', [SubCategoryController::class, 'byCategory'])->name('sub-category.by-category');
-
-
 });
- 
 
-    Route::get('/admin/fetch-subcategories/{category}', function ($categoryId) {
-        return response()->json(
-            \App\Models\SubCategory::where('iCategoryId', $categoryId)
-                ->where('isDelete', 0)
-                ->orderBy('strSubCategoryName')
-                ->get(['iSubCategoryId','strSubCategoryName'])
-        );
-    })->name('admin.fetch-subcategories');
 
-    
+Route::get('/admin/fetch-subcategories/{category}', function ($categoryId) {
+    return response()->json(
+        \App\Models\SubCategory::where('iCategoryId', $categoryId)
+            ->where('isDelete', 0)
+            ->orderBy('strSubCategoryName')
+            ->get(['iSubCategoryId', 'strSubCategoryName'])
+    );
+})->name('admin.fetch-subcategories');
+
+
 Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () {
-        Route::get('Inquiry/index', [InquiryController::class, 'index'])->name('index');
-        Route::delete('/Inquiry-delete', [InquiryController::class, 'delete'])->name('delete');
-        Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
+    Route::get('Inquiry/index', [InquiryController::class, 'index'])->name('index');
+    Route::delete('/Inquiry-delete', [InquiryController::class, 'delete'])->name('delete');
+    Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
 });
 
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
-    Route::get('/products',                [ProductController::class, 'index'])->name('admin.products.index');
-    Route::get('/products/create',         [ProductController::class, 'create'])->name('admin.products.create');
-    Route::post('/products',               [ProductController::class, 'store'])->name('admin.products.store');
+    Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
+    Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products', [ProductController::class, 'store'])->name('admin.products.store');
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('admin.products.edit');
-    Route::put('/products/{product}',      [ProductController::class, 'update'])->name('admin.products.update');
-    Route::post('/products/{product}/delete',        [ProductController::class, 'destroy'])->name('admin.products.delete');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
+    Route::post('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
     Route::post('/products/{product}/toggle-status', [ProductController::class, 'toggleStatus'])->name('admin.products.toggle-status');
-
-
 });
-
-
-
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     // Product image manager
@@ -119,8 +119,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/products/images/{image}/delete', [ProductImageController::class, 'destroy'])->name('admin.product-images.delete');
 
     Route::post('/products/image/{id}/delete', [ProductImageController::class, 'deleteOne'])
-    ->name('admin.product-images.deleteOne');
-
+        ->name('admin.product-images.deleteOne');
 });
 
 

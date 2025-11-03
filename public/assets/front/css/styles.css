@@ -1,0 +1,2518 @@
+
+@import url(bootstrap-select.min.css);
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --primary: #C8A07C;
+  --secondary: #df9902;
+  --third:#482f37;
+  --text: #000;
+  --text-2: #8A8C8A;
+  --text-3: #ACAFAB;
+  --text-4: #E4E4E4;
+  --text-5: #FFFFFF80;
+  --text-6: #00000080;
+  --text-7: #B3907A;
+  --bg: #E4E4E4;
+  --bg-2: #F5F5F5;
+  --bg-3: #021A62;
+  --bg-4: #534696;
+  --bg-5: #C8A07C;
+  --bg-6: #B2CBEA;
+  --bg-7: #EC6E1A;
+  --bg-8: #FAFAFA;
+  --bg-9: #F6F4F1;
+  --bg-10: #C8102E12;
+  --bg-11: #EEDFC6;
+  --bg-12: #F7F7F7;
+  --bg-13: #F8F8F8;
+  --bg-14: #4F684C;
+  --bg-15: #42514A;
+  --bg-16: #F7EDE4;
+  --bg-17: #FAFAFD;
+  --line: #EDEDED;
+  --line-2: #FFFFFF33;
+  --line-3: #FFFFFF1A;
+  --line-4: #FFFFFF80;
+  --line-5: #FFFFFFB3;
+  --line-6: #E7E7E7;
+  --line-7: #E2E2E2;
+  --line-8: #00000012;
+  --line-9: #FFFFFF4D;
+  --line-10: #ECECEC;
+  --shadow-1: #A3A3A340;
+  --linear-1: linear-gradient(180deg, rgba(246, 221, 190, 0) 0%, rgba(246, 221, 190, 0.5) 100%);
+  --linear-2: linear-gradient(137.6deg, #C09C71 23.87%, #664B18 99.83%);
+  --linear-3: linear-gradient(285.63deg, #4B2C17 5.45%, #905E3D 94.52%);
+  --linear-4: linear-gradient(133.57deg, #FFF0D3 25.62%, #EBD1A2 100%);
+  --linear-5: linear-gradient(138.03deg, #FFF3E5 23.68%, #FFCDA2 100%);
+  --verified: #00BF43;
+  --success: #28A745;
+  --error: #ff4949;
+}
+
+html,
+body,
+div,
+span,
+h1,
+h2,
+h4,
+h5,
+h6,
+p,
+a,
+img,
+i,
+ul,
+li,
+footer,
+header,
+nav,
+section,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  font-family: inherit;
+  font-size: 100%;
+  font-style: inherit;
+  font-weight: inherit;
+}
+
+footer,
+header,
+nav,
+section {
+  display: block;
+}
+
+/* Elements
+-------------------------------------------------------------- */
+html {
+  margin-right: 0 !important;
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Futura PT Book", sans-serif!important;
+  /* font-family: "Raleway", sans-serif!important; */
+  
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--white);
+}
+body::-webkit-scrollbar {
+  width: 5px;
+}
+body::-webkit-scrollbar-thumb {
+  cursor: grab;
+  background-color: var(--primary);
+}
+
+
+img {
+  max-width: 100%;
+  height: auto;
+  transform: scale(1);
+  vertical-align: middle;
+  -ms-interpolation-mode: bicubic;
+}
+/* 
+.row {
+  margin-right: -16px;
+  margin-left: -16px;
+}
+.row > * {
+  padding-left: 16px;
+  padding-right: 16px;
+} */
+/* @media (min-width: 1200px) {
+  .row {
+    margin-right: -24px;
+    margin-left: -24px;
+  }
+  .row > * {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+} */
+
+ul,
+li {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.container {
+  max-width: 1472px;
+  width: 100%;
+  margin: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1488px;
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+
+button {
+  background: transparent;
+  border: 0;
+  display: inline-flex;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/* Since FF19 lowers the opacity of the placeholder by default */
+:-ms-input-placeholder {
+  color: var(--secondary-2);
+}
+
+/* Typography
+-------------------------------------------------------------- */
+h1,
+h2,
+h4,
+h5,
+h6 {
+  /* font-family: "TheanoDidot", sans-serif; */
+  text-rendering: optimizeLegibility;
+  font-weight: 500;
+  margin-bottom: 0;
+  letter-spacing: 0;
+  
+}
+
+.h3,
+.h5,
+.h6 {
+  /* font-family: "TheanoDidot", sans-serif; */
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  margin-bottom: 0;
+  letter-spacing: 0;
+  
+}
+
+h1 {
+  font-size: clamp(32px, 4.5vw, 40px);
+  line-height: clamp(44px, 5.5vw, 45px);
+}
+
+h2 {
+  font-size: clamp(22px, 3.2vw, 35px);
+  line-height: clamp(32px, 3.2vw, 40px);
+}
+
+.h3 {
+  font-size: clamp(20px, 2.2vw, 32px);
+  line-height: clamp(28px, 3vw, 43px);
+}
+
+h4 {
+  font-size: clamp(14px, 2.5vw, 20px);
+  line-height: clamp(26px, 3vw, 32px);
+}
+
+h5,
+.h5 {
+  font-size: clamp(18px, 3vw, 20px);
+  line-height: clamp(24px, 4vw, 27px);
+}
+
+h6,
+.h6 {
+  font-size: 18px;
+  line-height: 24px;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.text-black {
+  color: var(--black) !important;
+}
+
+.text-primary {
+  color: var(--primary) !important;
+}
+
+.text-main {
+  color: var(--text) !important;
+}
+
+a {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+  
+  color: var(--black);
+}
+a:focus, a:hover {
+  text-decoration: none;
+  outline: 0;
+}
+
+.link {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.link:hover {
+  color: var(--primary) !important;
+}
+
+.text-line-clamp-1 {
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  display: -webkit-box !important;
+  overflow: hidden;
+}
+
+/* Preload 
+------------------------------------------- */
+.br-line {
+  width: 100%;
+  height: 1px;
+  display: inline-flex;
+  background-color: var(--line);
+}
+
+.mb-4 {
+  margin-bottom: 4px !important;
+}
+
+.mb-8 {
+  margin-bottom: 8px !important;
+}
+
+.tf-swiper .swiper-slide {
+  height: auto;
+}
+.tf-swiper .swiper-slide > * {
+  height: 100%;
+}
+
+.mb_30 {
+  margin-bottom: 30px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+header {
+  position: sticky;
+  z-index: 100;
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  /* background: rgb(255 255 255 / 40%); */
+}
+/* .header-sticky .logo-site{display:none;} */
+.header-abs-1 {
+  margin-bottom: -132px;
+}
+@media (max-width: 1199px) {
+  .header-abs-1 {
+    margin-bottom: -132px;
+  }
+}
+.header-sticky{
+  background: #fff !important;
+  box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.1);
+}
+
+.logo-site {
+  display: flex;
+
+}
+.logo-site::before {
+    /* content: " "; */
+    position: absolute;
+    border-right: 50px solid transparent;
+    border-left: 0px solid transparent;
+    border-bottom: 130px solid #ffffff;
+    /* border-top: 50px solid #000; */
+    width: 299px;
+    top: 0px;
+    left: 0px;
+}
+.logo-site img {
+    /* aspect-ratio: 2.5094339623; */
+    width: 100px;
+}
+
+.tf-topbar {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    /*background: var(--primary);*/
+    background:#000;
+    color: #fff!important;
+    z-index: 999;
+    position: relative;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 24px;
+}
+
+.topbar-option-list {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 24px;
+}
+.topbar-option-list .br-line {
+  background-color: var(--white);
+  opacity: 0.2;
+  height: 16px;
+  width: 1px;
+}
+
+.text-logo-mb {
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 53px;
+}
+.text-logo-mb img{width:150px}
+
+.btn-mobile-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
+    position: relative;
+    background: #ffffff3d;
+    padding: 2px;
+    border-radius: 2px;
+}
+.btn-mobile-menu span {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  display: block;
+  width: 18px;
+  height: 2px;
+  background-color: var(--black);
+  border-radius: 5px;
+}
+.btn-mobile-menu::after, .btn-mobile-menu::before {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background-color: var(--black);
+  border-radius: 1px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn-mobile-menu::before {
+  top: 5px;
+}
+.btn-mobile-menu::after {
+  bottom: 5px;
+}
+
+.box-nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+
+.menu-item:hover .item-link {
+  color: var(--primary);
+}
+.menu-item:hover .item-link::after {
+  display: block;
+}
+.menu-item:hover .item-link .icon {
+  color: var(--primary);
+  transform: rotate(180deg);
+}
+.menu-item:hover .sub-menu {
+  transform: scale(1);
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+}
+
+.item-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+  color:#432b2f;
+}
+.item-link .icon {
+  font-size: 14px;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  color: var(--black);
+}
+.item-link::after {
+  position: absolute;
+  content: "";
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: calc(100% + 67px);
+  height: 100%;
+  display: none;
+}
+
+.sub-menu {
+  position: absolute;
+  top: 100%;
+  background-color: var(--white);
+  box-shadow: 0px 12px 46px 0px rgba(0, 0, 0, 0.1019607843);
+  min-width: 200px;
+  left: -31px;
+  transform: scale(0.9);
+  transform-origin: top;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  -ms-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.sub-menu_list {
+  padding: 0px;
+}
+
+.sub-menu_link {
+  color: var(--text);
+  padding: 8px 32px;
+  display: flex;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  border-bottom:1px solid var(--primary)
+}
+.sub-menu_link:hover {
+  color:var(--primary);
+}
+
+@media (max-width: 1199px) {
+  .tf-header {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+/* Menu Mobile */
+.canvas-mb {
+  width: 325px !important;
+}
+.canvas-mb .icon-close-popup {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 10px;
+}
+.canvas-mb .canvas-header {
+  padding-bottom: 32px;
+  position: relative;
+}
+.canvas-mb .canvas-header .br-line {
+  position: absolute;
+  height: 1px;
+  background-color: var(--line);
+  left: 24px;
+  right: 24px;
+  bottom: 0px;
+  width: auto;
+}
+.canvas-mb .canvas-body {
+  padding-top: 32px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+}
+.canvas-mb .canvas-body > *:not(:last-child) {
+  margin-bottom: 32px;
+}
+.canvas-mb .mb-content-top {
+  flex: 1;
+}
+
+.flow-us-wrap .title {
+  margin-bottom: 16px;
+}
+.tf-header {
+    background: #ffffff00;
+    margin-bottom: 10px;
+    /* border-bottom: 1px solid #000; */
+}
+
+/*------------ footer ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+.footer-infor {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 1200px) {
+  .footer-infor {
+    gap: 24px;
+  }
+}
+@media (min-width: 1440px) {
+  .footer-infor {
+    max-width: 324px;
+    width: 100%;
+  }
+}
+
+.footer-heading {
+  font-weight: normal;
+  margin-bottom: 12px;
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--black);
+}
+@media (min-width: 1200px) {
+  .footer-heading {
+    margin-bottom: 24px;
+  }
+}
+
+.footer-menu-list {
+  display: grid;
+  gap: 12px;
+}
+.footer-menu-list a {
+  color: var(--text);
+}
+
+.footer-contact {
+  display: grid;
+  gap: 16px;
+}
+.footer-contact li {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.footer-contact .br-line {
+  width: 1px;
+  height: 16px;
+  background-color: var(--line);
+}
+
+.footer-body {
+  padding-top: 90px;
+  padding-bottom: 56px;
+  position: relative;
+  z-index: 4;
+}
+.footer-body .footer-contact {
+  margin-bottom: 24px;
+}
+@media (max-width: 1024px) {
+  .footer-body {
+    padding-top: 80px;
+  }
+}
+@media (max-width: 767px) {
+  .footer-body {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}
+
+@media (max-width: 575px) {
+  .footer-heading-mobile {
+    display: block;
+    position: relative;
+    padding-right: 20px;
+    line-height: 24px;
+  }
+  .footer-heading-mobile::after {
+    position: absolute;
+    content: "";
+    right: 0px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 2px;
+    background-color: var(--black);
+    transition: 0.25s ease-in-out;
+  }
+  .footer-heading-mobile::before {
+    position: absolute;
+    content: "";
+    right: 5px;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 2px;
+    height: 14px;
+    background-color: var(--black);
+    transition: 0.25s ease-in-out;
+  }
+  .footer-col-block:last-child .tf-collapse-content {
+    margin-top: 20px;
+  }
+  .footer-col-block:last-child .footer-heading {
+    margin-bottom: 0px;
+  }
+  .footer-col-block .tf-collapse-content {
+    display: none;
+  }
+}
+.footer-bottom {
+  position: relative;
+  z-index: 5;
+  border-top:1px solid #000;
+}
+.footer-bottom .inner-bottom {
+  padding: 32px 0px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+@media (max-width: 767px) {
+  .footer-bottom .inner-bottom {
+    justify-content: center;
+  }
+  .footer-bottom .inner-bottom > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (min-width: 992px) {
+  .footer-bottom .inner-bottom > *:first-child, .footer-bottom .inner-bottom > *:last-child {
+    flex: 1;
+  }
+  .footer-bottom .inner-bottom > *:last-child {
+    justify-content: end;
+  }
+}
+
+/*------------ slider banner ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.sw-dot-default {
+  margin-top: 24px;
+}
+@media (min-width: 1200px) {
+  .sw-dot-default {
+    margin-top: 35px;
+  }
+}
+@media (min-width: 1440px) {
+  .sw-dot-default {
+    margin-top: 56px;
+  }
+}
+
+.tf-sw-nav {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: var(--white);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.tf-sw-nav .icon {
+  font-size: 20px;
+}
+.tf-sw-nav:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+@media (min-width: 1600px) {
+  .tf-sw-nav {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (min-width: 1200px) {
+  .tf-sw-nav .icon {
+    font-size: 24px;
+  }
+}
+
+.tf-btn-swiper-main {
+  position: relative;
+}
+.tf-btn-swiper-main .tf-sw-pagination {
+  position: absolute;
+  bottom: 15px;
+  z-index: 2;
+}
+.tf-btn-swiper-main .tf-sw-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+.tf-btn-swiper-main .tf-sw-nav.nav-next-swiper {
+  right: 25px;
+}
+.tf-btn-swiper-main .tf-sw-nav.nav-prev-swiper {
+  left: 25px;
+}
+@media (min-width: 1200px) {
+  .tf-btn-swiper-main .tf-sw-pagination {
+    bottom: 40px;
+  }
+  .tf-btn-swiper-main .tf-sw-nav.nav-next-swiper {
+    right: 48px;
+  }
+  .tf-btn-swiper-main .tf-sw-nav.nav-prev-swiper {
+    left: 48px;
+  }
+}
+@media (max-width: 1799px) {
+  .tf-btn-swiper-main .tf-sw-nav {
+    display: none !important;
+  }
+}
+
+.sw-dot-default {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+@media (min-width: 768px) {
+  .sw-dot-default {
+    gap: 9px;
+  }
+}
+.slider_effect_fade .fade-item {
+  transform: translateY(100px);
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.slider_effect_fade .fade-item.fade-item-1 {
+  transition-delay: 0.5s;
+}
+.slider_effect_fade .fade-item.fade-item-2 {
+  transition-delay: 0.6s;
+}
+.slider_effect_fade .fade-item.fade-item-3 {
+  transition-delay: 0.7s;
+}
+.slider_effect_fade .scale-item {
+  transform: scale(1.2);
+  transition: all 0.5s linear;
+}
+
+@media (max-width: 1439px) {
+  .tf-slideshow .slider-wrap {
+    height: 650px;
+  }
+}
+@media (max-width: 767px) {
+  .tf-slideshow .slider-wrap {
+    height: 600px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tf-slideshow.type-abs .sld_content {
+    transform: translateY(calc(-50% + 15px));
+  }
+}
+
+.hover-sw-nav .tf-sw-nav {
+  visibility: hidden;
+}
+.hover-sw-nav .tf-sw-nav.nav-next-swiper {
+  margin-right: 20px;
+}
+.hover-sw-nav .tf-sw-nav.nav-prev-swiper {
+  margin-left: 20px;
+}
+.hover-sw-nav:hover .tf-sw-nav {
+  margin: 0;
+  visibility: visible;
+}
+
+.slider-wrap {
+  position: relative;
+}
+.slider-wrap.style-2 .sub-title_sld,
+.slider-wrap.style-2 .title_sld {
+  margin-bottom: 15px;
+  letter-spacing: 2px;
+  font-family: "medino-regular", sans-serif;
+  text-align: left;
+}
+@media (min-width: 1200px) {
+  .slider-wrap.style-2 .sub-title_sld,
+  .slider-wrap.style-2 .title_sld {
+    margin-bottom: 24px;
+  }
+}
+@media (min-width: 1440px) {
+  .slider-wrap.style-2 .sub-text_sld {
+    margin-bottom: 56px;
+  }
+}
+@media (max-width: 575px) {
+  .slider-wrap.style-2 .title_sld {
+    margin-bottom: 24px;
+  }
+}
+
+.sld_content {
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  z-index: 2;
+}
+.sld_content .title_sld {
+  margin-bottom: 12px;
+}
+.sld_content .sub-title_sld,
+.sld_content .sub-text_sld {
+  margin-bottom: 30px;
+}
+@media (min-width: 1200px) {
+  .sld_content .sub-title_sld {
+    margin-bottom: 40px;
+  }
+  .sld_content .sub-text_sld {
+    margin-bottom: 40px;
+  }
+  .sld_content.type-center .content-sld_wrap {
+    max-width: 607px;
+    width: 100%;
+  }
+}
+@media (max-width: 575px) {
+  .sld_content .title_sld {
+    margin-bottom: 24px;
+  }
+  .sld_content .sub-text_sld {
+    display: none;
+  }
+}
+
+.title_sld {
+  font-weight: 600;
+  color: var(--black);
+}
+
+.sld_image {
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+.sld_image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/*------------ button ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.tf-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 4px 9px;
+    position: relative;
+    background-color: var(--primary);
+    /* color: var(--white); */
+    color: var(--third);
+    border-radius: 999px;
+    font-weight: 600;
+}
+.tf-btn .icon {
+  font-size: 18px;
+}
+.tf-btn.btn-white {
+  background-color: var(--white);
+  color: var(--black);
+}
+.tf-btn.btn-primary {
+  background-color: var(--primary);
+}
+.tf-btn.btn-primary:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+@media (max-width: 991px) {
+  .tf-btn {
+    padding: 6px 9px;
+    font-size: 12px;
+}
+.card-product_info{
+  height:auto !important;
+}
+}
+
+.animate-btn {
+  position: relative;
+  overflow: hidden;
+}
+.animate-btn:hover::after {
+  animation: shine-reverse 1s forwards;
+}
+
+.animate-btn:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(120deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+  top: 0;
+  left: -100%;
+  opacity: 0.6;
+}
+
+.animate-btn.tf-btn::after {
+  background-image: linear-gradient(120deg, rgba(0, 0, 0, 0) 20%, rgba(255, 255, 255, 0.4), rgba(0, 0, 0, 0) 70%);
+}
+
+.animate-btn.animate-dark::after {
+  background-image: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.25), transparent);
+}
+
+/*------------ form ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/* custom rating */
+
+.list-rating-check:not(:checked) > input {
+  position: absolute;
+  opacity: 0;
+}
+
+.list-rating-check:not(:checked) > label {
+  font-size: 24px;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 30px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+}
+
+.list-rating-check:not(:checked) > label:before {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  content: "";
+  -webkit-mask: url("../icon/start.svg") no-repeat center;
+  -webkit-mask-size: contain;
+  mask: url("../icon/start.svg") no-repeat center;
+  background: #EF9122;
+  mask-size: contain;
+}
+
+.list-rating-check:not(:checked) > label:hover,
+.list-rating-check:not(:checked) > label:hover ~ label {
+  -webkit-mask: url("../icon/start-1.svg") no-repeat center;
+  -webkit-mask-size: contain;
+  mask: url("../icon/start-1.svg") no-repeat center;
+  background: #EF9122;
+  mask-size: contain;
+}
+
+/*------------ nice select ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ carousel ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ pop up ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.offcanvas {
+  border: none !important;
+  color: var(--black);
+  z-index: 3000;
+}
+.offcanvas .icon-close-popup {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  background: transparent;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  color: var(--black);
+  z-index: 10;
+}
+.offcanvas .icon-close-popup:hover {
+  color: var(--primary);
+}
+
+.canvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  text-transform: capitalize;
+}
+@media (min-width: 1200px) {
+  .canvas-header {
+    padding: 32px;
+  }
+}
+
+.canvas-body {
+    background-color: #ddbf91;
+    padding: 10px 24px;
+    overscroll-behavior-y: contain;
+    overflow-y: auto;
+    flex: 1;
+}
+.canvas-body::-webkit-scrollbar {
+  width: 5px;
+}
+.canvas-body::-webkit-scrollbar-track {
+  background-color: var(--white);
+}
+.canvas-body::-webkit-scrollbar-thumb {
+  background: var(--primary);
+  border-radius: 4px;
+}
+@media (min-width: 1200px) {
+  .canvas-body {
+    padding: 12px 32px 15px;
+  }
+}
+
+/*------------ box icon ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+.tf-social-icon {
+  display: inline-flex;
+  gap: 16px;
+  --facebook-cl: rgb(59, 89, 152);
+  --x-cl: rgb(85, 85, 85);
+  --instagram-cl: linear-gradient(#8a3ab9, #e95950, #fccc63);
+  --threads-cl: rgb(224, 53, 102);
+  --youtube-cl: rgb(205, 32, 31);
+  --tiktok-cl: linear-gradient(#25f4ee, #000, #fe2c55);
+  --tiktok-cl2: rgb(254, 44, 85);
+  --pinterest-cl: rgb(203, 32, 39);
+  --tumblr-cl: rgb(55, 69, 92);
+  --vimeo-cl: rgb(26, 183, 234);
+  --snapchat-cl: rgb(255, 221, 0);
+  --whatsapp-cl: rgb(0, 230, 118);
+  --linked_in-cl: rgb(23, 106, 255);
+  --wechat-cl: rgb(26, 173, 24);
+  --reddit-cl: rgb(255, 69, 0);
+  --line-cl: rgb(0, 195, 77);
+  --spotify-cl: rgb(30, 125, 96);
+}
+.tf-social-icon a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid;
+  border-color: var(--line);
+  position: relative;
+}
+.tf-social-icon a .icon {
+  display: inline-flex;
+  position: relative;
+  z-index: 1;
+  font-size: 16px;
+}
+.tf-social-icon a::after {
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  background: transparent;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  z-index: 0;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+}
+.tf-social-icon .social-facebook::after {
+  background: var(--facebook-cl);
+}
+.tf-social-icon .social-facebook:hover {
+  color: var(--white);
+}
+.tf-social-icon .social-facebook:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+.tf-social-icon .social-x::after {
+  background: var(--x-cl);
+}
+.tf-social-icon .social-x:hover {
+  color: var(--white);
+}
+.tf-social-icon .social-x:hover::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tf-social-icon_2 {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.tf-social-icon_2 li,
+.tf-social-icon_2 a {
+  display: flex;
+}
+
+/*------------ hover ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.hover-img .img-style {
+    overflow: hidden;
+    /* height: 410px; */
+}
+.hover-img .img-style > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    -webkit-transition: opacity 0.5s ease, transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+    transition: opacity 0.5s ease, transform 1.5s cubic-bezier(0, 0, 0.44, 1.18);
+    
+  
+}
+.hover-img:hover .img-style > img {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+  
+}
+
+/*------------ product ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+.card-product {
+  display: flex;
+  flex-direction: column;
+  /* gap: 24px; */
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position:relative
+}
+@media (max-width: 575px) {
+  .card-product {
+    gap: 12px;
+        height: 225px;
+    overflow: hidden;
+  }
+}
+
+.card-product_wrapper {
+  aspect-ratio: 0.75;
+  z-index: 20;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.card-product_wrapper .product-img {
+  overflow: hidden;
+  position: relative;
+  height:345px;
+}
+.card-product_wrapper img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition-duration: 700ms;
+}
+.card-product_wrapper .img-hover {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+.card-product_wrapper:hover .img-hover {
+  display: block;
+  z-index: 1;
+  opacity: 1;
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
+}
+/* .card-product_info .name-product {
+  color: #000;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  margin-bottom: 4px;
+  text-align: left;
+  
+  font-family: "Josefin Sans", sans-serif;
+  text-align: center;
+
+} */
+
+.card-product_info .name-product {
+    color: #ffffff;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    overflow: hidden;
+    margin-bottom: 4px;
+    text-align: left;
+    text-shadow: #000 1px 1px 2px;
+    font-family: "Didot", sans-serif;
+    text-align: center;
+}
+
+.price-wrap {
+    /* display: flex; */
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+    /* gap: 0px 10px; */
+    /* justify-content: right; */
+    /* position: absolute; */
+    /* bottom: 10px; */
+    /* width: 100%; */
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 99;
+    opacity: 0;
+}
+
+.price-wrap .tf-btn.btn-primary {
+    background-color: #4da850;
+    color:#fff;
+}
+
+/*------------ blog ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ testimonial ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ accordion ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ zoom ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ shop ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ animation ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+@keyframes shine-reverse {
+  0% {
+    left: 100%;
+  }
+  100% {
+    left: -100%;
+  }
+}
+/*------------ tabs ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+
+/*------------ cart ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.check-ship:has(.tf-check-rounded:checked) {
+  border-color: var(--black);
+}
+.check-ship:has(.tf-check-rounded:checked) .text {
+  color: var(--black);
+}
+
+/*------------ Section ---------------- */
+/* ---------------------------------------------------------
+    * Name: Ochaka - Multipurpose eCommerce HTML Template
+    * Version: 1.0.2
+    * Author: Themesflat
+    * Author URI: http://themesflat.com 
+
+	* Abstracts variable
+
+    * Reset css styles
+
+    * Components
+
+        * header
+        * footer
+        * accordion
+        * animation
+        * blog
+        * box icon
+        * button
+        * carousel
+        * avatar
+        * form
+        * hover
+        * nice select
+        * popup
+        * product
+        * shop
+        * slider
+        * testimonial
+        * zoom
+
+    * Section
+ ------------------------------------------------------------------------------ */
+/*--------- Abstracts variable ---------- */
+.list-hor {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.wg-cls-2 {
+  position: relative;
+}
+.wg-cls-2 .cls-content_wrap {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: center;
+}
+.wg-cls-2 .cls-content {
+  padding: 8px 24px;
+  border-radius: 999px;
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* .cls-content_wrap.ocation .cls-content {
+    border-radius: 0;
+    background-color: #000;
+    color: #fff!important;
+    padding: 2px 15px;
+} */
+.cls-content_wrap.ocation .cls-content {
+    border-radius: 0;
+    background-color: rgb(200 160 124 / 90%);
+    color: #000!important;
+    padding: 2px 5px;
+    box-shadow: 0px 0px 10px 8px rgb(200 160 124 / 70%);
+    border-radius: 20px;
+    /* text-shadow: 1px 1px 1px #fff; */
+}
+.cls-content_wrap.ocation .cls-content a{color:#000;
+}
+
+.wg-cls-2 .tag_cls {
+  display: -webkit-box !important;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  /* text-overflow: ellipsis;
+  white-space: normal; */
+  /* word-break: normal;
+  overflow-wrap: break-word; */
+  font-family: "Didot", sans-serif !important;
+}
+@media (min-width: 1200px) {
+  .wg-cls-2 .cls-content {
+    gap: 24px;
+  }
+  .wg-cls-2 .cls-content_wrap {
+    bottom: 24px;
+  }
+  .wg-cls-2.type-space-2 .cls-content {
+    padding: 8px 24px;
+  }
+}
+@media (max-width: 991px) {
+  .wg-cls-2.type-space-2 .cls-content_wrap {
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+  }
+  .wg-cls-2.type-space-2 .tag_cls {
+    font-size: 16px;
+  }
+}
+
+.sect-title {
+  /* margin-bottom: 40px; */
+  gap: 15px;
+}
+.sect-title .title {
+  color: var(--black);
+  font-weight: 500;
+  font-family: "medino-regular", sans-serif!important;
+}
+
+@media (min-width: 1200px) {
+  .sect-title {
+    /* margin-bottom: 56px; */
+  }
+}
+
+.sld_image::before{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+
+}
+.banner-content {
+    position: absolute;
+    top: 20%;
+    right: 50px;
+    z-index: 2;
+    background: #ffffffa1;
+    padding: 20px;
+}
+.banner-wrap{
+  position: relative;
+  overflow: hidden;
+  height: 500px;
+}
+.banner-wrap::before {
+    /* content: ""; */
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1;
+}
+/* .card-product_info {
+    height: auto;
+    overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    z-index: 99;
+    padding: 10px 20px;
+    color: #000;
+    background: #ffffff;
+    width: 80%;
+    left: 10%;
+} */
+.card-product_info {
+    height: auto;
+    overflow: hidden;
+    /* position: absolute; */
+    bottom: 0;
+    z-index: 99;
+    padding: 10px 20px;
+    color: #fff;
+    background: transparent;
+    width: 100%;
+    left: 10%;
+    margin-top: -100px;
+}
+.tf-footer{
+  border-top: 1px solid #000;
+}
+.banner-content .title{
+  margin-bottom: 50px;
+}
+@media screen and (max-width: 767px) {
+  .banner-content {
+    position: absolute;
+    top: 25%;
+    padding: 10px;
+    background: #ffffffa1;
+    right: 0;
+}
+ 
+.banner-content .title{font-size: 24px;}
+.banner-content .title{
+  margin-bottom: 0px;
+   padding:0 10px;
+}
+.banner-wrap {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    /* margin-top: 15px; */
+    /* margin-bottom: 30px; */
+}
+.sld_image img{width:100%;
+object-fit: cover;
+height:300px;
+z-index: -1;
+}
+.sld_content{
+  position: absolute;
+  top: 45%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+}
+.header-abs-1 {
+    /* margin-bottom: 0px; */
+}
+.slider-wrap.style-2 .sub-title_sld, .slider-wrap.style-2 .title_sld{
+  margin-bottom: 0px!important;
+  line-height: 30px;
+  font-size:23px;
+  font-weight:bold;
+}
+}
+@media (max-width: 575px) {
+  .tf-slideshow .slider-wrap {
+    height: 300px;
+  }
+  .banner-image img{height:200px!important}
+  .vid-sec{height: auto!important;
+  overflow: hidden;
+  object-fit: cover;
+  padding-top:0!important;
+  }
+p{text-align: left;}
+  .price-wrap{}
+  .about-banner{
+  /* padding:0px 0 !important */
+}
+  /* .banner-wrap::before {displ                                                                                                                                                                                              ay:none;} */
+}
+    /* Hero Section */
+    .hero {
+      position: relative;
+      /* height: calc( 100vh - 110px ) ; */
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      margin-top: -130px;
+      /* margin-bottom: 10px; */
+          margin-left: 0 !important;
+    }
+
+    /* Video Background */
+   .hero video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* transform: translate(-50%, -50%); */
+    object-fit: cover;
+}
+
+    /* Overlay */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.4); /* dark overlay for readability */
+    }
+
+    /* Hero Content */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      color: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    /* .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      font-family: "Anthurea", sans-serif!important;
+      font-weight: bolder;
+      letter-spacing: 5px;
+    } */
+
+ .hero-content h1 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      font-family: "medino-regular", sans-serif!important;
+      font-weight: bolder;
+      letter-spacing: 5px;
+    } 
+     
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+    }
+
+    .hero-content button {
+      padding: 12px 30px;
+      border: none;
+      background: var(--primary);
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s;
+    }
+
+    .hero-content button:hover {
+      background: var(--third);
+    }
+.txtonimg {
+     position: absolute; 
+    bottom: 50px;
+    left: 0;
+    color: #000000;
+    font-family: "medino-regular", sans-serif!important;
+    margin-top: -100px;
+    z-index: 9999;
+    /*position: relative;*/
+    background: #ffffff96;
+    height: 80px;
+    /* text-shadow: 1px 1px 1px #000; */
+    padding-top: 15px;
+    width: 60%;
+    
+}
+.txtonimg.right {
+   left:auto;
+    right: 11px;
+   
+    
+}
+.txtonimg h6 a{color: #000!important;
+    font-family: "medino-regular", sans-serif!important;
+    font-weight: bold;
+  /* font-weight: 900!important; */
+  font-size: 18px;}
+.vid-sec{height: 500px;
+overflow: hidden;
+object-fit: cover;
+}
+.vid-sec video,.vid-sec img{width: 100%;
+object-fit: cover;
+/* height: 500px!important; */
+}
+.vid-sec .inner-box{
+  position: relative;
+   max-height:500px; 
+  margin-bottom:10px;
+}
+.about-banner{
+  /* padding:20px 0 */
+}
+
+/* Base */
+.btn-floating:hover img {
+  margin-bottom: -3px
+}
+
+.btn-floating {
+    position: fixed;
+    right: 25px;
+    overflow: hidden;
+   
+   display:none;
+    border-radius: 100px;
+    border: 0;
+    z-index: 9999;
+    color: white;
+    transition: .2s;
+    padding:5px 10px
+}
+/* 
+.btn-floating:hover {
+    width: auto;
+    padding: 0 20px;
+    cursor: pointer;
+} */
+
+/* Phone */
+
+/* WhatsApp */
+.wg-cls-2 .cls-content_wrap.name{
+  left:0;
+  right:0;
+  bottom:0;
+}
+.wg-cls-2 .cls-content_wrap.name .cls-content{width:100%;
+border-radius: 0;
+display:block;
+text-align: center;
+
+}
+.btn-floating.inquiry {
+    /* background-color: var(--primary); */
+    bottom: 30px;
+    font-size: 32px;
+    right: 10px;
+    color: #000;
+    /* border: 1px solid #000; */
+    /* box-shadow: 2p 2px 2px rgba(0,0,0,0.2); */
+}
+@media screen and (max-width: 767px) {
+  .btn-floating {
+    display:block;
+  }
+  
+}
+.about-us .sub-text{
+  font-family: "Raleway", sans-serif!important;
+}
+.page-title {
+    height: 100px;
+    background: #eecea7;
+    padding: 25px 0;
+}
+
+.mission-vision .card:hover, .feature-box:hover {
+    transform: translateY(-5px);
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .why-choose {
+    background: #fffdf8;
+  }
+
+  .why-choose .feature-box {
+    transition: 0.3s;
+  }
+
+  .why-choose .feature-box i {
+    transition: 0.3s;
+  }
+
+  .why-choose .feature-box:hover i {
+    transform: scale(1.1);
+  }
+
+   .product-detail {
+      padding: 60px 0;
+    }
+    .product-gallery {
+      display: flex;
+      gap: 20px;
+    }
+    .thumb-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .thumb-list img {
+      width: 70px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .thumb-list img:hover, .thumb-list img.active {
+      border-color: #d4af37;
+    }
+    .main-image img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
+    }
+    .main-image img:hover {
+      transform: scale(1.03);
+    }

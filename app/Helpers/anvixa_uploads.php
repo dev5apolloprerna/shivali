@@ -20,7 +20,7 @@ if (! function_exists('anx_target_root')) {
         }
 
         // Fallback to local public/Shivali
-        return rtrim(public_path('Shivali'), '/\\');
+        return rtrim(public_path(), '/\\');
     }
 }
 
@@ -44,7 +44,7 @@ if (! function_exists('anx_base_url')) {
 if (! function_exists('anx_upload')) {
     function anx_upload(UploadedFile $file, string $folder, ?array $allowedExt = null): string
     {
-        $allowedExt = $allowedExt ?: ['jpg','jpeg','png','webp','gif','pdf','doc','docx','xls','xlsx','csv','txt'];
+        $allowedExt = $allowedExt ?: ['jpg', 'jpeg', 'png', 'webp', 'gif', 'pdf', 'doc', 'docx', 'xls', 'xlsx', 'csv', 'txt'];
 
         $ext = strtolower($file->getClientOriginalExtension() ?: $file->extension());
         if (!in_array($ext, $allowedExt, true)) {
