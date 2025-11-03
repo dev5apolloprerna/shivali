@@ -1,0 +1,10 @@
+   <script src="{{ asset('assets/front/js/bootstrap.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/jquery.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/swiper-bundle.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/carousel.js') }}"></script>
+   <script src="{{ asset('assets/front/js/bootstrap-select.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/lazysize.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/wow.min.js') }}"></script>
+   <script src="{{ asset('assets/front/js/parallaxie.js') }}"></script>
+   <script src="{{ asset('assets/front/js/count-down.js') }}"></script>
+   <script src="{{ asset('assets/front/js/main.js') }}"></script>
