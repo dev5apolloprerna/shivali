@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ class SubCategory extends Model
         'strSubCategoryName',
         'strSlug',
         'iCategoryId',
+        'subcategory_img',
         'iStatus',
         'isDelete',
         'strIP',
@@ -69,8 +71,8 @@ class SubCategory extends Model
 
         while (
             $query->where('strSlug', $slug)
-                  ->when($ignoreId, fn($q) => $q->where('iSubCategoryId', '!=', $ignoreId))
-                  ->exists()
+            ->when($ignoreId, fn($q) => $q->where('iSubCategoryId', '!=', $ignoreId))
+            ->exists()
         ) {
             $slug = $base . '-' . $i++;
         }

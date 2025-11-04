@@ -40,11 +40,11 @@
                        <nav class="box-navigation">
                            <ul class="box-nav-menu">
                                <li class="menu-item">
-                                   <a href="index.html" class="item-link">HOME</a>
+                                   <a href="{{ route('front.index') }}" class="item-link">HOME</a>
 
                                </li>
                                <li class="menu-item">
-                                   <a href="#" class="item-link">ABOUT US</a>
+                                   <a href="{{ route('front.about') }}" class="item-link">ABOUT US</a>
 
                                </li>
                                <li class="menu-item position-relative">
@@ -63,7 +63,7 @@
                                    </div>
                                </li>
                                <li class="menu-item">
-                                   <a href="#" class="item-link">CONTACT US</a>
+                                   <a href="{{ route('front.contactus') }}" class="item-link">CONTACT US</a>
 
                                </li>
 

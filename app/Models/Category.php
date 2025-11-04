@@ -12,6 +12,7 @@ class Category extends Model
 
     protected $fillable = [
         'strCategoryName',
+        'category_img',
         'strSlug',
         'iStatus',
         'isDelete',
@@ -67,10 +68,10 @@ class Category extends Model
 
         while (
             $query->where('strSlug', $slug)
-                  ->when($ignoreId, fn($q) => $q->where('iCategoryId', '!=', $ignoreId))
-                  ->exists()
+            ->when($ignoreId, fn($q) => $q->where('iCategoryId', '!=', $ignoreId))
+            ->exists()
         ) {
-            $slug = $base.'-'.$i++;
+            $slug = $base . '-' . $i++;
         }
 
         return $slug;

@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <h3 class="heading text-center">About Our Store</h3>
                     <ul class="breadcrumbs d-flex align-items-center justify-content-center">
-                        <li><a class="link" href="index.html">Homepage</a></li>
+                        <li><a class="link" href="{{ route('front.index') }}">Homepage</a></li>
                         <li><i class="fa fa-arrow-right"></i></li>
                         <li>About Our Store</li>
                     </ul>
@@ -23,7 +23,8 @@
                 <!-- Image -->
                 <div class="col-lg-6 mb-4 mb-lg-0 wow fadeInLeft">
                     <div class="position-relative">
-                        <img src="assets/images/about-img.jpg" alt="About Shivali" class="img-fluid rounded-4 shadow-lg">
+                        <img src="{{ asset('assets/front/images/about-img.jpg') }}" alt="About Shivali"
+                            class="img-fluid rounded-4 shadow-lg">
                         <div class="overlay-gradient position-absolute top-0 start-0 w-100 h-100 rounded-4"></div>
                     </div>
                 </div>
