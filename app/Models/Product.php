@@ -12,9 +12,17 @@ class Product extends Model
     public $timestamps = false; // using manual datetime columns
 
     protected $fillable = [
-        'product_name', 'slug', 'product_image', 'description',
-        'category_id', 'subcategory_id', 'iStatus', 'isDelete',
-        'created_at', 'updated_at',
+        'product_name',
+        'slug',
+        'product_image',
+        'description',
+        'best_product',
+        'category_id',
+        'subcategory_id',
+        'iStatus',
+        'isDelete',
+        'created_at',
+        'updated_at',
     ];
 
     // Relations (adjust to your keys/models)
@@ -39,7 +47,7 @@ class Product extends Model
         if ($ignoreId) $q->where('product_id', '!=', $ignoreId);
 
         while ($q->where('slug', $slug)->exists()) {
-            $slug = $base.'-'.$i++;
+            $slug = $base . '-' . $i++;
             $q = static::query();
             if ($ignoreId) $q->where('product_id', '!=', $ignoreId);
         }

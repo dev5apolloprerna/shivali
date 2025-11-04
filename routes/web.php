@@ -12,10 +12,11 @@ use App\Http\Controllers\FrontviewController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\InquiryController;
+use App\Http\Controllers\Admin\TopViewController;
+use App\Http\Controllers\Admin\BottomViewController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductVideoController;
@@ -31,10 +32,6 @@ Route::get('/login', function () {
 
 
 Auth::routes(['register' => false]);
-
-Route::get('/', [FrontviewController::class, 'index'])->name('index');
-Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('about');
-
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -99,6 +96,24 @@ Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () 
     Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
 });
 
+Route::prefix('admin')->name('TopVideo.')->middleware('auth')->group(function () {
+
+    Route::get('TopVideo/index', [TopViewController::class, 'index'])->name('index');
+    Route::put('TopVideo/update/{id?}', [TopViewController::class, 'update'])->name('update');
+
+    Route::delete('/TopVideo-delete/{id?}', [TopViewController::class, 'delete'])->name('delete');
+    Route::get('TopVideo/view/{id?}', [TopViewController::class, 'view'])->name('view');
+});
+
+Route::prefix('admin')->name('BottomVideo.')->middleware('auth')->group(function () {
+
+    Route::get('BottomVideo/index', [BottomViewController::class, 'index'])->name('index');
+    Route::put('BottomVideo/update/{id?}', [BottomViewController::class, 'update'])->name('update');
+
+    Route::delete('/BottomVideo-delete/{id?}', [BottomViewController::class, 'delete'])->name('delete');
+    Route::get('BottomVideo/view/{id?}', [BottomViewController::class, 'view'])->name('view');
+});
+
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
@@ -108,6 +123,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('admin.products.update');
     Route::post('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
     Route::post('/products/{product}/toggle-status', [ProductController::class, 'toggleStatus'])->name('admin.products.toggle-status');
+    Route::any('/products/bestproduct/{product?}', [ProductController::class, 'bestproduct'])->name('admin.products.bestproduct');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -123,10 +139,13 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 });
 
 
-
-
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/products/{product}/videos', [ProductVideoController::class, 'index'])->name('admin.product-videos.index');
     Route::post('/products/{id}/videos', [ProductVideoController::class, 'store'])->name('admin.product-videos.store');
     Route::post('/products/videos/{id}/delete', [ProductVideoController::class, 'deleteOne'])->name('admin.product-videos.deleteOne');
 });
+
+Route::get('/', [FrontviewController::class, 'index'])->name('front.index');
+Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('front.about');
+Route::get('/contactus', [FrontviewController::class, 'ContactUs'])->name('front.contactus');
+Route::post('/contactstore', [FrontviewController::class, 'contactstore'])->name('contactstore');

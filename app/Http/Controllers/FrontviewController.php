@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Album;
-use App\Models\GalleryMaster;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
-use App\Models\Users;
-use App\Models\LiveVideoMaster;
-use App\Models\Testimonial;
-use App\Models\TimetableMaster;
-use App\Models\VideoGallery;
 use GPBMetadata\Google\Api\Service;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -64,6 +59,54 @@ class FrontviewController extends Controller
             return redirect()->back()->withInput();
         }
     }
+
+    public function contactstore(Request $request)
+    {
+        try {
+
+            $user = Inquiry::create([
+                'name'    => $request->name,
+                'business_type'    => $request->business_type,
+                'email'     => $request->email,
+                'mobileNumber'         => $request->mobileno,
+                'address'     => $request->address,
+                'city'     => $request->city,
+                'state'     => $request->state,
+                'country'     => $request->country,
+                'pincode'     => $request->pincode,
+                'message'     => $request->message,
+
+            ]);
+            $sendEmailDetails = DB::table('sendemaildetails')->where(['id' => 4])->first();
+
+            $msg = [
+                'FromMail' => $sendEmailDetails->strFromMail,
+                'Title' => $sendEmailDetails->strTitle,
+                'ToEmail' => 'ai.dev.laravel10@gmail.com',
+                'Subject' => $sendEmailDetails->strSubject ?? '',
+            ];
+
+            $data = [
+                'Name' => $user->name,
+                'Email' => $user->email,
+                'Mobile' => $user->mobileNumber,
+                'Message' => $user->message,
+                'business_type' => $user->business_type,
+            ];
+
+            Mail::send('emails.contactemail', ['data' => $data], function ($message) use ($msg) {
+                $message->from($msg['FromMail'], $msg['Title']);
+                $message->to($msg['ToEmail'])->subject($msg['Subject']);
+            });
+
+
+            return redirect()->route('front.index')->with('success', 'Inquiry added successfully');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput();
+        }
+    }
+
+
 
 
 
