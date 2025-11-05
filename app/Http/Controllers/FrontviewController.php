@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Album;
-use App\Models\Inquiry;
+use App\Models\Banner;
+use App\Models\Product;
+use App\Models\SubCategory;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use GPBMetadata\Google\Api\Service;
 use Illuminate\Support\Facades\DB;
@@ -21,25 +23,78 @@ class FrontviewController extends Controller
 
     public function index(Request $request, $slugname = null)
     {
-        // try {
+        try {
+            $newinProducts = Product::with('category')->where('isDelete', 0)->orderBy('product_id', 'desc')->take(4)->get();
+
+            $banners = Banner::orderBy('id', 'desc')->get();
+            $bestProducts = Product::with('category')->where(['best_product' => 1, 'isDelete' => 0])->get();
+            $explore_by_occasion = SubCategory::where('iCategoryId', 12)->get();
+            $shop_by_style = SubCategory::where('iCategoryId', 13)->get();
+
+            $Categories = Category::where('iCategoryId', 14)->first();
+
+            return view('frontview.index', compact('Categories', 'newinProducts', 'banners', 'bestProducts', 'explore_by_occasion', 'shop_by_style'));
+        } catch (\Throwable $th) {
+            // ✅ Log detailed error info
+            Log::error('Error in FrontController@index: ' . $th->getMessage(), [
+                'file' => $th->getFile(),
+                'line' => $th->getLine(),
+                'trace' => $th->getTraceAsString(),
+                'request_data' => $request->all(),
+            ]);
+
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function productdetail(Request $request, $catslugname, $productslug)
+    {
+        try {
 
 
-        // $album = Album::where('slugname',$slugname)->first();
-        // $albumid = $album->album_id ?? '';
-        // $GalleryMaster = GalleryMaster::where('album_id', $albumid)->paginate(config('app.per_page'));
+            $product = Product::with([
+                'productimage' => function ($query) {
+                    $query->where('isDelete', 0);
+                },
+                'category',
+                'subcategory'
+            ])
+                ->where('slug', $productslug)
+                ->where('isDelete', 0)
+                ->firstOrFail();
 
-        return view('frontview.index');
-        // } catch (\Throwable $th) {
-        //     // ✅ Log detailed error info
-        //     Log::error('Error in FrontController@index: ' . $th->getMessage(), [
-        //         'file' => $th->getFile(),
-        //         'line' => $th->getLine(),
-        //         'trace' => $th->getTraceAsString(),
-        //         'request_data' => $request->all(),
-        //     ]);
 
-        //     return redirect()->back()->withInput();
-        // }
+
+
+            // Fetch related products (same category)
+            $relatedProducts = Product::where('category_id', $product->category_id)
+                ->where('product_id', '!=', $product->product_id)
+                ->where('isDelete', 0)
+                ->take(4)
+                ->get();
+
+            return view('frontview.product-detail', compact('product', 'relatedProducts'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput();
+        }
+    }
+
+    public function productlist(Request $request, $subslugname)
+    {
+        try {
+            $subcategory = SubCategory::where('strSlug', $subslugname)->first();
+
+            $products = Product::with([
+                'category',
+                'subcategory'
+            ])
+                ->where('subcategory_id', $subcategory->iSubCategoryId)
+                ->where('isDelete', 0)
+                ->get();
+            return view('frontview.product-list', compact('products'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput();
+        }
     }
 
     public function AboutUs(Request $request)

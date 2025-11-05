@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\BannerController;
+
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\TopViewController;
@@ -114,6 +116,16 @@ Route::prefix('admin')->name('BottomVideo.')->middleware('auth')->group(function
     Route::get('BottomVideo/view/{id?}', [BottomViewController::class, 'view'])->name('view');
 });
 
+Route::prefix('admin')->name('Banner.')->middleware('auth')->group(function () {
+    Route::any('/Banner/index', [BannerController::class, 'index'])->name('index');
+    Route::get('/Banner/add', [BannerController::class, 'add'])->name('add');
+    Route::post('/Banner/store', [BannerController::class, 'store'])->name('store');
+    Route::get('/Banner/edit/{id?}', [BannerController::class, 'edit'])->name('edit');
+    Route::post('/Banner/update', [BannerController::class, 'update'])->name('update');
+    Route::delete('/Banner/delete/{id?}', [BannerController::class, 'delete'])->name('delete');
+    Route::delete('/Banner/deleteselected', [BannerController::class, 'deleteselected'])->name('deleteselected');
+});
+
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
@@ -149,3 +161,5 @@ Route::get('/', [FrontviewController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('front.about');
 Route::get('/contactus', [FrontviewController::class, 'ContactUs'])->name('front.contactus');
 Route::post('/contactstore', [FrontviewController::class, 'contactstore'])->name('contactstore');
+Route::get('/{slugname?}', [FrontviewController::class, 'productlist'])->name('productlist');
+Route::get('/{strSlug?}/{slugname?}', [FrontviewController::class, 'productdetail'])->name('productdetail');

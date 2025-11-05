@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Category')
+@section('title', 'Banner')
 
 @section('content')
 
@@ -16,30 +16,18 @@
                     <div class="col-lg-4">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title mb-0">Add Category</h4>
+                                <h4 class="card-title mb-0">Add Banner</h4>
                             </div>
                             <div class="card-body">
-                                <form method="POST" action="{{ route('admin.category.store') }}" id="categoryForm"
+                                <form method="POST" action="{{ route('Banner.store') }}" id="categoryForm"
                                     enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="mb-3">
-                                        <label for="strCategoryName" class="form-label">Category Name <span
-                                                class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="strCategoryName"
-                                            name="strCategoryName" maxlength="50" required>
-                                    </div>
-
-                                    <div class="mb-3">
-                                        <label for="strCategoryName" class="form-label">Category Image </label>
-                                        <input type="file" class="form-control" id="categoryimg" name="category_img"
+                                        <label for="BannerImage" class="form-label">Banner Image </label>
+                                        <input type="file" class="form-control" id="bannerimg" name="image"
                                             maxlength="50">
                                     </div>
-
-                                    <!-- <div class="mb-3">
-                                                                                                                                                                                                            <label for="strSlug" class="form-label">Slug <span class="text-danger">*</span></label>
-                                                                                                                                                                                                            <input type="text" class="form-control" id="strSlug" name="strSlug" maxlength="50" required>
-                                                                                                                                                                                                        </div> -->
 
                                     <div class="d-flex ">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -53,39 +41,35 @@
                     <!-- Right side - Listing -->
                     <div class="col-lg-8">
                         <div class="card">
-                            <div class="card-header d-flex justify-content-between">
-                                <h4 class="card-title mb-0">Category Listing</h4>
+                            {{-- <div class="card-header d-flex justify-content-between">
+                                <h4 class="card-title mb-0">Banner Listing</h4>
                                 <button type="button" id="bulkDeleteBtn" class="btn btn-danger btn-sm">
                                     <i class="fas fa-trash"></i> Delete All
                                 </button>
-                            </div>
+                            </div> --}}
                             <div class="card-body">
                                 <!-- <form method="POST" id="bulkDeleteForm" action="{{ route('admin.category.bulk-delete') }}">
-                                                                                                                                                                                                        @csrf -->
+                                                                                                                                                                                                                                                                                                                                                                                    @csrf -->
                                 <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
-                                            <th>
+                                            {{-- <th>
                                                 <input type="checkbox" id="selectAll">
-                                            </th>
-                                            <th>Category Name</th>
-                                            <th>Slug</th>
-                                            <th>Category Image</th>
+                                            </th> --}}
+                                            <th>Banner Image</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse($categories as $category)
+                                        @forelse($Banners as $Banner)
                                             <tr>
-                                                <td>
+                                                {{-- <td>
                                                     <input type="checkbox" name="ids[]"
                                                         value="{{ $category->iCategoryId }}">
-                                                </td>
-                                                <td>{{ $category->strCategoryName }}</td>
-                                                <td>{{ $category->strSlug }}</td>
+                                                </td> --}}
                                                 <td>
-                                                    @if ($category->category_img)
-                                                        <img src="{{ asset('uploads/category-images/' . $category->category_img) }}"
+                                                    @if ($Banner->image)
+                                                        <img src="{{ asset('uploads/Banner/' . $Banner->image) }}"
                                                             style="width:70px;height:50px;object-fit:cover;border-radius:4px;">
                                                     @else
                                                         <img src="{{ asset('assets/images/noimage.png') }}"
@@ -94,14 +78,10 @@
                                                 </td>
                                                 <td>
                                                     <button type="button" class="btn btn-sm btn-warning edit-btn"
-                                                        data-id="{{ $category->iCategoryId }}"
-                                                        data-name="{{ $category->strCategoryName }}"
-                                                        data-image="{{ $category->category_img }}"
-                                                        data-slug="{{ $category->strSlug }}">
+                                                        data-id="{{ $Banner->id }}" data-image="{{ $Banner->image }}">
                                                         <i class="fas fa-edit"></i>
                                                     </button>
-                                                    <form method="POST"
-                                                        action="{{ route('admin.category.destroy', $category->iCategoryId) }}"
+                                                    <form method="POST" action="{{ route('Banner.delete', $Banner->id) }}"
                                                         style="display:inline;">
                                                         @csrf
                                                         @method('DELETE')
@@ -121,7 +101,7 @@
                                 </table>
                                 <!-- </form> -->
 
-                                {{ $categories->links() }}
+                                {{ $Banners->links() }}
                             </div>
                         </div>
                     </div>
@@ -137,42 +117,34 @@
         <div class="modal-dialog">
             <form method="POST" id="editCategoryForm" enctype="multipart/form-data" action="">
                 @csrf
-                @method('PUT')
-
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Edit Category</h5>
+                        <h5 class="modal-title">Edit Banner</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                        <input type="hidden" name="id" id="editCategoryId">
+                        <input type="hidden" name="id" id="editBannerId">
+
 
                         <div class="mb-3">
-                            <label for="editStrCategoryName" class="form-label">Category Name <span
-                                    class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="editStrCategoryName" name="strCategoryName"
-                                maxlength="50" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="editStrCategoryimage" class="form-label">Category Image <span
+                            <label for="editStrBannerimage" class="form-label">Banner Image <span
                                     class="text-danger">*</span></label>
                             <!-- Change this to a file input -->
-                            <input type="file" class="form-control" id="editStrCategoryimage" name="category_img">
+                            <input type="file" class="form-control" id="editStrBannerimage" name="edit_img">
                             <input type="hidden" name="hiddenimagePhoto" id="hiddenimagePhoto" value="">
 
                             <div class="mt-2">
                                 <!-- Display current image preview -->
                                 <img class="img-fluid" src="" alt="Current Image" height="50" width="50"
-                                    id="Edit_home_CategoryImage">
+                                    id="Edit_banner_Image">
                             </div>
                         </div>
 
                         <!-- <div class="mb-3">
-                                                                                                                                                                                                <label for="editStrSlug" class="form-label">Slug <span class="text-danger">*</span></label>
-                                                                                                                                                                                                <input type="text" class="form-control" id="editStrSlug" name="strSlug" maxlength="50" required>
-                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                                                                                                                                                                                            <label for="editStrSlug" class="form-label">Slug <span class="text-danger">*</span></label>
+                                                                                                                                                                                                                                                                                                                                                                            <input type="text" class="form-control" id="editStrSlug" name="strSlug" maxlength="50" required>
+                                                                                                                                                                                                                                                                                                                                                                        </div> -->
                     </div>
                     <div class="modal-footer d-flex">
                         <button type="submit" class="btn btn-primary">Update</button>
@@ -192,26 +164,23 @@
         // Edit button click
         $('.edit-btn').on('click', function() {
             let id = $(this).data('id');
-            let name = $(this).data('name');
-            let slug = $(this).data('slug');
+
             let image = $(this).data('image');
 
             // Fill the modal fields
-            $('#editCategoryId').val(id);
-            $('#editStrCategoryName').val(name);
-            $('#editStrSlug').val(slug);
+            $('#editBannerId').val(id);
 
             // ✅ Build correct image URL
             var imageUrl = image ?
-                "{{ asset('uploads/category-images') }}/" + image :
+                "{{ asset('uploads/Banner') }}/" + image :
                 "{{ asset('assets/images/noimage.png') }}";
 
             // ✅ Set preview and hidden image field
-            $('#Edit_home_CategoryImage').attr('src', imageUrl);
+            $('#Edit_banner_Image').attr('src', imageUrl);
             $('#hiddenimagePhoto').val(image);
 
             // ✅ Set form action dynamically
-            $('#editCategoryForm').attr('action', "{{ url('admin/category') }}/" + id);
+            $('#editCategoryForm').attr('action', "{{ route('Banner.update') }}");
 
             // Show modal
             $('#editCategoryModal').modal('show');
