@@ -18,104 +18,41 @@
         <div dir="ltr" class="swiper tf-swiper sw-slide-show slider_effect_fade" data-auto="true" data-loop="true"
             data-effect="fade" data-delay="3000">
             <div class="swiper-wrapper">
+                @foreach ($banners as $banner)
+                    <div class="swiper-slide">
+                        <div class="slider-wrap style-2">
+                            <div class="sld_image">
+                                <img src="{{ asset('uploads/Banner/' . $banner->image) }}"
+                                    data-src="{{ asset('uploads/Banner/' . $banner->image) }}" alt="Slider"
+                                    class="lazyload scale-item">
+                            </div>
+                            <div class="sld_content type-center text-sm-center">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-8 col-10">
+                                            <div class="content-sld_wrap">
+                                                <p class="sub-title_sld h3 text-primary fade-item fade-item-1">
+                                                    The Essence of Iconic Elegance
+                                                </p>
+                                                <h1 class="title_sld  text-white fade-item fade-item-2">
+                                                    Crafted for women who define tradition with grace.
+                                                </h1>
+                                                <p class="sub-text_sld h5 text-white fade-item fade-item-3">
+                                                    Step into a world of timeless ethnic wear where every piece is a
+                                                    work of art. Shivali blends heritage craftsmanship with refined
+                                                    style, curating ensembles that exude luxury, sophistication, and
+                                                    lasting charm.
+                                                </p>
 
-                <div class="swiper-slide">
-                    <div class="slider-wrap style-2">
-                        <div class="sld_image">
-                            <img src="{{ asset('assets/front/images/slider/slider-1.webp') }}"
-                                data-src="{{ asset('assets/front/images/slider/slider-1.webp') }}" alt="Slider"
-                                class="lazyload scale-item">
-                        </div>
-                        <div class="sld_content type-center text-sm-center">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-8 col-10">
-                                        <div class="content-sld_wrap">
-                                            <p class="sub-title_sld h3 text-primary fade-item fade-item-1">
-                                                The Essence of Iconic Elegance
-                                            </p>
-                                            <h1 class="title_sld  text-white fade-item fade-item-2">
-                                                Crafted for women who define tradition with grace.
-                                            </h1>
-                                            <p class="sub-text_sld h5 text-white fade-item fade-item-3">
-                                                Step into a world of timeless ethnic wear where every piece is a
-                                                work of art. Shivali blends heritage craftsmanship with refined
-                                                style, curating ensembles that exude luxury, sophistication, and
-                                                lasting charm.
-                                            </p>
-
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="swiper-slide">
-                    <div class="slider-wrap style-2">
-                        <div class="sld_image">
-                            <img src="{{ asset('assets/front/images/slider/slider-2.webp') }}"
-                                data-src="{{ asset('assets/front/images/slider/slider-2.webp') }}" alt="Slider"
-                                class="lazyload scale-item">
-                        </div>
-                        <div class="sld_content type-center text-end text-sm-center">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="ms-auto col-sm-8 col-10">
-                                        <div class="content-sld_wrap ms-sm-auto">
-                                            <p class="sub-title_sld h3 text-primary fade-item fade-item-1">
-                                                Iconic Trends, Ethnic Vibes
-                                            </p>
-                                            <h1 class="title_sld text-white fade-item fade-item-2">
-                                                Tradition reimagined for the modern woman.
-                                            </h1>
-                                            <p class="sub-text_sld h5 text-white fade-item fade-item-3">
-                                                From festive fits to everyday chic, Shivali brings bold, stylish
-                                                ethnic wear designed for today’s trendsetters. Celebrate your
-                                                culture while owning your unique, vibrant style—because tradition
-                                                never looked this iconic.
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-slide">
-                    <div class="slider-wrap style-2">
-                        <div class="sld_image">
-                            <img src="{{ asset('assets/front/images/slider/slider-4.webp') }}"
-                                data-src="assets/images/slider/slider-4.webp" alt="Slider" class="lazyload scale-item">
-                        </div>
-                        <div class="sld_content text-center">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="content-sld_wrap mx-auto">
-                                            <p class="sub-title_sld h3 text-primary  fade-item fade-item-1">
-                                                Iconic Ethnic Wear for Every Woman
-                                            </p>
-                                            <h1 class="title_sld text-white  fade-item fade-item-2">
-                                                Timeless tradition, styled for today.
-                                            </h1>
-                                            <p class="sub-text_sld h5 text-white  fade-item fade-item-3">
-                                                Shivali celebrates the beauty of ethnic fashion with designs that
-                                                blend cultural heritage and contemporary flair. <br> From graceful
-                                                classics to chic statement pieces, our collections are made to make
-                                                every moment iconic.
-                                            </p>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
             <div class="sw-dot-default tf-sw-pagination"></div>
         </div>
@@ -150,85 +87,27 @@
                         data-speed="3000">
                         <div class="swiper-wrapper" data-loop="true">
                             <!-- item 1 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                            data-src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content ">
-                                            <a href="#" class="tag_cls   link">White
-                                                Lehenga</a>
+                            @foreach ($newinProducts as $product)
+                                <div class="swiper-slide">
+                                    <div class="wg-cls-2 type-space-2 d-flex hover-img">
+                                        <a href="{{ route('productdetail', [$product->category->strSlug ?? '', $product->slug]) }}"
+                                            class="image img-style">
+                                            <img class="lazyload" src="{{ asset($product->product_image) }}"
+                                                data-src="{{ asset($product->product_image) }}" alt="Slider">
+                                        </a>
+                                        <div class="cls-content_wrap name">
+                                            <div class="cls-content ">
+                                                <a href="{{ route('productdetail', [$product->category->strSlug ?? '', $product->slug]) }}"
+                                                    class="tag_cls   link">{{ $product->product_name }}</a>
 
 
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- item 2 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/collections/party.webp') }}"
-                                            data-src="{{ asset('assets/front/images/collections/party.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content ">
-                                            <a href="#" class="tag_cls link">Brown
-                                                Lehenga</a>
-
-                                            <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- item 3 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/collections/spacial.webp') }}"
-                                            data-src="{{ asset('assets/front/images/collections/spacial.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content ">
-                                            <a href="#" class="tag_cls    link">Fish cut Purple Lahenga</a>
-
-                                            <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                            data-src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content ">
-                                            <a href="#" class="tag_cls   link">white
-                                                Collection</a>
+                            @endforeach
 
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -248,86 +127,25 @@
                         data-speed="3000">
                         <div class="swiper-wrapper" data-loop="true">
                             <!-- item 1 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/products/product-11.webp') }}"
-                                            data-src="{{ asset('assets/front/images/products/product-11.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content">
-                                            <a href="#" class="tag_cls   link">White
-                                                Lehenga</a>
-
-
+                            @foreach ($bestProducts as $bestpro)
+                                <div class="swiper-slide">
+                                    <div class="wg-cls-2 type-space-2 d-flex hover-img">
+                                        <a href="{{ route('productdetail', [$bestpro->category->strSlug ?? '', $bestpro->slug]) }}"
+                                            class="image img-style">
+                                            <img class="lazyload" src="{{ asset($bestpro->product_image) }}"
+                                                data-src="{{ asset($bestpro->product_image) }}" alt="Slider">
+                                        </a>
+                                        <div class="cls-content_wrap name">
+                                            <div class="cls-content">
+                                                <a href="{{ route('productdetail', [$bestpro->category->strSlug ?? '', $bestpro->slug]) }}"
+                                                    class="tag_cls   link">{{ $bestpro->product_name ?? '' }}</a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- item 2 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/products/product-14.webp') }}"
-                                            data-src="{{ asset('assets/front/images/products/product-14.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content">
-                                            <a href="#" class="tag_cls   link">Brown
-                                                Lehenga</a>
-
-                                            <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- item 3 -->
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/products/product-18.webp') }}"
-                                            data-src="{{ asset('assets/front/images/products/product-18.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content">
-                                            <a href="#" class="tag_cls   link">SpecialDay
-                                                Collection</a>
-
-                                            <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="swiper-slide">
-                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                    <a href="#" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset('assets/front/images/products/product-21.webp') }}"
-                                            data-src="{{ asset('assets/front/images/products/product-21.webp') }}"
-                                            alt="Slider">
-                                    </a>
-                                    <div class="cls-content_wrap name">
-                                        <div class="cls-content">
-                                            <a href="#" class="tag_cls   link">Wedding
-                                                Collection</a>
+                            @endforeach
 
 
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
                     </div>
@@ -362,86 +180,26 @@
                     data-pagination-sm="1" data-pagination-md="2" data-pagination-lg="2" data-auto="true"
                     data-speed="3000">
                     <div class="swiper-wrapper" data-loop="true">
-                        <!-- item 1 -->
-                        <div class="swiper-slide">
-                            <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                <a href="#" class="image img-style">
-                                    <img class="lazyload"
-                                        src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                        data-src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                        alt="Slider">
-                                </a>
-                                <div class="cls-content_wrap ocation">
-                                    <div class="cls-content">
-                                        <a href="#" class="tag_cls   link">Wedding
-                                            Collection</a>
-
-
+                        @foreach ($explore_by_occasion as $subcat)
+                            <div class="swiper-slide">
+                                <div class="wg-cls-2 type-space-2 d-flex hover-img">
+                                    <a href="{{ route('productlist', $subcat->strSlug) }}" class="image img-style">
+                                        <img class="lazyload"
+                                            src="{{ asset('uploads/subcategory-images/' . $subcat->subcategory_img) }}"
+                                            data-src="{{ asset('uploads/subcategory-images/' . $subcat->subcategory_img) }}"
+                                            alt="Slider">
+                                    </a>
+                                    <div class="cls-content_wrap ocation">
+                                        <div class="cls-content">
+                                            <a href="{{ route('productlist', $subcat->strSlug) }}"
+                                                class="tag_cls   link">{{ $subcat->strSubCategoryName ?? '' }}</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- item 2 -->
-                        <div class="swiper-slide">
-                            <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                <a href="#" class="image img-style">
-                                    <img class="lazyload" src="{{ asset('assets/front/images/collections/party.webp') }}"
-                                        data-src="{{ asset('assets/front/images/collections/party.webp') }}"
-                                        alt="Slider">
-                                </a>
-                                <div class="cls-content_wrap ocation">
-                                    <div class="cls-content">
-                                        <a href="#" class="tag_cls   link">Partywere
-                                            Collection</a>
-
-                                        <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- item 3 -->
-                        <div class="swiper-slide">
-                            <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                <a href="#" class="image img-style">
-                                    <img class="lazyload"
-                                        src="{{ asset('assets/front/images/collections/spacial.webp') }}"
-                                        data-src="{{ asset('assets/front/images/collections/spacial.webp') }}"
-                                        alt="Slider">
-                                </a>
-                                <div class="cls-content_wrap ocation">
-                                    <div class="cls-content">
-                                        <a href="#" class="tag_cls   link">SpecialDay
-                                            Collection</a>
-
-                                        <!-- <a href="#" class="tf-btn-line text-nowrap">
-                                                                                                                                                                                                                        Shop now
-                                                                                                                                                                                                                    </a> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="swiper-slide">
-                            <div class="wg-cls-2 type-space-2 d-flex hover-img">
-                                <a href="#" class="image img-style">
-                                    <img class="lazyload"
-                                        src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                        data-src="{{ asset('assets/front/images/collections/wedding.webp') }}"
-                                        alt="Slider">
-                                </a>
-                                <div class="cls-content_wrap ocation">
-                                    <div class="cls-content">
-                                        <a href="#" class="tag_cls   link">Wedding
-                                            Collection</a>
+                        @endforeach
 
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -458,202 +216,37 @@
 
             </div>
             <div class="row g-4">
+                @foreach ($shop_by_style as $shoapby)
+                    <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="card-product_wrapper">
+                            <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
+                                <img class="lazyload img-product"
+                                    src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                                    data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                                    alt="Product">
+                                <img class="lazyload img-hover"
+                                    src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                                    data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                                    alt="Product">
+                            </a>
 
 
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product"
-                                src="{{ asset('assets/front/images/products/product-1.webp') }}"
-                                data-src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Product">
-                            <img class="lazyload img-hover"
-                                src="{{ asset('assets/front/images/products/product-2.webp') }}"
-                                data-src="{{ asset('assets/front/images/products/product-2.webp') }}" alt="Product">
-                        </a>
+                        </div>
+                        <div class="card-product_info">
+                            <a href="{{ route('productlist', $shoapby->strSlug) }}"
+                                class="name-product">{{ $shoapby->strSubCategoryName ?? '' }}</a>
 
 
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product"> Designer Saree Gown</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product"
-                                src="{{ asset('assets/front/images/products/product-3.webp') }}"
-                                data-src="{{ asset('assets/front/images/products/product-3.webp') }}" alt="Product">
-                            <img class="lazyload img-hover"
-                                src="{{ asset('assets/front/images/products/product-4.webp') }}"
-                                data-src="{{ asset('assets/front/images/products/product-4.webp') }}" alt="Product">
-                        </a>
-
-
+                        </div>
+                        <div class="price-wrap">
+                            <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
+                                <i class="fab fa-whatsapp"></i>
+                            </button>
+                        </div>
 
                     </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product ">Bridal Lehenga</a>
+                @endforeach
 
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-5.webp"
-                                data-src="assets/images/products/product-5.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-6.webp"
-                                data-src="assets/images/products/product-6.webp" alt="Product">
-                        </a>
-
-
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product "> Designer Crop Top Lehenga</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-7.webp"
-                                data-src="assets/images/products/product-7.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-8.webp"
-                                data-src="assets/images/products/product-8.webp" alt="Product">
-                        </a>
-
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product "> Bridal Lehenga</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-9.webp"
-                                data-src="assets/images/products/product-9.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-10.webp"
-                                data-src="assets/images/products/product-10.webp" alt="Product">
-                        </a>
-
-
-
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product "> Partywear Lehenga Set</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-11.webp"
-                                data-src="assets/images/products/product-11.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-12.webp"
-                                data-src="assets/images/products/product-12.webp" alt="Product">
-                        </a>
-
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product "> Designer Bridal Lehenga</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-13.webp"
-                                data-src="assets/images/products/product-13.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-14.webp"
-                                data-src="assets/images/products/product-14.webp" alt="Product">
-                        </a>
-
-
-
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product "> Lehenga Choli</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                    <div class="card-product_wrapper">
-                        <a href="#" class="product-img">
-                            <img class="lazyload img-product" src="assets/images/products/product-15.webp"
-                                data-src="assets/images/products/product-15.webp" alt="Product">
-                            <img class="lazyload img-hover" src="assets/images/products/product-16.webp"
-                                data-src="assets/images/products/product-16.webp" alt="Product">
-                        </a>
-
-                    </div>
-                    <div class="card-product_info">
-                        <a href="#" class="name-product"> Draped Saree Gown</a>
-
-
-                    </div>
-                    <div class="price-wrap">
-                        <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                            <i class="fab fa-whatsapp"></i>
-                        </button>
-                    </div>
-                </div>
 
             </div>
         </div>
@@ -666,13 +259,14 @@
         <div class="container">
             <div class="banner-wrap hover-img wow fadeInUp pt-3">
                 <a href="#" class="banner-image img-style">
-                    <img src="assets/images/slider/slider-3.webp" data-src="assets/images/slider/slider-3.webp"
-                        alt="Banner" class="lazyload">
+                    <img src="{{ asset('uploads/category-images/' . $Categories->category_img) }}"
+                        data-src="{{ asset('uploads/category-images/' . $Categories->category_img) }}" alt="Banner"
+                        class="lazyload">
                 </a>
                 <div class="banner-content text-right col-lg-5">
                     <h6 class="title display-6 ">
                         <a href="#" class="link text-black fw-normal">
-                            Lookbook 2025
+                            {{ $Categories->strCategoryName ?? '' }}
                         </a>
                     </h6>
 
@@ -699,17 +293,18 @@
                             <!-- item 1 -->
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/celebrity.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/celebrity.webp') }}" alt="Banner">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/product-10.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/product-10.webp') }}"
+                                        alt="Banner">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/product-1.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
                                 </a>
                             </div>
                         </div>
@@ -732,17 +327,17 @@
                             <!-- item 1 -->
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/product-1.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/product-3.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/product-3.webp') }}" alt="Banner">
                                 </a>
                             </div>
                             <div class="swiper-slide">
                                 <a href="#" class="img-style">
-                                    <img src="assets/images/products/product-8.webp" alt="Banner">
+                                    <img src="{{ asset('assets/front/images/products/product-8.webp') }}" alt="Banner">
                                 </a>
                             </div>
                         </div>
@@ -760,7 +355,7 @@
                 </div>
                 <div class=" col-lg-4  col-md-6 inner-box  d-none d-md-block">
                     <video autoplay muted loop playsinline>
-                        <source src="assets/images/videoplayback.mp4" type="video/mp4">
+                        <source src="{{ asset('assets/front/images/videoplayback.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -813,7 +408,8 @@
                 </div>
                 <!-- About Image -->
                 <div class="col-lg-6 mb-lg-0 mb-5 order-1 order-md-2">
-                    <img src="assets/images/about-img.jpg" data-src="assets/images/about-img.jpg" alt="About Us"
+                    <img src="{{ asset('assets/front/images/about-img.jpg') }}"
+                        data-src="{{ asset('assets/front/images/about-img.jpg') }}" alt="About Us"
                         class="lazyload img-fluid rounded-3 shadow">
                 </div>
 

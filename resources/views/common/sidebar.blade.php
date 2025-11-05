@@ -65,6 +65,13 @@ if (auth()->user()) {
                             <span data-key="t-dashboards">Bottom Video</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link @if (request()->routeIs('Banner.index')) {{ 'active' }} @endif"
+                            href="{{ route('Banner.index') }}">
+                            <i class="fa-solid fa-play-circle"></i>
+                            <span data-key="t-dashboards">Banner</span>
+                        </a>
+                    </li>
                 @endif
             </ul>
         </div>

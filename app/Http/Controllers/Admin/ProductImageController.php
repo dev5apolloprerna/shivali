@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\ProductImage;
 use Illuminate\Http\Request;
+use Illuminate\Http\Exceptions\PostTooLargeException;
+
 
 class ProductImageController extends Controller
 {
@@ -19,41 +21,56 @@ class ProductImageController extends Controller
         return view('admin.product.images', compact('product', 'images'));
     }
 
-  public function store(Request $request, $id)
-{
-    $request->validate([
-        'images'   => 'required',
-        'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:4096',
-    ]);
-
-    $files = $request->file('images');
-    if ($files instanceof \Illuminate\Http\UploadedFile) {
-        $files = [$files];
-    }
-
-    if (!is_array($files) || empty($files)) {
-        return back()->with('error', 'No valid image uploaded.');
-    }
-
-    foreach ($files as $file) {
-        // upload using helper
-        $path = anx_upload($file, 'product');
-
-        // just skip if somehow empty
-        if (!$path) continue;
-
-        \App\Models\ProductImage::create([
-            'image'      => $path,
-            'product_id' => (int)$id,
-            'iStatus'    => 1,
-            'isDelete'   => 0,
-            'created_at' => now(),
-            'updated_at' => now(),
+    public function store(Request $request, $id)
+    {
+        // try {
+        // ✅ Validate uploaded files (up to 10MB each)
+        $request->validate([
+            'images'   => 'required',
+            'images.*' => 'image|mimes:jpg,jpeg,png,webp|max:10240',
         ]);
-    }
 
-    return back()->with('success', 'Images uploaded successfully.');
-}
+        $files = $request->file('images');
+
+        // If single file, convert to array
+        if ($files instanceof \Illuminate\Http\UploadedFile) {
+            $files = [$files];
+        }
+
+        // No valid files uploaded
+        if (!is_array($files) || empty($files)) {
+            return back()->with('error', 'No valid image uploaded.');
+        }
+
+        foreach ($files as $file) {
+            // Upload using your custom helper
+            $path = anx_upload($file, 'product');
+
+            // Skip invalid uploads
+            if (!$path) continue;
+
+            // Save record
+            ProductImage::create([
+                'image'      => $path,
+                'product_id' => (int) $id,
+                'iStatus'    => 1,
+                'isDelete'   => 0,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+        }
+
+        return back()->with('success', 'Images uploaded successfully.');
+        // } catch (PostTooLargeException $e) {
+        //     // ✅ Handles "Request Entity Too Large" error gracefully
+        //     return back()->with('error', 'Uploaded files are too large. Please upload smaller files.');
+        // } catch (\Exception $e) {
+        //     // ✅ Log any other errors
+        //     //Log::error('Image upload failed: ' . $e->getMessage());
+
+        //     return back()->with('error', 'An unexpected error occurred while uploading images.');
+        // }
+    }
 
 
 
@@ -95,5 +112,4 @@ class ProductImageController extends Controller
 
         return back()->with('success', 'Image deleted successfully.');
     }
-
 }

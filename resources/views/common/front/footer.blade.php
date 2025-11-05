@@ -8,7 +8,7 @@
               <div class="row">
                   <div class="col-xl-4 col-sm-6 mb_30 mb-xl-0">
                       <div class="footer-infor">
-                          <a href="index.html" class="logo-site">
+                          <a href="{{ route('front.index') }}" class="logo-site">
                               <img src="{{ asset('assets/front/images/logo/logo.png') }}" alt="">
                           </a>
 
@@ -21,13 +21,13 @@
                           <p class="footer-heading footer-heading-mobile">Quick Links</p>
                           <div class="tf-collapse-content">
                               <ul class="footer-menu-list">
-                                  <li><a href="#" class="link h6">Home</a></li>
-                                  <li><a href="#" class="link h6">About Us</a></li>
+                                  <li><a href="{{ route('front.index') }}" class="link h6">Home</a></li>
+                                  <li><a href="{{ route('front.about') }}" class="link h6">About Us</a></li>
                                   <li><a href="#" class="link h6">Term & Policy</a></li>
                                   <li><a href="#" class="link h6">Help Center</a></li>
 
 
-                                  <li><a href="#" class="link h6">Contact Us</a></li>
+                                  <li><a href="{{ route('front.contactus') }}" class="link h6">Contact Us</a></li>
                               </ul>
                           </div>
                       </div>
@@ -112,7 +112,7 @@
   <a href="#" target="_blank">
       <button class="btn-floating inquiry">
 
-          <img src="assets/images/Inquiry-icon.jpg" alt="inquiry"
+          <img src="{{ asset('assets/front/images/Inquiry-icon.jpg') }}" alt="inquiry"
               style="height: 40px; width: 40px; margin-top: -4px;border-radius:50%">
 
       </button>

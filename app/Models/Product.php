@@ -36,6 +36,11 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'subcategory_id', 'iSubCategoryId');
     }
 
+    public function productimage()
+    {
+        return $this->hasMany(ProductImage::class, 'product_id', 'product_id');
+    }
+
     /** Create unique slug for product_name */
     public static function makeUniqueSlug(string $title, ?int $ignoreId = null): string
     {
