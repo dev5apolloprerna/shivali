@@ -22,18 +22,27 @@ use App\Http\Controllers\Admin\BottomViewController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductVideoController;
+use App\Http\Controllers\AdminLoginController;
 
 
 Route::fallback(function () {
     return view('errors.404');
 });
 
-Route::get('/login', function () {
-    return redirect()->route('login');
+Route::get('login', fn() => redirect()->route('admin.login'))->name('login');
+
+Route::middleware('guest:admin')->group(function () {
+    Route::get('/admin/login', [AdminLoginController::class, 'showAdminLoginForm'])->name('admin.login');
+    Route::post('/admin-login', [AdminLoginController::class, 'adminLogin'])->name('admin.login.post');
+    Route::get('/admin-logout', [AdminLoginController::class, 'logout'])->name('admin.logout');
 });
 
+// Route::get('/login', function () {
+//     return redirect()->route('login');
+// });
 
-Auth::routes(['register' => false]);
+
+//Auth::routes(['register' => false]);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

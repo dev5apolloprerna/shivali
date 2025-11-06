@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{asset('assets/frontassets/image/logo/logo.png')}}">
+    <link rel="shortcut icon" href="{{ asset('assets/frontassets/image/logo/logo.png') }}">
 
     <!-- Layout config Js -->
     <script src="assets/js/layout.js"></script>
@@ -65,7 +65,7 @@
                                     <h4>You are Logged Out</h4>
                                     <p class="text-muted">Thanks for Visiting
                                     <div class="mt-4">
-                                        <a href="{{ route('login') }}" class="btn btn-primary w-100">Sign In</a>
+                                        <a href="{{ route('admin.login') }}" class="btn btn-primary w-100">Sign In</a>
                                     </div>
                                 </div>
                             </div>

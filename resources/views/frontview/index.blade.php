@@ -211,9 +211,6 @@
         <div class="container">
             <div class="sect-title text-center wow fadeInUp pt-3">
                 <h2 class="title mb-8">Shop by style</h2>
-
-
-
             </div>
             <div class="row g-4">
                 @foreach ($shop_by_style as $shoapby)
