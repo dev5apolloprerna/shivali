@@ -140,12 +140,18 @@
                             <div class="product-card">
                                 <div class="product-img">
                                     <span class="badge-new">New</span>
-                                    <img src="{{ asset($product->product_image ?? '') }}" alt="Ivory Floral Lehenga">
+                                    <a
+                                        href="{{ route('productdetail', [$product->category->strSlug ?? '', $product->slug]) }}"><img
+                                            src="{{ asset($product->product_image ?? '') }}"
+                                            alt="Ivory Floral Lehenga"></a>
                                 </div>
                                 <div class="product-info">
-                                    <div class="brand">{{ $product->subcategory->strSubCategoryName ?? '' }}</div>
+                                    {{-- <div class="brand">{{ $product->subcategory->strSubCategoryName ?? '' }}</div> --}}
                                     <div class="product-name">{{ $product->product_name ?? '' }}</div>
-                                    <button class="btn btn-dark px-4 py-2 rounded-pill">Inquire Now</button>
+                                    <a href="{{ route('front.contactus') }}" class="btn btn-dark px-4 py-2 rounded-pill">
+                                        Inquire Now
+                                    </a>
+
                                 </div>
                             </div>
                         </div>

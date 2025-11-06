@@ -6,6 +6,7 @@ use App\Models\Banner;
 use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Category;
+use App\Models\Inquiry;
 use Illuminate\Http\Request;
 use GPBMetadata\Google\Api\Service;
 use Illuminate\Support\Facades\DB;
@@ -79,18 +80,30 @@ class FrontviewController extends Controller
         }
     }
 
-    public function productlist(Request $request, $subslugname)
+    public function productlist(Request $request, $slugname)
     {
         try {
-            $subcategory = SubCategory::where('strSlug', $subslugname)->first();
+            $subcategory = SubCategory::where('strSlug', $slugname)->first();
+            $Category = Category::where('strSlug', $slugname)->first();
 
-            $products = Product::with([
-                'category',
-                'subcategory'
-            ])
-                ->where('subcategory_id', $subcategory->iSubCategoryId)
-                ->where('isDelete', 0)
-                ->get();
+            if ($subcategory) {
+                $products = Product::with([
+                    'category',
+                    'subcategory'
+                ])
+                    ->where('subcategory_id', $subcategory->iSubCategoryId)
+                    ->where('isDelete', 0)
+                    ->get();
+            } else {
+                $products = Product::with([
+                    'category',
+                    'subcategory'
+                ])
+                    ->where('category_id', $Category->iCategoryId)
+                    ->where('isDelete', 0)
+                    ->get();
+            }
+
             return view('frontview.product-list', compact('products'));
         } catch (\Throwable $th) {
             return redirect()->back()->withInput();

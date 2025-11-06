@@ -23,12 +23,18 @@
                 </div>  --}}
 
 
+
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
-                            <div class="card-header">
+                            <div class="card-header d-flex justify-content-between align-items-center">
                                 <h5 class="card-title mb-0">Inquiry List</h5>
+                                <a href="{{ route('Inquiry.export') }}" class="btn btn-primary btn-sm">
+                                    <i class="fa fa-download"></i> Export CSV
+                                </a>
                             </div>
+
                             <div class="card-body">
                                 <?php //echo date('ymd');
                                 ?>
@@ -39,7 +45,12 @@
                                             <th scope="col">Name</th>
                                             <th scope="col">Mobile</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Subject</th>
+                                            <th scope="col">Business Type</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">State</th>
+                                            <th scope="col">City</th>
+                                            <th scope="col">Country</th>
+                                            <th scope="col">Pincode</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -48,17 +59,24 @@
                                         @foreach ($inquiries as $inquiry)
                                             <tr>
                                                 <td>{{ $i + $inquiries->perPage() * ($inquiries->currentPage() - 1) }}
-                                                <td>{{ $inquiry->name }}</td>
-                                                <td>{{ $inquiry->mobileNumber }}</td>
-                                                <td>{{ $inquiry->email }}</td>
-                                                <td>{{ $inquiry->subject }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->name }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->mobileNumber }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->email }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->business_type }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->address ?? '' }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->state ?? '' }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->city ?? '' }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->country ?? '' }}</td>
+                                                <td class="py-2 px-3">{{ $inquiry->pincode ?? '' }}</td>
+
                                                 <td>
                                                     <div class="gap-2">
 
-                                                    <a class="" href="{{route('Inquiry.view',[$inquiry->inquiry_id])}}" 
-                                                        title="View">
-                                                        <i class="fa fa-eye" aria-hidden="true"></i>
-                                                    </a>
+                                                        <a class=""
+                                                            href="{{ route('Inquiry.view', [$inquiry->inquiry_id]) }}"
+                                                            title="View">
+                                                            <i class="fa fa-eye" aria-hidden="true"></i>
+                                                        </a>
                                                         <a class="" href="#" data-bs-toggle="modal"
                                                             title="Delete" data-bs-target="#deleteRecordModal"
                                                             onclick="deleteData(<?= $inquiry->inquiry_id ?>);">

@@ -2516,3 +2516,131 @@ text-align: center;
     .main-image img:hover {
       transform: scale(1.03);
     }
+
+      /* Sidebar */
+    .sidebar {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar h5 {
+      font-weight: 700;
+      margin-bottom: 25px;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 10px;
+    }
+
+    .accordion-button {
+      background-color: #fff;
+      color: #3c2f2f;
+      font-weight: 500;
+      border: none;
+      box-shadow: none !important;
+    }
+
+    .accordion-button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+      color: #c3802f;
+      background-color: #f9f5f0;
+    }
+
+    .form-check-label {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    /* Product Cards */
+    .product-card {
+      background-color: #fff;
+      /* border-radius: 15px; */
+      overflow: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+    .product-img{
+      position: relative;
+    }
+    .product-card img {
+      width: 100%;
+      border-bottom: 1px solid #eee;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card img:hover {
+      transform: scale(1.04);
+    }
+
+    .product-card .product-info {
+      padding: 15px;
+      text-align: center;
+      position:relative;
+      
+    }
+
+    .product-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #3c2f2f;
+    }
+
+    .product-price {
+      color: #c3802f;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .filter-btn {
+      background-color: #3c2f2f;
+      color: #fff;
+      border-radius: 8px;
+      width: 100%;
+    }
+
+    @media (max-width: 991px) {
+      .sidebar {
+        margin-bottom: 30px;
+      }
+      .product-card .product-info {
+      padding: 15px;
+      text-align: center;
+      position:relative;
+      height:140px;
+    }
+        .product-card .product-info button.btn.btn-dark{
+    position: absolute;
+    width: 150px;
+    left: 10px;
+    bottom: 0;
+}
+    }
+    .badge-new{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: #eecea7;
+      color: #000;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      border-radius: 5px;
+      text-transform: uppercase;
+      z-index: 999;
+      
+    }
+    
+    
+  
