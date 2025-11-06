@@ -106,6 +106,8 @@ Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () 
     Route::delete('/Inquiry-delete', [InquiryController::class, 'delete'])->name('delete');
     Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
 });
+Route::get('/admin/inquiry/export', [InquiryController::class, 'exportCsv'])->name('Inquiry.export');
+
 
 Route::prefix('admin')->name('TopVideo.')->middleware('auth')->group(function () {
 

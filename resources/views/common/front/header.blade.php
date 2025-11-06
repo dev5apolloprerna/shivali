@@ -57,7 +57,7 @@
                                  <div class="sub-menu">
                                      <ul class="sub-menu_list">
                                          @foreach ($categories as $cat)
-                                             <li><a href="#"
+                                             <li><a href="{{ route('productlist', $cat->strSlug) }}"
                                                      class="sub-menu_link">{{ $cat->strCategoryName ?? '' }}</a></li>
                                          @endforeach
 
