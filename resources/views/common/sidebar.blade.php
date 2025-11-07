@@ -40,7 +40,7 @@ if (auth()->user()) {
                     <li class="nav-item">
                         <a class="nav-link menu-link @if (request()->routeIs('admin.products.index')) {{ 'active' }} @endif"
                             href="{{ route('admin.products.index') }}">
-                            <i class="fa-solid fa-circle-question"></i>
+                            <i class="fa-solid fa-box"></i>
                             <span data-key="t-dashboards">Product</span>
                         </a>
                     </li>
@@ -70,6 +70,13 @@ if (auth()->user()) {
                             href="{{ route('Banner.index') }}">
                             <i class="fa-solid fa-play-circle"></i>
                             <span data-key="t-dashboards">Banner</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link @if (request()->routeIs('TageMaster.index')) {{ 'active' }} @endif"
+                            href="{{ route('TageMaster.index') }}">
+                            <i class="fa-solid fa-tag"></i>
+                            <span data-key="t-dashboards">TagMaster</span>
                         </a>
                     </li>
                 @endif

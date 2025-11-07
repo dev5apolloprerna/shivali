@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\SubCategory;
+use App\Models\TagMaster;
 use Illuminate\Http\Request;
 
 
@@ -20,6 +21,7 @@ class ProductController extends Controller
 
         $categories    = Category::orderBy('strCategoryName')->pluck('strCategoryName', 'iCategoryId');
         $subcategories = SubCategory::orderBy('strSubCategoryName')->pluck('strSubCategoryName', 'iSubCategoryId');
+        $TagMaster = TagMaster::get();
 
         $list = Product::with(['category', 'subcategory'])
             ->where('isDelete', 0)
@@ -36,7 +38,7 @@ class ProductController extends Controller
             ->paginate(20)
             ->appends($request->query());
 
-        return view('admin.product.index', compact('categories', 'subcategories', 'list', 'q', 'categoryId', 'subcatId'));
+        return view('admin.product.index', compact('TagMaster', 'categories', 'subcategories', 'list', 'q', 'categoryId', 'subcatId'));
     }
 
     /** Add page */
@@ -44,11 +46,13 @@ class ProductController extends Controller
     {
         $categories    = Category::orderBy('strCategoryName')->pluck('strCategoryName', 'iCategoryId');
         $subcategories = SubCategory::orderBy('strSubCategoryName')->pluck('strSubCategoryName', 'iSubCategoryId');
+        $tags = TagMaster::pluck('Name', 'id'); // adjust your column names
 
         return view('admin.product.form', [
             'row' => null,
             'categories' => $categories,
             'subcategories' => $subcategories,
+            'tags' => $tags,
         ]);
     }
 
@@ -65,6 +69,9 @@ class ProductController extends Controller
             'subcategory_id' => ['required', 'integer'],
             'iStatus'        => ['nullable', 'in:0,1'],
             'product_image'  => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'tag_ids'        => ['nullable', 'array'],
+            'tag_ids.*'      => ['integer', 'exists:TagMaster,id'], // validation for each tag
+
         ]);
 
 
@@ -98,6 +105,9 @@ class ProductController extends Controller
         // Only set if uploaded
         if ($imageRel) {
             $product->product_image = $imageRel;
+        }
+        if ($request->filled('tag_ids')) {
+            $product->tags()->sync($request->tag_ids);
         }
 
         $product->save();
