@@ -25,6 +25,12 @@ class Product extends Model
         'updated_at',
     ];
 
+    public function tags()
+    {
+        return $this->belongsToMany(TagMaster::class, 'Product_Tagemaster', 'product_id', 'tag_id');
+    }
+
+
     // Relations (adjust to your keys/models)
     public function category()
     {

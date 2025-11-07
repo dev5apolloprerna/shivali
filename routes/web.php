@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
+use App\Http\Controllers\Admin\TagMasterController;
 
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\InquiryController;
@@ -126,6 +127,16 @@ Route::prefix('admin')->name('BottomVideo.')->middleware('auth')->group(function
     Route::get('BottomVideo/view/{id?}', [BottomViewController::class, 'view'])->name('view');
 });
 
+Route::prefix('admin')->name('TageMaster.')->middleware('auth')->group(function () {
+    Route::any('/TageMaster/index', [TagMasterController::class, 'index'])->name('index');
+    Route::get('/TageMaster/add', [TagMasterController::class, 'add'])->name('add');
+    Route::post('/TageMaster/store', [TagMasterController::class, 'store'])->name('store');
+    Route::get('/TageMaster/edit/{id?}', [TagMasterController::class, 'edit'])->name('edit');
+    Route::post('/TageMaster/update', [TagMasterController::class, 'update'])->name('update');
+    Route::delete('/TageMaster/delete/{id?}', [TagMasterController::class, 'delete'])->name('delete');
+    Route::delete('/TageMaster/deleteselected', [TagMasterController::class, 'deleteselected'])->name('deleteselected');
+});
+
 Route::prefix('admin')->name('Banner.')->middleware('auth')->group(function () {
     Route::any('/Banner/index', [BannerController::class, 'index'])->name('index');
     Route::get('/Banner/add', [BannerController::class, 'add'])->name('add');
@@ -135,6 +146,8 @@ Route::prefix('admin')->name('Banner.')->middleware('auth')->group(function () {
     Route::delete('/Banner/delete/{id?}', [BannerController::class, 'delete'])->name('delete');
     Route::delete('/Banner/deleteselected', [BannerController::class, 'deleteselected'])->name('deleteselected');
 });
+
+
 
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
