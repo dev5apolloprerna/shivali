@@ -8,7 +8,6 @@ use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\FrontviewController;
 
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
