@@ -495,7 +495,7 @@ header {
   padding-top: 20px;
   padding-bottom: 20px;
   position: relative;
-  color:#432b2f;
+  color:#fff;
 }
 
 .header-sticky.is-fixed .item-link {
@@ -762,22 +762,6 @@ header {
   .footer-col-block .tf-collapse-content {
     display: none;
   }
-  .card-product_info {
-    height: auto;
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-    z-index: 99;
-    padding: 10px 20px;
-    color: #fff;
-    background: transparent;
-    /* width: 100%; */
-    left: 10%;
-    /* margin-top: -100px; */
-    display: flex;
-    vertical-align: bottom;
-    align-items: flex-end;
-}
 }
 .footer-bottom {
   position: relative;
@@ -2714,7 +2698,7 @@ text-align: center;
 .banner-wrap{
   position: relative;
   overflow: hidden;
-  /*height: 500px;*/
+  height: 500px;
 }
 .banner-wrap::before {
     /* content: ""; */
@@ -2725,7 +2709,4 @@ text-align: center;
     right: 0;
     background: rgba(0, 0, 0, 0.6);
     z-index: 1;
-}
-.nav-mb-item{
-    padding:10px 0;
 }

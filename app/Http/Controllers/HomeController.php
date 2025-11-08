@@ -34,24 +34,29 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function imagesetting(Request $request)
+    {
+        return view('imagesetting');
+    }
+
+
+
     public function index(Request $request)
     {
-        try
-        {
+        try {
             $counts = [
-            'categories'    => Category::count(),
-            'subcategories' => SubCategory::count(),
-            'products' => Product::count(),
-            'inquiries'       => Inquiry::where('isDelete', 0)->count(),
+                'categories'    => Category::count(),
+                'subcategories' => SubCategory::count(),
+                'products' => Product::count(),
+                'inquiries'       => Inquiry::where('isDelete', 0)->count(),
 
-        ];
+            ];
 
 
             return view('home', compact('counts'));
-
         } catch (\Exception $e) {
-        report($e);
-        return false;
+            report($e);
+            return false;
         }
     }
 
@@ -63,35 +68,35 @@ class HomeController extends Controller
      */
     public function getProfile()
     {
-        try{
-        $session = Auth::user()->id;
-        // dd($session);
-        $users = User::where('users.id',  $session)
-            ->first();
-        // dd($users);
+        try {
+            $session = Auth::user()->id;
+            // dd($session);
+            $users = User::where('users.id',  $session)
+                ->first();
+            // dd($users);
 
-        return view('profile', compact('users'));
+            return view('profile', compact('users'));
         } catch (\Exception $e) {
 
-        report($e);
- 
-        return false;
-    }
+            report($e);
+
+            return false;
+        }
     }
 
 
     public function EditProfile()
     {
-        try{
-        $roles = Role::where('id', '!=', '1')->get();
+        try {
+            $roles = Role::where('id', '!=', '1')->get();
 
-        return view('Editprofile', compact('roles'));
+            return view('Editprofile', compact('roles'));
         } catch (\Exception $e) {
 
-        report($e);
- 
-        return false;
-    }
+            report($e);
+
+            return false;
+        }
     }
 
     /**
@@ -100,9 +105,9 @@ class HomeController extends Controller
      * @return Boolean With Success Message
      * @author Shani Singh
      */
-   public function updateProfile(Request $request)
+    public function updateProfile(Request $request)
     {
-    
+
         #Validations
         $request->validate([
             'first_name'    => 'required',
@@ -139,35 +144,34 @@ class HomeController extends Controller
      */
     public function changePassword(Request $request)
     {
-        try{
-        $session = Auth::user()->id;
+        try {
+            $session = Auth::user()->id;
 
-        $user = User::where('id', '=', $session)->where(['status' => 1])->first();
+            $user = User::where('id', '=', $session)->where(['status' => 1])->first();
 
-        if (Hash::check($request->current_password, $user->password)) 
-        {
-            $newpassword = $request->new_password;
-            $confirmpassword = $request->new_confirm_password;
+            if (Hash::check($request->current_password, $user->password)) {
+                $newpassword = $request->new_password;
+                $confirmpassword = $request->new_confirm_password;
 
-            if ($newpassword == $confirmpassword) {
-                $Student = DB::table('users')
-                    ->where(['status' => 1, 'id' => $session])
-                    ->update([
-                        'password' => Hash::make($confirmpassword),
-                    ]);
-                Auth::logout();
-                return redirect()->route('login')->with('success', 'User Password Updated Successfully.');
+                if ($newpassword == $confirmpassword) {
+                    $Student = DB::table('users')
+                        ->where(['status' => 1, 'id' => $session])
+                        ->update([
+                            'password' => Hash::make($confirmpassword),
+                        ]);
+                    Auth::logout();
+                    return redirect()->route('login')->with('success', 'User Password Updated Successfully.');
+                } else {
+                    return back()->with('error', 'password and confirm password does not match');
+                }
             } else {
-                return back()->with('error', 'password and confirm password does not match');
+                return back()->with('error', 'Current Password does not match');
             }
-        } else {
-            return back()->with('error', 'Current Password does not match');
-        }
         } catch (\Exception $e) {
 
-        report($e);
- 
-        return false;
-    }
+            report($e);
+
+            return false;
+        }
     }
 }

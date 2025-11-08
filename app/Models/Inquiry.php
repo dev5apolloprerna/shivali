@@ -11,6 +11,7 @@ class Inquiry extends Model
 
     public $table = 'inquiry';
     protected $fillable = [
+        'inquiry_id',
         'name',
         'mobileNumber',
         'email',

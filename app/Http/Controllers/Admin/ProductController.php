@@ -66,7 +66,7 @@ class ProductController extends Controller
             'product_name'   => ['required', 'string', 'max:255'], // "string" will also reject arrays
             'description'    => ['nullable', 'string', 'max:255'],
             'category_id'    => ['required', 'integer'],
-            'subcategory_id' => ['required', 'integer'],
+            //'subcategory_id' => ['required', 'integer'],
             'iStatus'        => ['nullable', 'in:0,1'],
             'product_image'  => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'tag_ids'        => ['nullable', 'array'],
@@ -106,11 +106,12 @@ class ProductController extends Controller
         if ($imageRel) {
             $product->product_image = $imageRel;
         }
+        $product->save();
+
         if ($request->filled('tag_ids')) {
             $product->tags()->sync($request->tag_ids);
         }
 
-        $product->save();
 
         return redirect()->route('admin.products.index')->with('success', 'Product added.');
     }
@@ -130,6 +131,7 @@ class ProductController extends Controller
             'subcategory_id' => ['required', 'integer'],
             'iStatus'        => ['nullable', 'in:0,1'],
             'product_image'  => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
+            'tag_ids'        => ['nullable', 'array'],
         ]);
 
         $product->product_name   = trim((string)$request->input('product_name'));
@@ -177,6 +179,8 @@ class ProductController extends Controller
         $product->save();
 
         $product->image_url = anx_url($product->product_image);
+        $tagIds = $request->input('tag_ids', []);
+        $product->tags()->sync($tagIds);
 
 
         return redirect()->route('admin.products.index')->with('success', 'Product updated.');
@@ -190,11 +194,15 @@ class ProductController extends Controller
 
         $categories    = Category::orderBy('strCategoryName')->pluck('strCategoryName', 'iCategoryId');
         $subcategories = SubCategory::orderBy('strSubCategoryName')->pluck('strSubCategoryName', 'iSubCategoryId');
+        $tags = TagMaster::pluck('Name', 'id');
+        $selectedTags = $product->tags()->pluck('tag_id')->toArray();
 
         return view('admin.product.form', [
             'row' => $product,
             'categories' => $categories,
             'subcategories' => $subcategories,
+            'tags' => $tags,
+            'selectedTags' => $selectedTags,
         ]);
     }
 
@@ -210,6 +218,8 @@ class ProductController extends Controller
         if (!empty($product->product_image)) {
             anx_delete($product->product_image);
         }
+        // ✅ Delete related tag mappings
+        $product->tags()->detach();
         return back()->with('success', 'Product deleted.');
     }
 

@@ -27,14 +27,28 @@ class Product extends Model
 
     public function tags()
     {
-        return $this->belongsToMany(TagMaster::class, 'Product_Tagemaster', 'product_id', 'tag_id');
+        return $this->belongsToMany(TagMaster::class, 'Product_Tagemaster', 'product_id', 'tag_id')
+            ->withTimestamps();
     }
 
+    public function producttagemaster()
+    {
+        return $this->hasMany(
+            ProductTagemaster::class,
+            'product_id',      // foreign key on Product_Tagemaster
+            'product_id'       // local key on product_master
+        );
+    }
 
     // Relations (adjust to your keys/models)
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id', 'iCategoryId');
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(ProductVideo::class, 'product_id', 'product_id');
     }
 
     public function subcategory()
