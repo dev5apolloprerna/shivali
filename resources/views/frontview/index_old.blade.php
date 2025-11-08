@@ -1,15 +1,5 @@
 @extends('layouts.front')
 @section('content')
-    <style>
-        .item-link {
-            color: #fff !important;
-
-        }
-
-        .header-sticky .item-link {
-            color: #432b2f !important;
-        }
-    </style>
     <section class="hero mx-2">
         <video autoplay muted loop playsinline>
             <source src="{{ asset('assets/front/images/hero.mp4') }}" type="video/mp4">
@@ -18,7 +8,7 @@
         <div class="overlay"></div>
         <div class="hero-content">
             <h1>The Essence of Iconic Elegance</h1>
-            <p> Crafted for women who define tradition with grace. </p>
+            <p> Crafted for women who define tradition with grace. ✨</p>
             <button>Get Started</button>
         </div>
     </section>
@@ -125,7 +115,7 @@
             </div>
         </div>
     </section>
-    <section class="pt-0">
+    <section class="pt-2">
 
         <div class="container">
             <div class="row align-items-center">
@@ -179,9 +169,8 @@
     <section class="bg-black pb-3">
         <div class="container">
             <div class="row align-items-center">
-                <div class="sect-title text-center wow fadeInUp pb-3"
-                    style="padding-top:10px!important;padding-bottom:10px!important">
-                    <h2 class="title  text-white" style="margin-bottom:5px!important">Explore by Occasion</h2>
+                <div class="sect-title text-center wow fadeInUp py-3">
+                    <h2 class="title mb-8 text-white">Explore by Occasion </h2>
 
 
                     <!-- <p class="s-subtitle h6">Lorem ipsum dolor sit amet, consectetur adipiscing elit</p> -->
@@ -220,8 +209,8 @@
     <!-- Best Seller -->
     <section>
         <div class="container">
-            <div class="sect-title text-center wow fadeInUp"style="padding-top:5px!important">
-                <h2 class="title " style="margin-bottom:10px!important">Shop by style</h2>
+            <div class="sect-title text-center wow fadeInUp pt-3">
+                <h2 class="title mb-8">Shop by style</h2>
             </div>
             <div class="row g-4">
                 @foreach ($shop_by_style as $shoapby)
@@ -278,12 +267,10 @@
                         </a>
                     </h6>
 
-                    <a href="{{ route('lookbook.pdf', $Categories->strSlug) }}"
-                        class="tf-btn btn-white animate-btn animate-dark fw-normal" target="_blank">
+                    <a href="#" class="tf-btn btn-white animate-btn animate-dark fw-normal">
                         Explore Now
                         <i class="icon icon-arrow-right"></i>
                     </a>
-
                 </div>
             </div>
         </div>
@@ -294,7 +281,7 @@
     <section class="about-banner style-2 gap-1">
         <div class="container">
             <div class=" hover-img  row vid-sec pt-3">
-                <div class="text-right col-lg-4 col-md-6    inner-box ">
+                <div class="text-right col-lg-4 col-md-6    inner-box  py-2">
                     <div dir="ltr" class="swiper tf-swiper" data-preview="1" data-tablet="1" data-mobile-sm="1"
                         data-mobile="1" data-pagination="1" data-space-lg="0" data-space-md="0" data-space="0"
                         data-pagination-sm="1" data-loop="true" data-pagination-md="1" data-pagination-lg="1"
@@ -328,7 +315,7 @@
                         <p class="text-center">Best product of the week</p>
                     </div>
                 </div>
-                <div class=" col-lg-4  col-md-6 inner-box  ">
+                <div class=" col-lg-4  col-md-6 inner-box   py-2">
                     <div dir="rtl" class="swiper tf-swiper" data-preview="1" data-tablet="1" data-mobile-sm="1"
                         data-mobile="1" data-pagination="1" data-space-lg="0" data-space-md="0" data-space="0"
                         data-pagination-sm="1" data-loop="true" data-pagination-md="1" data-pagination-lg="1"
@@ -363,7 +350,7 @@
                         <p class="text-center">Malaika Arora in DiyaRajvvir</p>
                     </div>
                 </div>
-                <div class=" col-lg-4  col-md-6 inner-box ">
+                <div class=" col-lg-4  col-md-6 inner-box  d-none d-md-block">
                     <video autoplay muted loop playsinline>
                         <source src="{{ asset('assets/front/images/videoplayback.mp4') }}" type="video/mp4">
                         Your browser does not support the video tag.
@@ -377,11 +364,11 @@
 
     <section class="about-us style-2 py-3">
         <div class="container">
-            <div class="row  wow fadeInUp">
+            <div class="row align-items-center wow fadeInUp">
                 <!-- About Content -->
                 <div class="col-lg-6 ps-lg-5 order-2 order-md-1 ">
                     <div class="sect-title text-left">
-                        <h2 class="title mb-4 display-6 fw-bold text-center">
+                        <h2 class="title mb-4 display-4 fw-bold text-center">
                             About Us
                         </h2>
                         <svg width="100%" height="3" xmlns="http://www.w3.org/2000/svg">

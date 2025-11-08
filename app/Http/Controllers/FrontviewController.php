@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Inquiry;
+use App\Models\TagMaster;
 use Illuminate\Http\Request;
 use GPBMetadata\Google\Api\Service;
 use Illuminate\Support\Facades\DB;
@@ -51,20 +52,17 @@ class FrontviewController extends Controller
     public function productdetail(Request $request, $catslugname, $productslug)
     {
         try {
-
-
             $product = Product::with([
                 'productimage' => function ($query) {
                     $query->where('isDelete', 0);
                 },
+                'videos',
                 'category',
                 'subcategory'
             ])
                 ->where('slug', $productslug)
                 ->where('isDelete', 0)
                 ->firstOrFail();
-
-
 
 
             // Fetch related products (same category)
@@ -80,35 +78,59 @@ class FrontviewController extends Controller
         }
     }
 
-    public function productlist(Request $request, $slugname)
+    public function productlist(Request $request, $slugname = null)
     {
         try {
-            $subcategory = SubCategory::where('strSlug', $slugname)->first();
-            $Category = Category::where('strSlug', $slugname)->first();
 
+            $subcategory = SubCategory::where('strSlug', $slugname)->first();
+            $category = Category::where('strSlug', $slugname)->first();
+            $tagmaster = TagMaster::get();
+
+            $query = Product::with(['category', 'subcategory', 'tags'])->where('isDelete', 0);
+
+            // Filter by slug
             if ($subcategory) {
-                $products = Product::with([
-                    'category',
-                    'subcategory'
-                ])
-                    ->where('subcategory_id', $subcategory->iSubCategoryId)
-                    ->where('isDelete', 0)
-                    ->get();
-            } else {
-                $products = Product::with([
-                    'category',
-                    'subcategory'
-                ])
-                    ->where('category_id', $Category->iCategoryId)
-                    ->where('isDelete', 0)
-                    ->get();
+                $query->where('subcategory_id', $subcategory->iSubCategoryId);
+            } elseif ($category) {
+                $query->where('category_id', $category->iCategoryId);
             }
 
-            return view('frontview.product-list', compact('products'));
+            // Filter by tags (any product having any selected tag)
+            if ($request->filled('tags')) {
+                $tagIds = $request->input('tags'); // must be IDs like [1,2,3]
+                $query->whereHas('tags', function ($q) use ($tagIds) {
+                    $q->whereIn('tag_id', $tagIds); // adjust to your actual PK
+                });
+            }
+
+            // Filter by categories
+            if ($request->filled('categories')) {
+                $query->whereIn('category_id', $request->categories);
+            }
+
+            // Sorting
+            if ($request->sort === 'Recommended') {
+
+                $query->orderBy('product_id', 'desc');
+            } elseif ($request->sort === 'best-product') {
+
+                $query->where('best_product', 1)->orderBy('product_id', 'desc');
+            } elseif ($request->sort === 'newest') {
+                $query->orderBy('product_id', 'desc');
+            }
+
+            //dd($query->toSql());
+            $products = $query->get();
+
+            return view('frontview.product-list', compact('products', 'tagmaster'));
         } catch (\Throwable $th) {
+            \Log::error($th);
             return redirect()->back()->withInput();
         }
     }
+
+
+
 
     public function AboutUs(Request $request)
     {

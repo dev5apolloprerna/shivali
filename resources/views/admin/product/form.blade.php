@@ -72,8 +72,7 @@
                                             </div>
 
                                             <div class="col-md-6 mb-3">
-                                                <label class="form-label">Subcategory <span
-                                                        class="text-danger">*</span></label>
+                                                <label class="form-label">Subcategory</label>
                                                 <select id="jsSubcategory" name="subcategory_id"
                                                     class="form-select @error('subcategory_id') is-invalid @enderror"
                                                     data-selected="{{ $selectedSubcategory }}"

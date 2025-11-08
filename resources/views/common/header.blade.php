@@ -1,21 +1,20 @@
-<?php 
-if(auth()->user())
-{
-$roleid = auth()->user()->role_id;
+<?php
+if (auth()->user()) {
+    $roleid = auth()->user()->role_id;
 }
 ?>
 <header id="page-topbar">
     <div class="layout-width">
         <div class="navbar-header">
             <div class="d-flex">
-           
-            <div class="navbar-brand-box horizontal-logo">
+
+                <div class="navbar-brand-box horizontal-logo">
                     <a href="{{ route('home') }}" class="logo logo-dark">
                         <span class="logo-lg">
-                            <img src="{{ asset ('assets/images/logo.png')}}" alt="" height="72">
+                            <img src="{{ asset('assets/images/logo.png') }}" alt="" height="72">
                         </span>
                     </a>
-                </div>    
+                </div>
                 <button type="button" class="btn btn-sm px-3 fs-16 header-item vertical-menu-btn topnav-hamburger"
                     id="topnav-hamburger-icon">
                     <span class="hamburger-icon">
@@ -37,7 +36,7 @@ $roleid = auth()->user()->role_id;
                                 src="{{ asset('assets/images/users/undraw_profile.webp') }}" alt="Header Avatar">
                             <span class="text-start ms-xl-2">
                                 <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
-                                   @if(auth()->user())
+                                    @if (auth()->user())
                                         {{ auth()->user()->full_name }}
                                     @else
                                         {{ Auth::guard('web_employees')->user()->name }}
@@ -54,8 +53,8 @@ $roleid = auth()->user()->role_id;
                                     ->first();
                                 ?>
                                 <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">
-                                     {{ $role->name }}
-                                 </span>
+                                    {{ $role->name }}
+                                </span>
                                 <?php
                                 }else{
 
@@ -66,15 +65,15 @@ $roleid = auth()->user()->role_id;
                                 ->first();
                                 ?>
                                 <span class="d-none d-xl-block ms-1 fs-12 text-muted user-name-sub-text">
-                                     {{ $role2->name }}
-                                 </span>
+                                    {{ $role2->name }}
+                                </span>
                                 <?php  }
                                 ?>
 
                             </span>
                         </span>
                     </button>
-                    <?php if($roleid == '1') 
+                    <?php if($roleid == '1')
                     { ?>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
@@ -82,13 +81,18 @@ $roleid = auth()->user()->role_id;
                         <a class="dropdown-item" href="{{ route('profile.detail') }}"><i
                                 class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
+                        <a class="dropdown-item" href="{{ route('profile.imagesetting') }}">
+                            <i class="mdi mdi-cog text-muted fs-16 align-middle me-1"></i>
+                            <span class="align-middle">Setting</span>
+                        </a>
+
                         <a class="dropdown-item" href="{{ route('logout') }}"><i
                                 class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle" data-key="t-logout">Logout</span></a>
                     </div>
                     <?php }else
                       { ?>
-                      <div class="dropdown-menu dropdown-menu-end">
+                    <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
                         <h6 class="dropdown-header">Welcome {{ Auth::guard('web_employees')->user()->name }}</h6>
                         <a class="dropdown-item" href="{{ route('empprofile.employee-detail') }}"><i
@@ -99,9 +103,9 @@ $roleid = auth()->user()->role_id;
                                 class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i> <span
                                 class="align-middle" data-key="t-logout">Logout</span>
                         </a>
-                        
+
                     </div>
-                <?php } ?>
+                    <?php } ?>
                 </div>
             </div>
         </div>

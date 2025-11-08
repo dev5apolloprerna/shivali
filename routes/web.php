@@ -23,6 +23,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductImageController;
 use App\Http\Controllers\Admin\ProductVideoController;
 use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\PDFController;
+
 
 
 Route::fallback(function () {
@@ -49,6 +51,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Profile Routes
 Route::prefix('profile')->name('profile.')->middleware('auth')->group(function () {
     Route::get('/', [HomeController::class, 'getProfile'])->name('detail');
+    Route::get('image-settings', [HomeController::class, 'imagesetting'])->name('imagesetting');
+
     Route::get('/edit', [HomeController::class, 'EditProfile'])->name('EditProfile');
     Route::post('/update', [HomeController::class, 'updateProfile'])->name('update');
     Route::post('/change-password', [HomeController::class, 'changePassword'])->name('change-password');
@@ -184,5 +188,7 @@ Route::get('/', [FrontviewController::class, 'index'])->name('front.index');
 Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('front.about');
 Route::get('/contactus', [FrontviewController::class, 'ContactUs'])->name('front.contactus');
 Route::post('/contactstore', [FrontviewController::class, 'contactstore'])->name('contactstore');
-Route::get('/{slugname?}', [FrontviewController::class, 'productlist'])->name('productlist');
+Route::any('/{slugname?}', [FrontviewController::class, 'productlist'])->name('productlist');
 Route::get('/{strSlug?}/{slugname?}', [FrontviewController::class, 'productdetail'])->name('productdetail');
+Route::get('/category/{slug}/lookbook-pdf', [PDFController::class, 'lookbookPdf'])
+    ->name('lookbook.pdf');

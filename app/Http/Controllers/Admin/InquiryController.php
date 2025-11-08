@@ -30,8 +30,9 @@ class InquiryController extends Controller
         try {
             $fileName = 'inquiry_list_' . date('Ymd_His') . '.csv';
             $inquiries = Inquiry::where(['iStatus' => 1, 'isDelete' => 0])
-                ->orderBy('inquiry_id', 'DESC')
+                ->orderBy('inquiry_id', 'ASC')
                 ->get([
+                    'inquiry_id',
                     'name',
                     'mobileNumber',
                     'email',
@@ -53,6 +54,7 @@ class InquiryController extends Controller
             ];
 
             $columns = [
+                'No',
                 'Name',
                 'Mobile Number',
                 'Email',
@@ -71,6 +73,7 @@ class InquiryController extends Controller
 
                 foreach ($inquiries as $inquiry) {
                     fputcsv($file, [
+                        $inquiry->inquiry_id,
                         $inquiry->name,
                         $inquiry->mobileNumber,
                         $inquiry->email,

@@ -79,6 +79,13 @@ if (auth()->user()) {
                             <span data-key="t-dashboards">TagMaster</span>
                         </a>
                     </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link menu-link @if (request()->routeIs('admin.image-settings.index')) active @endif"
+                            href="{{ route('admin.image-settings.index') }}">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Image Settings</span>
+                        </a>
+                    </li> --}}
                 @endif
             </ul>
         </div>
