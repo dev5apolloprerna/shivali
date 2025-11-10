@@ -28,7 +28,7 @@
                                 <h6 class="accordion-header" id="headingZero">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#collapseZero" aria-expanded="true">
-                                        Tags
+                                        Categories
                                     </button>
                                 </h6>
                                 <div id="collapseZero" class="accordion-collapse collapse show"
@@ -75,7 +75,7 @@
                             <option value="Recommended" {{ request('sort') == 'Recommended' ? 'selected' : '' }}>
                                 Recommended</option>
                             <option value="best-product" {{ request('sort') == 'best-product' ? 'selected' : '' }}>Best
-                                Product</option>
+                                Selling</option>
                             <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
                         </select>
 
@@ -106,6 +106,11 @@
                             <h5>No products found.</h5>
                         </div>
                     @endforelse
+
+                </div>
+                <div class="mt-5 d-flex justify-content-center">
+
+                    {{ $products->links() }}
                 </div>
             </div>
         </div>

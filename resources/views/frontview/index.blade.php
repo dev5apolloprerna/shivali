@@ -241,10 +241,10 @@
 
                         </div>
                         <div class="card-product_info">
-                            <a href="{{ route('productlist', $shoapby->strSlug) }}"
-                                class="name-product">{{ $shoapby->strSubCategoryName ?? '' }}</a>
+                            <a href="{{ route('productlist', $shoapby->strSlug) }}" class="name-product"></a>
 
-
+                            {{-- <a href="{{ route('productlist', $shoapby->strSlug) }}"
+                                class="name-product">{{ $shoapby->strSubCategoryName ?? '' }}</a> --}}
                         </div>
                         <div class="price-wrap">
                             <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">

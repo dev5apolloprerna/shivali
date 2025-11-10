@@ -37,7 +37,7 @@
              <div class="row align-items-center">
 
                  <div class="position-relative col-xl-3 col-md-4 col-6 d-flex justify-content-xl-start">
-                     <a href="index.html" class="logo-site">
+                     <a href="{{ route('front.index') }}" class="logo-site">
                          <img src="{{ asset('assets/front/images/logo/logo.png') }}"> </a>
                  </div>
                  <div class="col-xl-6 d-none d-xl-block">

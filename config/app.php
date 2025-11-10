@@ -28,6 +28,8 @@ return [
 
     'env' => env('APP_ENV', 'production'),
 
+    'per_page' => env('PER_PAGE'),
+
     /*
     |--------------------------------------------------------------------------
     | Application Debug Mode
@@ -165,8 +167,8 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Darryldecode\Cart\CartServiceProvider::class,
-       PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class,
-        
+        PHPOpenSourceSaver\JWTAuth\Providers\LaravelServiceProvider::class,
+
 
         /*
          * Package Service Providers...
