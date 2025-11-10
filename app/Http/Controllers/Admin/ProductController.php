@@ -126,9 +126,9 @@ class ProductController extends Controller
 
         $request->validate([
             'product_name'   => ['bail', 'required', 'string', 'max:255'],
-            'description'    => ['nullable', 'string', 'max:255'],
+            'description'    => ['nullable', 'string'],
             'category_id'    => ['required', 'integer'],
-            'subcategory_id' => ['required', 'integer'],
+            //'subcategory_id' => ['required', 'integer'],
             'iStatus'        => ['nullable', 'in:0,1'],
             'product_image'  => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'tag_ids'        => ['nullable', 'array'],

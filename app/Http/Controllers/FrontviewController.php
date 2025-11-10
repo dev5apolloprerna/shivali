@@ -120,7 +120,7 @@ class FrontviewController extends Controller
             }
 
             //dd($query->toSql());
-            $products = $query->get();
+            $products = $query->paginate(config('app.per_page'));
 
             return view('frontview.product-list', compact('products', 'tagmaster'));
         } catch (\Throwable $th) {
