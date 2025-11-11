@@ -4,9 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Models\SubCategory;
+
 
 class PDFController extends Controller
 {
+
+    public function alllookbook_product($slugname = null)
+    {
+        $category = \App\Models\Category::where('strSlug', $slugname)->firstOrFail();
+        $products = \App\Models\Product::where('category_id', $category->iCategoryId)
+            ->where('iStatus', 1)->where('isDelete', 0)->get();
+        return view('pdf.AllProduct', compact('products', 'category'));
+    }
     public function lookbookPdf($slug)
     {
         $category = \App\Models\Category::where('strSlug', $slug)->firstOrFail();

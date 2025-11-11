@@ -48,12 +48,13 @@
                         <table class="table align-middle">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Image</th>
-                                    <th>Name / Slug</th>
-                                    <th>Category</th>
-                                    <th>Status</th>
-                                    <th style="width:190px;">Action</th>
+                                    <th width="1%">#</th>
+                                    <th width="10%">Image</th>
+                                    <th width="45%">Name / Slug</th>
+                                    <th width="10%">Category</th>
+                                    <th width="15%">Priority</th>
+                                    <th width="9%">Status</th>
+                                    <th width="10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +77,18 @@
                                             {{ $p->category->strCategoryName ?? '—' }} /
                                             {{ $p->subcategory->strSubCategoryName ?? '—' }}
                                         </td>
+                                        <td class="small px-3">
+                                            <select name="priority" class="form-control priority-select"
+                                                data-id="{{ $p->product_id }}">
+                                                <option value="">Please Select</option>
+                                                <option value="1" {{ $p->priority == 1 ? 'selected' : '' }}>1</option>
+                                                <option value="2" {{ $p->priority == 2 ? 'selected' : '' }}>2</option>
+                                                <option value="3" {{ $p->priority == 3 ? 'selected' : '' }}>3</option>
+                                                <option value="1000" {{ $p->priority == 1000 ? 'selected' : '' }}>None
+                                                </option>
+                                            </select>
+                                        </td>
+
                                         <td>
                                             <form method="POST"
                                                 action="{{ route('admin.products.toggle-status', $p->product_id) }}">
@@ -129,4 +142,38 @@
             </div>
         </div>
     </div>
+@endsection
+@section('scripts')
+    <script>
+        $(document).ready(function() {
+            let updatePriorityUrl = "{{ route('admin.products.updatePriority') }}";
+
+            $('.priority-select').change(function() {
+
+                let id = $(this).data('id');
+                let priority = $(this).val();
+
+                $.ajax({
+                    url: updatePriorityUrl,
+                    type: "POST",
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        id: id,
+                        priority: priority
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            toastr.success(response.message);
+                        } else {
+                            toastr.error("Failed to update priority.");
+                        }
+                    },
+                    error: function() {
+                        toastr.error("Something went wrong!");
+                    }
+                });
+            });
+        });
+    </script>
+
 @endsection

@@ -278,7 +278,13 @@
                         </a>
                     </h6>
 
-                    <a href="{{ route('lookbook.pdf', $Categories->strSlug) }}"
+                    {{-- <a href="{{ route('lookbook.pdf', $Categories->strSlug) }}"
+                        class="tf-btn btn-white animate-btn animate-dark fw-normal" target="_blank">
+                        Explore Now
+                        <i class="icon icon-arrow-right"></i>
+                    </a> --}}
+
+                    <a href="{{ route('alllookbook_product', $Categories->strSlug) }}"
                         class="tf-btn btn-white animate-btn animate-dark fw-normal" target="_blank">
                         Explore Now
                         <i class="icon icon-arrow-right"></i>

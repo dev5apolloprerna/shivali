@@ -108,7 +108,10 @@ class FrontviewController extends Controller
                 $query->whereIn('category_id', $request->categories);
             }
 
+            $query->orderBy('priority', 'asc');
+
             // Sorting
+            // dd($request);
             if ($request->sort === 'Recommended') {
 
                 $query->orderBy('product_id', 'desc');
@@ -128,8 +131,6 @@ class FrontviewController extends Controller
             return redirect()->back()->withInput();
         }
     }
-
-
 
 
     public function AboutUs(Request $request)
@@ -195,10 +196,6 @@ class FrontviewController extends Controller
             return redirect()->back()->withInput();
         }
     }
-
-
-
-
 
     public function image(Request $request)
     {
