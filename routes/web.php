@@ -163,6 +163,8 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::post('/products/{product}/delete', [ProductController::class, 'destroy'])->name('admin.products.delete');
     Route::post('/products/{product}/toggle-status', [ProductController::class, 'toggleStatus'])->name('admin.products.toggle-status');
     Route::any('/products/bestproduct/{product?}', [ProductController::class, 'bestproduct'])->name('admin.products.bestproduct');
+    Route::post('/products/update-priority', [ProductController::class, 'updatePriority'])
+        ->name('admin.products.updatePriority');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
@@ -190,5 +192,7 @@ Route::get('/contactus', [FrontviewController::class, 'ContactUs'])->name('front
 Route::post('/contactstore', [FrontviewController::class, 'contactstore'])->name('contactstore');
 Route::any('/{slugname?}', [FrontviewController::class, 'productlist'])->name('productlist');
 Route::get('/{strSlug?}/{slugname?}', [FrontviewController::class, 'productdetail'])->name('productdetail');
-Route::get('/category/{slug}/lookbook-pdf', [PDFController::class, 'lookbookPdf'])
+Route::get('/lookbook/Allproduct/{slug}', [PDFController::class, 'alllookbook_product'])
+    ->name('alllookbook_product');
+Route::get('/category/lookbook-pdf/{slug}', [PDFController::class, 'lookbookPdf'])
     ->name('lookbook.pdf');

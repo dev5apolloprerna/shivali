@@ -46,7 +46,8 @@
                                 </div>
                             </div>
                         </div>
-
+                        {{-- ✅ Preserve sorting --}}
+                        <input type="hidden" name="sort" value="{{ request('sort') }}">
                         <input type="submit" class="btn filter-btn mt-4 w-100" value="Apply Filters">
                     </form>
 
@@ -54,13 +55,16 @@
                 </div>
             </div>
 
+
             <!-- Product Grid -->
             <div class="col-lg-9">
                 <div class="d-flex justify-content-end align-items-end mb-3">
-                    <form method="Post" action="{{ route('productlist', request()->route('slugname')) }}">
+                    {{-- ✅ Sort Form --}}
+                    <form method="POST" action="{{ route('productlist', request()->route('slugname')) }}">
                         @csrf
-                        {{-- Preserve existing filters --}}
-                        @foreach (request()->except('sort') as $key => $value)
+
+                        {{-- Preserve currently selected filters --}}
+                        @foreach (request()->except('sort', '_token') as $key => $value)
                             @if (is_array($value))
                                 @foreach ($value as $v)
                                     <input type="hidden" name="{{ $key }}[]" value="{{ $v }}">
@@ -78,7 +82,6 @@
                                 Selling</option>
                             <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
                         </select>
-
                     </form>
                 </div>
 
@@ -106,13 +109,13 @@
                             <h5>No products found.</h5>
                         </div>
                     @endforelse
-
                 </div>
-                <div class="mt-5 d-flex justify-content-center">
 
+                <div class="mt-5 d-flex justify-content-center">
                     {{ $products->links() }}
                 </div>
             </div>
+
         </div>
     </div>
 @endsection

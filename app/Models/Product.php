@@ -17,6 +17,7 @@ class Product extends Model
         'product_image',
         'description',
         'best_product',
+        'priority',
         'category_id',
         'subcategory_id',
         'iStatus',

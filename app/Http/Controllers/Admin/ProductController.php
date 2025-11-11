@@ -56,6 +56,22 @@ class ProductController extends Controller
         ]);
     }
 
+    public function updatePriority(Request $request)
+    {
+
+        $request->validate([
+            'id' => 'required|integer|exists:product_master,product_id',
+            'priority' => 'nullable|integer',
+        ]);
+
+        $product = Product::find($request->id);
+        $product->priority = $request->priority;
+        $product->save();
+
+        return response()->json(['success' => true, 'message' => 'Priority updated successfully.']);
+    }
+
+
     /** Save new */
     // app/Http/Controllers/Admin/ProductController.php
 
@@ -241,9 +257,6 @@ class ProductController extends Controller
             'best_product' => 1,
             'updated_at' => now()
         ]);
-
-
-
         return back()->with('success', 'Best Product updated.');
     }
 }
