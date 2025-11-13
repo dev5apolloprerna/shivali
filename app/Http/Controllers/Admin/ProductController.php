@@ -251,12 +251,22 @@ class ProductController extends Controller
         return back()->with('success', 'Status updated.');
     }
 
-    public function bestproduct($product)
+    public function bestproduct($id)
     {
-        $product = Product::where('product_id', $product)->update([
-            'best_product' => 1,
-            'updated_at' => now()
+        $product = Product::where('product_id', $id)->first();
+
+        if (!$product) {
+            return back()->with('error', 'Product not found.');
+        }
+
+        // Toggle value: if 1 → 0, if 0 → 1
+        $newStatus = $product->best_product == 1 ? 0 : 1;
+
+        $product->update([
+            'best_product' => $newStatus,
+            'updated_at' => now(),
         ]);
-        return back()->with('success', 'Best Product updated.');
+
+        return back()->with('success', 'Best Product status updated.');
     }
 }

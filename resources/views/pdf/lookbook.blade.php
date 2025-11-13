@@ -3,60 +3,79 @@
 
 <head>
     <style>
+        @page {
+            margin: 0;
+        }
+
+        html,
         body {
-            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 0;
+            font-size: 0;
         }
 
-        .product-box {
-
-            margin-bottom: 24px;
-        }
-
-        .productbox {
-
+        /* ✅ Centered Heading */
+        .header {
             text-align: center;
+            page-break-after: avoid;
+            padding: 40px 0 20px;
         }
 
-        /* .product-img {
-            width: 180px;
-            height: auto;
-        } */
-
-        .title {
-            font-size: 20px;
-            text-transform: capitalize;
+        .header h2 {
+            font-size: 28pt;
             font-weight: bold;
-            margin: 8px 0;
-        }
-
-        .dbg {
-            color: #777;
-            font-size: 11px;
+            color: #000;
+            margin: 0;
             line-height: 1.3;
         }
 
-        hr {
-            margin: 16px 0;
+        .header hr {
+            border: none;
+            border-top: 2px solid #000;
+            width: 60%;
+            margin: 15px auto 0;
+        }
+
+        /* ✅ Product container */
+        .product-box {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* ✅ Start new page after each image except the first */
+        .product-box:not(:first-of-type) {
+            page-break-before: always;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            border: none;
+            display: block;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
 
 <body>
-    <h2>{{ $category->strCategoryName }} - Lookbook</h2>
-    <hr>
 
+    {{-- ✅ Centered heading, shown once --}}
+    <div class="header">
+        <h2>{{ $category->strCategoryName }}</h2>
+        <hr>
+    </div>
+
+    {{-- ✅ Each image on a full page, no blank pages --}}
     @foreach ($products as $p)
         <div class="product-box">
-            <p class="title">{{ $p->product_name }}</p>
-            <div class="productbox">
-
-                <img class="product-img" src="{{ $p->pdf_img_src }}" alt="{{ $p->product_name }}">
-            </div>
-
-            <p>{!! $p->description !!}</p>
+            <img class="product-img" src="{{ $p->pdf_img_src }}" alt="{{ $p->product_name }}">
         </div>
-        <hr>
     @endforeach
+
 </body>
 
 </html>

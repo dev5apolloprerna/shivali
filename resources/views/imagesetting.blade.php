@@ -34,8 +34,16 @@
                             </thead>
                             <tbody>
                                 <tr>
+                                    <td><strong>Banner Image</strong></td>
+                                    <td>1300 × 650</td>
+                                    {{-- <td>
+                                        <img src="{{ asset('assets/images/dummy/category.jpg') }}" alt="Category"
+                                            style="width:80px; height:80px; object-fit:cover;" class="rounded shadow-sm">
+                                    </td> --}}
+                                </tr>
+                                <tr>
                                     <td><strong>Category Image</strong></td>
-                                    <td>200 × 200</td>
+                                    <td>1313 × 615</td>
                                     {{-- <td>
                                         <img src="{{ asset('assets/images/dummy/category.jpg') }}" alt="Category"
                                             style="width:80px; height:80px; object-fit:cover;" class="rounded shadow-sm">
@@ -44,7 +52,7 @@
 
                                 <tr>
                                     <td><strong>Subcategory Image</strong></td>
-                                    <td>300 × 300</td>
+                                    <td>310 × 345</td>
                                     {{-- <td>
                                         <img src="{{ asset('assets/images/dummy/subcategory.jpg') }}" alt="Subcategory"
                                             style="width:80px; height:80px; object-fit:cover;" class="rounded shadow-sm">
@@ -53,7 +61,7 @@
 
                                 <tr>
                                     <td><strong>Product Image</strong></td>
-                                    <td>400 × 400</td>
+                                    <td>310 × 388</td>
                                     {{-- <td>
                                         <img src="{{ asset('assets/images/dummy/product.jpg') }}" alt="Product"
                                             style="width:80px; height:80px; object-fit:cover;" class="rounded shadow-sm">
