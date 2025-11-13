@@ -20,8 +20,7 @@
                <div class="sect-title text-center wow fadeInUp"style="padding-top:5px!important">
                    <h2 class="title " style="margin-bottom:10px!important">All Product</h2>
                    <div class=" d-flex justify-content-end">
-                       <a href="{{ route('lookbook.pdf', $category->strSlug) }}" class="btn btn-primary">All LookBook
-                           Product</a>
+                       <a href="{{ route('lookbook.pdf', $category->strSlug) }}" class="btn btn-primary">Download</a>
                    </div>
                </div>
                <div class="row g-4 pb-3">

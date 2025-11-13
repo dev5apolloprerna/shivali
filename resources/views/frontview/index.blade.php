@@ -86,7 +86,7 @@
                             New In</h2>
                         <p class="text-start mb-4">New arrivals, now dropping five days a week - discover the latest
                             launches onsite.</p>
-                        <h4><a href="#">EXPLORE NOW</a></h4>
+                        <h4><a href="{{ route('productlist', ['newest']) }}">EXPLORE NOW</a></h4>
                     </div>
 
                 </div>
@@ -166,7 +166,7 @@
                             Best Selling Designs</h2>
                         <p class="text-start mb-4">Our most-loved styles, chosen by you. Discover the designs everyone’s
                             talking about and make them yours.</p>
-                        <h4><a href="#">EXPLORE NOW</a></h4>
+                        <h4><a href="{{ route('productlist', ['best-selling']) }}">EXPLORE NOW</a></h4>
                     </div>
 
                 </div>

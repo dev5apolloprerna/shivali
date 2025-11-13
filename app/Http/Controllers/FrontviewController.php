@@ -78,58 +78,139 @@ class FrontviewController extends Controller
         }
     }
 
+    // public function productlist(Request $request, $slugname = null)
+    // {
+    //     // try {
+    //     if ($slugname === 'index.html') {
+    //         $slugname = null;
+    //     }
+    //     $subcategory = SubCategory::where('strSlug', $slugname)->first();
+    //     $category = Category::where('strSlug', $slugname)->first();
+    //     $tagmaster = TagMaster::get();
+
+    //     $query = Product::with(['category', 'subcategory', 'tags'])->where('isDelete', 0);
+
+    //     // Filter by slug
+    //     if ($subcategory) {
+    //         $query->where('subcategory_id', $subcategory->iSubCategoryId);
+    //     } elseif ($category) {
+    //         $query->where('category_id', $category->iCategoryId);
+    //     }
+
+    //     // Filter by tags (any product having any selected tag)
+    //     if ($request->filled('tags')) {
+    //         $tagIds = $request->input('tags'); // must be IDs like [1,2,3]
+    //         $query->whereHas('tags', function ($q) use ($tagIds) {
+    //             $q->whereIn('tag_id', $tagIds); // adjust to your actual PK
+    //         });
+    //     }
+
+    //     // Filter by categories
+    //     if ($request->filled('categories')) {
+    //         $query->whereIn('category_id', $request->categories);
+    //     }
+
+    //     $query->orderBy('priority', 'asc');
+
+    //     // Sorting
+    //     $sort = '';
+    //     if ($request->sort === 'Recommended' || $slugname == 'Recommended') {
+    //         $sort = 'Recommended';
+    //         $query->orderBy('product_id', 'desc');
+    //     } elseif ($request->sort === 'best-selling' || $slugname == 'best-selling') {
+    //         $sort = 'best-selling';
+    //         $query->where('best_product', 1)->orderBy('product_id', 'desc');
+    //     } elseif ($request->sort === 'newest' || $slugname == 'newest') {
+    //         $sort = 'newest';
+    //         $query->orderBy('product_id', 'desc');
+    //     } else {
+    //         // ✅ Allow index.html or other valid category/subcategory slugs
+    //         //return redirect()->route('front.index');
+    //     }
+
+
+    //     //dd($query->toSql());
+    //     $products = $query->paginate(config('app.per_page'));
+
+    //     return view('frontview.product-list', compact('products', 'tagmaster', 'sort', 'slugname'));
+    //     // } catch (\Throwable $th) {
+    //     //     \Log::error($th);
+    //     //     return redirect()->back()->withInput();
+    //     // }
+    // }
+
     public function productlist(Request $request, $slugname = null)
     {
-        try {
+        // 1) Ignore index.html completely → treat as NO slug
+        // if ($slugname === 'index.html') {
+        //     return redirect()->route('front.index');
+        // }
 
-            $subcategory = SubCategory::where('strSlug', $slugname)->first();
-            $category = Category::where('strSlug', $slugname)->first();
-            $tagmaster = TagMaster::get();
+        // 2) Define allowed static slugs
+        $staticSlugs = ['Recommended', 'best-selling', 'newest'];
 
-            $query = Product::with(['category', 'subcategory', 'tags'])->where('isDelete', 0);
+        // 3) Check if slug matches a category or subcategory
+        $subcategory = SubCategory::where('strSlug', $slugname)->first();
+        $category    = Category::where('strSlug', $slugname)->first();
 
-            // Filter by slug
-            if ($subcategory) {
-                $query->where('subcategory_id', $subcategory->iSubCategoryId);
-            } elseif ($category) {
-                $query->where('category_id', $category->iCategoryId);
-            }
-
-            // Filter by tags (any product having any selected tag)
-            if ($request->filled('tags')) {
-                $tagIds = $request->input('tags'); // must be IDs like [1,2,3]
-                $query->whereHas('tags', function ($q) use ($tagIds) {
-                    $q->whereIn('tag_id', $tagIds); // adjust to your actual PK
-                });
-            }
-
-            // Filter by categories
-            if ($request->filled('categories')) {
-                $query->whereIn('category_id', $request->categories);
-            }
-
-            $query->orderBy('priority', 'asc');
-
-            // Sorting
-            // dd($request);
-            if ($request->sort === 'Recommended') {
-
-                $query->orderBy('product_id', 'desc');
-            } elseif ($request->sort === 'best-product') {
-
-                $query->where('best_product', 1)->orderBy('product_id', 'desc');
-            } elseif ($request->sort === 'newest') {
-                $query->orderBy('product_id', 'desc');
-            }
-
-            //dd($query->toSql());
-            $products = $query->paginate(config('app.per_page'));
-
-            return view('frontview.product-list', compact('products', 'tagmaster'));
-        } catch (\Throwable $th) {
-            \Log::error($th);
-            return redirect()->back()->withInput();
+        // 4) If slug is NOT static + NOT category + NOT subcategory → redirect to home
+        if (
+            $slugname !== null &&
+            !in_array($slugname, $staticSlugs) &&
+            !$subcategory &&
+            !$category
+        ) {
+            return redirect()->route('front.index');
         }
+        $tagmaster = TagMaster::get();
+        // -----------------------------------------
+        // BUILD QUERY
+        // -----------------------------------------
+        $query = Product::with(['category', 'subcategory', 'tags'])
+            ->where('isDelete', 0);
+
+        // Filter by category/subcategory
+        if ($subcategory) {
+            $query->where('subcategory_id', $subcategory->iSubCategoryId);
+        } elseif ($category) {
+            $query->where('category_id', $category->iCategoryId);
+        }
+
+        // Filter by tags
+        if ($request->filled('tags')) {
+            $tagIds = $request->input('tags');
+            $query->whereHas('tags', function ($q) use ($tagIds) {
+                $q->whereIn('tag_id', $tagIds);
+            });
+        }
+
+        // Filter by categories
+        if ($request->filled('categories')) {
+            $query->whereIn('category_id', $request->categories);
+        }
+
+        $query->orderBy('priority', 'asc');
+
+        // -----------------------------------------
+        // SORTING
+        // -----------------------------------------
+        $sort = '';
+
+        if ($slugname === 'Recommended' || $request->sort === 'Recommended') {
+            $sort = 'Recommended';
+            $query->orderBy('product_id', 'desc');
+        } elseif ($slugname === 'best-selling' || $request->sort === 'best-selling') {
+            $sort = 'best-selling';
+            $query->where('best_product', 1)->orderBy('product_id', 'desc');
+        } elseif ($slugname === 'newest' || $request->sort === 'newest') {
+            $sort = 'newest';
+            $query->orderBy('product_id', 'desc');
+        }
+
+        // -----------------------------------------
+        $products = $query->paginate(config('app.per_page'));
+
+        return view('frontview.product-list', compact('products', 'tagmaster', 'sort', 'slugname'));
     }
 
 
@@ -191,7 +272,7 @@ class FrontviewController extends Controller
             });
 
 
-            return redirect()->route('front.index')->with('success', 'Inquiry added successfully');
+            return redirect()->route('front.Thankyou')->with('success', 'Inquiry added successfully');
         } catch (\Throwable $th) {
             return redirect()->back()->withInput();
         }
@@ -217,7 +298,7 @@ class FrontviewController extends Controller
         }
     }
 
-    public function ThankYou(Request $request)
+    public function Thankyou(Request $request)
     {
         try {
             return view('frontview.ThankYou');
@@ -235,40 +316,6 @@ class FrontviewController extends Controller
             //$gallarys = GalleryMaster::where(['iStatus'=> 1,'isDelete'=>0])->with('album')->get();
 
             return view('frontview.imagedetail', compact('GalleryMaster'));
-        } catch (\Throwable $th) {
-            return redirect()->back()->withInput();
-        }
-    }
-
-    public function ContactUs_sendmail(Request $request)
-    {
-        try {
-
-            $name = $request->name;
-            $email = $request->email;
-            $mobile = $request->mobileno;
-            $messageContent = $request->message;
-            $sendEmailDetails = DB::table('sendemaildetails')->where(['id' => 4])->first();
-
-            $msg = [
-                'FromMail' => $sendEmailDetails->strFromMail,
-                'Title' => $sendEmailDetails->strTitle,
-                'ToEmail' => 'shreeshyamsewasamitivadodara@gmail.com',
-                'Subject' => $sendEmailDetails->strSubject ?? '',
-            ];
-
-            $data = [
-                'Name' => $name,
-                'Email' => $email,
-                'Mobile' => $mobile,
-                'Message' => $messageContent,
-            ];
-
-            Mail::send('emails.contactemail', ['data' => $data], function ($message) use ($msg) {
-                $message->from($msg['FromMail'], $msg['Title']);
-                $message->to($msg['ToEmail'])->subject($msg['Subject']);
-            });
-            return redirect()->route('Front.ThankYou');
         } catch (\Throwable $th) {
             return redirect()->back()->withInput();
         }

@@ -151,9 +151,6 @@ Route::prefix('admin')->name('Banner.')->middleware('auth')->group(function () {
     Route::delete('/Banner/deleteselected', [BannerController::class, 'deleteselected'])->name('deleteselected');
 });
 
-
-
-
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/products', [ProductController::class, 'index'])->name('admin.products.index');
     Route::get('/products/create', [ProductController::class, 'create'])->name('admin.products.create');
@@ -191,6 +188,8 @@ Route::get('/about', [FrontviewController::class, 'AboutUs'])->name('front.about
 Route::get('/contactus', [FrontviewController::class, 'ContactUs'])->name('front.contactus');
 Route::post('/contactstore', [FrontviewController::class, 'contactstore'])->name('contactstore');
 Route::any('/{slugname?}', [FrontviewController::class, 'productlist'])->name('productlist');
+Route::get('/Thankyou', [FrontviewController::class, 'Thankyou'])->name('front.Thankyou');
+
 Route::get('/{strSlug?}/{slugname?}', [FrontviewController::class, 'productdetail'])->name('productdetail');
 Route::get('/lookbook/Allproduct/{slug}', [PDFController::class, 'alllookbook_product'])
     ->name('alllookbook_product');

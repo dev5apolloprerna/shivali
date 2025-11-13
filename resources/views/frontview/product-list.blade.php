@@ -12,7 +12,9 @@
     </section>
 
     <div class="container py-5">
-        <h2 class="text-center mb-5">Bridal Collection</h2>
+        <h2 class="text-center mb-5">
+            {{ $slugname ? strtoupper(str_replace('-', ' ', $slugname)) : 'ALL PRODUCTS' }}
+        </h2>
         <div class="row">
             <!-- Sidebar -->
             <div class="col-lg-3">
@@ -76,11 +78,13 @@
 
                         <select name="sort" class="form-select" onchange="this.form.submit()">
                             <option value="">Sort by Recommended</option>
-                            <option value="Recommended" {{ request('sort') == 'Recommended' ? 'selected' : '' }}>
+                            <option value="Recommended" {{ isset($sort) && $sort == 'Recommended' ? 'selected' : '' }}>
                                 Recommended</option>
-                            <option value="best-product" {{ request('sort') == 'best-product' ? 'selected' : '' }}>Best
+                            <option value="best-selling" {{ isset($sort) && $sort == 'best-selling' ? 'selected' : '' }}>
+                                Best
                                 Selling</option>
-                            <option value="newest" {{ request('sort') == 'newest' ? 'selected' : '' }}>Newest</option>
+                            <option value="newest" {{ isset($sort) && $sort == 'newest' ? 'selected' : '' }}>Newest
+                            </option>
                         </select>
                     </form>
                 </div>

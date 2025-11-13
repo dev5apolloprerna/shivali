@@ -67,6 +67,7 @@ class PDFController extends Controller
                 $p->pdf_img_src = 'data:' . $mime . ';base64,' . base64_encode($binary);
                 return $p;
             });
+        // dd($products);
 
 
         // Load view (no special options needed for data: URIs)

@@ -105,8 +105,9 @@
                                                 class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
 
                                             <a href="{{ route('admin.products.bestproduct', $p->product_id) }}"
-                                                class="btn btn-sm btn-primary">
-                                                {!! $p->best_product ? '<i class="fa-solid fa-crown"></i>' : '<i class="fa-solid fa-trophy"></i>' !!}
+                                                class="btn btn-sm btn-primary"
+                                                title="{{ $p->best_product == 1 ? 'Best Product' : 'Mark as Best Product' }}">
+                                                {!! $p->best_product == 1 ? '<i class="fa-solid fa-crown"></i>' : '<i class="fa-solid fa-trophy"></i>' !!}
                                             </a>
 
 
