@@ -778,6 +778,12 @@ header {
     vertical-align: bottom;
     align-items: flex-end;
 }
+ .product-img.product-img-2 {
+  overflow: hidden;
+  position: relative;
+  height:200px!important;
+  width:100%;
+}
 }
 .footer-bottom {
   position: relative;
@@ -1027,7 +1033,7 @@ header {
 .sld_content {
   left: 0;
   right: 0;
-  top: 50%;
+  top: 20%;
   /*transform: translateY(-50%);*/
   position: absolute;
   z-index: 9;
@@ -1039,18 +1045,7 @@ header {
 .sld_content .sub-text_sld {
   margin-bottom: 30px;
 }
-@media (min-width: 1200px) {
-  .sld_content .sub-title_sld {
-    margin-bottom: 40px;
-  }
-  .sld_content .sub-text_sld {
-    margin-bottom: 40px;
-  }
-  .sld_content.type-center .content-sld_wrap {
-    max-width: 607px;
-    width: 100%;
-  }
-}
+
 @media (max-width: 575px) {
   .sld_content .title_sld {
     margin-bottom: 24px;
@@ -1640,7 +1635,8 @@ header {
   -ms-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
   transition: all 0.3s ease;
-  position:relative
+  position:relative;
+  overflow:hidden;
 }
 @media (max-width: 575px) {
   .card-product {
@@ -1661,12 +1657,21 @@ header {
   position: relative;
   overflow: hidden;
 }
-.card-product_wrapper .product-img {
+
+.card-product_wrapper .product-img{
   overflow: hidden;
   position: relative;
-  height:345px;
+  height:320px;
   width:100%;
 }
+
+.card-product_wrapper .product-img.product-img-2{
+  overflow: hidden;
+  position: relative;
+  height:320px;
+  width:100%;
+}
+
 .card-product_wrapper img {
   display: block;
   height: 100%;
@@ -2175,14 +2180,14 @@ header {
   z-index: 1;
 
 }
-.banner-content {
-    position: absolute;
-    top: 20%;
-    right: 50px;
-    z-index: 2;
-    background: #ffffffa1;
-    padding: 20px;
-}
+/*.banner-content {*/
+/*    position: absolute;*/
+/*    top: 20%;*/
+/*    right: 50px;*/
+/*    z-index: 2;*/
+/*    background: #ffffffa1;*/
+/*    padding: 20px;*/
+/*}*/
 .banner-wrap{
   position: relative;
   overflow: hidden;
@@ -2226,27 +2231,27 @@ header {
 .tf-footer{
   border-top: 1px solid #000;
 }
-.banner-content .title{
-  margin-bottom: 50px;
-}
+/*.banner-content .title{*/
+/*  margin-bottom: 50px;*/
+/*}*/
 @media screen and (max-width: 767px) {
   .banner-content {
     position: absolute;
-    top: 25%;
+    /*top: 25%;*/
     padding: 10px;
     background: #ffffffa1;
     right: 0;
 }
  
-.banner-content .title{font-size: 24px;}
-.banner-content .title{
-  margin-bottom: 0px;
-   padding:0 10px;
-}
+/*.banner-content .title{font-size: 24px;}*/
+/*.banner-content .title{*/
+/*  margin-bottom: 0px;*/
+/*   padding:0 10px;*/
+/*}*/
 .banner-wrap {
     position: relative;
     overflow: hidden;
-    height: auto;
+    height: 200px;
     /* margin-top: 15px; */
     /* margin-bottom: 30px; */
 }
@@ -2393,10 +2398,11 @@ p{text-align: left;}
     
 }
 .txtonimg.right {
-   left:auto;
+    left: auto;
     right: 11px;
-   
-    
+    /*align-items: center;*/
+    align-content: center;
+    padding-top: 0;
 }
 .txtonimg h6 a{color: #000!important;
     font-family: "medino-regular", sans-serif!important;
@@ -2417,7 +2423,7 @@ object-fit: cover;
   margin-bottom:10px;
 }
 .about-banner{
-  /* padding:20px 0 */
+   padding:1rem  0 0 0 !important;
 }
 
 /* Base */
@@ -2472,6 +2478,11 @@ text-align: center;
   .btn-floating {
     display:block;
   }
+  .vid-sec .inner-box{
+  position: relative;
+   max-height:500px; 
+  margin-bottom:1rem;
+}
   
 }
 .about-us .sub-text{
@@ -2592,9 +2603,15 @@ text-align: center;
       transform: translateY(-5px);
       box-shadow: 0 5px 20px rgba(0,0,0,0.08);
     }
-    .product-img{
-      position: relative;
-    }
+   
+    
+   .product-img.product-img-2 {
+  overflow: hidden;
+  position: relative;
+  height:370px!important;
+  width:100%;
+}
+    
     .product-card img {
       width: 100%;
       border-bottom: 1px solid #eee;
@@ -2670,6 +2687,7 @@ text-align: center;
 .sld_image {
   height: 100%;
   overflow: hidden;
+  position:relative;
 }
 .sld_image img {
   width: 100%;
@@ -2699,17 +2717,19 @@ text-align: center;
   height: 100%;
   top: 0;
   left: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 
 }
 .banner-content {
     position: absolute;
-    top: 20%;
-    right: 50px;
+    bottom: 0;
+    right: 0px;
     z-index: 2;
-    background: #ffffffa1;
+    background: none;
     padding: 20px;
+    align-items: end;
+    text-align: right;
 }
 .banner-wrap{
   position: relative;
