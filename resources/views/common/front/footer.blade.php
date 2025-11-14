@@ -76,11 +76,11 @@
                                       <i class="fab fa-youtube"></i>
                                   </a>
                               </li>
-                              <li>
-                                  <a href="https://x.com/" target="_blank" class="link">
-                                      <i class="icon-x"></i>
-                                  </a>
-                              </li>
+                              <!--<li>-->
+                              <!--    <a href="https://x.com/" target="_blank" class="link">-->
+                              <!--        <i class="icon-x"></i>-->
+                              <!--    </a>-->
+                              <!--</li>-->
                               <!-- <li>
                                         <a href="https://www.tiktok.com/" target="_blank" class="link">
                                             <i class="icon-tiktok"></i>

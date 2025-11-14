@@ -24,7 +24,7 @@
     </section>
 
     <!-- Banner Slider -->
-    <div class="tf-slideshow type-abs tf-btn-swiper-main hover-sw-nav m-2">
+    <div class="tf-slideshow type-abs tf-btn-swiper-main hover-sw-nav pt-3">
         <div dir="ltr" class="swiper tf-swiper sw-slide-show slider_effect_fade" data-auto="true" data-loop="true"
             data-effect="fade" data-delay="3000">
             <div class="swiper-wrapper">
@@ -41,13 +41,13 @@
                                     <div class="row">
                                         <div class="col-sm-8 col-10">
                                             <div class="content-sld_wrap">
-                                                <p class="sub-title_sld h3 text-primary fade-item fade-item-1">
+                                                <p class="sub-title_sld h3 text-primary ">
                                                     The Essence of Iconic Elegance
                                                 </p>
-                                                <h1 class="title_sld  text-white fade-item fade-item-2">
+                                                <h1 class="title_sld  text-white ">
                                                     Crafted for women who define tradition with grace.
                                                 </h1>
-                                                <p class="sub-text_sld h5 text-white fade-item fade-item-3">
+                                                <p class="sub-text_sld h5 text-white text-start">
                                                     Step into a world of timeless ethnic wear where every piece is a
                                                     work of art. Shivali blends heritage craftsmanship with refined
                                                     style, curating ensembles that exude luxury, sophistication, and
@@ -76,7 +76,7 @@
     <!-- Banner Slider -->
 
     <!-- Collection -->
-    <section class="">
+    <section class="pt-3">
 
         <div class="container">
             <div class="row align-items-center">
@@ -265,18 +265,18 @@
     <!-- Banner Lookbook -->
     <section class="about-banner style-2">
         <div class="container">
-            <div class="banner-wrap hover-img wow fadeInUp pt-3">
-                <a href="#" class="banner-image img-style">
+            <div class="banner-wrap hover-img wow fadeInUp">
+                <a href="{{ route('alllookbook_product', $Categories->strSlug) }}" class="banner-image img-style">
                     <img src="{{ asset('uploads/category-images/' . $Categories->category_img) }}"
                         data-src="{{ asset('uploads/category-images/' . $Categories->category_img) }}" alt="Banner"
                         class="lazyload">
                 </a>
-                <div class="banner-content text-right col-lg-5">
-                    <h6 class="title display-6 ">
-                        <a href="#" class="link text-black fw-normal">
-                            {{ $Categories->strCategoryName ?? '' }}
-                        </a>
-                    </h6>
+                <div class="banner-content text-right col-lg-5 display:none">
+                    <!--<h6 class="title display-6 ">-->
+                    <!--    <a href="#" class="link text-black fw-normal">-->
+                    <!--        {{ $Categories->strCategoryName ?? '' }}-->
+                    <!--    </a>-->
+                    <!--</h6>-->
 
                     {{-- <a href="{{ route('lookbook.pdf', $Categories->strSlug) }}"
                         class="tf-btn btn-white animate-btn animate-dark fw-normal" target="_blank">
@@ -299,7 +299,7 @@
 
     <section class="about-banner style-2 gap-1">
         <div class="container">
-            <div class=" hover-img  row vid-sec pt-3">
+            <div class=" hover-img  row vid-sec ">
                 <div class="text-right col-lg-4 col-md-6    inner-box ">
                     <div dir="ltr" class="swiper tf-swiper" data-preview="1" data-tablet="1" data-mobile-sm="1"
                         data-mobile="1" data-pagination="1" data-space-lg="0" data-space-md="0" data-space="0"
@@ -308,28 +308,28 @@
                         <div class="swiper-wrapper" data-loop="true">
                             <!-- item 1 -->
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/celebrity.webp') }}" alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/product-10.webp') }}"
                                         alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                         </div>
                     </div>
                     <div class="txtonimg">
                         <h6 class=" text-black text-center">
-                            <a href="#" class="link text-black fw-normal">
+                            <!--<a href="#" class="link text-black fw-normal">-->
                                 Designs of the week
-                            </a>
+                            <!--</a>-->
                         </h6>
                         <p class="text-center">Best product of the week</p>
                     </div>
@@ -342,31 +342,33 @@
                         <div class="swiper-wrapper" data-loop="true">
                             <!-- item 1 -->
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/product-3.webp') }}" alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                             <div class="swiper-slide">
-                                <a href="#" class="img-style">
+                                <!--<a href="#" class="img-style">-->
                                     <img src="{{ asset('assets/front/images/products/product-8.webp') }}" alt="Banner">
-                                </a>
+                                <!--</a>-->
                             </div>
                         </div>
                     </div>
                     <div class="txtonimg right">
                         <h6 class="title  text-black text-center">
-                            <a href="#" class="link text-black fw-normal">
+                            <!--<a href="#" class="link text-black fw-normal">-->
                                 <span>Celebrity</span> Spotting
 
 
-                            </a>
+                            <!--</a>-->
                         </h6>
-                        <p class="text-center">Malaika Arora in DiyaRajvvir</p>
+                        <!--<p class="text-center">&nbsp;-->
+                            <!--Malaika Arora in DiyaRajvvir-->
+                        <!--    </p>-->
                     </div>
                 </div>
                 <div class=" col-lg-4  col-md-6 inner-box ">
