@@ -46,11 +46,11 @@
                                             <th scope="col">Mobile</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Business Type</th>
-                                            <th scope="col">Address</th>
+                                            {{-- <th scope="col">Address</th> --}}
                                             <th scope="col">State</th>
                                             <th scope="col">City</th>
                                             <th scope="col">Country</th>
-                                            <th scope="col">Pincode</th>
+                                            {{-- <th scope="col">Pincode</th> --}}
                                             <th scope="col">Action</th>
                                         </tr>
                                     </thead>
@@ -63,11 +63,11 @@
                                                 <td class="py-2 px-3">{{ $inquiry->mobileNumber }}</td>
                                                 <td class="py-2 px-3">{{ $inquiry->email }}</td>
                                                 <td class="py-2 px-3">{{ $inquiry->business_type }}</td>
-                                                <td class="py-2 px-3">{{ $inquiry->address ?? '' }}</td>
+                                                {{-- <td class="py-2 px-3">{{ $inquiry->address ?? '' }}</td> --}}
                                                 <td class="py-2 px-3">{{ $inquiry->state ?? '' }}</td>
                                                 <td class="py-2 px-3">{{ $inquiry->city ?? '' }}</td>
                                                 <td class="py-2 px-3">{{ $inquiry->country ?? '' }}</td>
-                                                <td class="py-2 px-3">{{ $inquiry->pincode ?? '' }}</td>
+                                                {{-- <td class="py-2 px-3">{{ $inquiry->pincode ?? '' }}</td> --}}
 
                                                 <td>
                                                     <div class="gap-2">

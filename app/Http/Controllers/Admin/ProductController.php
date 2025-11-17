@@ -115,7 +115,7 @@ class ProductController extends Controller
         $product->product_name   = $request->product_name;
         $product->slug = Product::makeUniqueSlug($request->product_name);
         $product->category_id    = $request->category_id;
-        $product->subcategory_id = $request->subcategory_id;
+        $product->subcategory_id = $request->subcategory_id ?? 0;
         $product->description    = $request->description;
 
         // Only set if uploaded
@@ -227,6 +227,7 @@ class ProductController extends Controller
     /** Soft delete */
     public function destroy(Product $product)
     {
+
         $product->isDelete   = 1;
         $product->updated_at = now();
         $product->save();
@@ -234,7 +235,14 @@ class ProductController extends Controller
         if (!empty($product->product_image)) {
             anx_delete($product->product_image);
         }
-        // ✅ Delete related tag mappings
+        // 3. Delete related product images
+        foreach ($product->productimage as $img) {
+
+            // Delete file
+            if (!empty($img->image)) {
+                anx_delete($img->image);
+            }
+        }
         $product->tags()->detach();
         return back()->with('success', 'Product deleted.');
     }
