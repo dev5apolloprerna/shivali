@@ -109,7 +109,7 @@
       </div>
   </footer>
   <!-- /Footer -->
-  <a href="#" target="_blank">
+  <a href="{{ route('front.contactus') }}" target="_blank">
       <button class="btn-floating inquiry">
 
           <img src="{{ asset('assets/front/images/Inquiry-icon.jpg') }}" alt="inquiry"

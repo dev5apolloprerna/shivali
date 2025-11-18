@@ -1,11 +1,11 @@
 @extends('layouts.front')
 @section('content')
     <div class="page-title">
-        <div class="container-full">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-                    <h3 class="heading text-center">Inquiry</h3>
-                    <ul class="breadcrumbs d-flex align-items-center justify-content-center">
+                    <h3 class="heading ">Inquiry</h3>
+                    <ul class="breadcrumbs d-flex align-items-center ">
                         <li><a class="link" href="{{ route('front.index') }}">Homepage</a></li>
                         <li><i class="fa fa-arrow"></i></li>
                         <li>Inquiry</li>
@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    <div class="container my-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <div class="card shadow-lg border-1 col-lg-8 mx-auto">
                 <div class="card-body p-5">

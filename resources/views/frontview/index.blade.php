@@ -78,7 +78,7 @@
     <!-- Collection -->
     <section class="pt-3">
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-lg-3 col-sm-6 col-5 p-0">
                     <div style="padding-left:10px" class="sect-title">
@@ -127,7 +127,7 @@
     </section>
     <section class="pt-0">
 
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-center">
 
                 <div class="col-lg-9 col-md-6 col-7">
@@ -177,8 +177,8 @@
     <!-- Collection -->
 
     <section class="bg-black pb-3">
-        <div class="container">
-            <div class="row align-items-center">
+        <div class="container-fluid">
+            <div class=" align-items-center">
                 <div class="sect-title text-center wow fadeInUp pb-3"
                     style="padding-top:10px!important;padding-bottom:10px!important">
                     <h2 class="title  text-white" style="margin-bottom:5px!important">Explore by Occasion</h2>
@@ -219,44 +219,40 @@
     </section>
     <!-- Best Seller -->
     <section>
-        <div class="container">
+        <div class="container-fluid">
             <div class="sect-title text-center wow fadeInUp"style="padding-top:5px!important">
-                <h2 class="title " style="margin-bottom:10px!important">Shop by style</h2>
+                <h2 class="title " style="margin-bottom:0px!important">Shop by style</h2>
             </div>
-            <div class="row g-4">
-                @foreach ($shop_by_style as $shoapby)
-                    <div class="card-product col-lg-3 col-md-4 col-sm-6 col-6">
-                        <div class="card-product_wrapper">
-                            <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
-                                <img class="lazyload img-product"
-                                    src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
-                                    data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
-                                    alt="Product">
-                                <img class="lazyload img-hover"
-                                    src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
-                                    data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
-                                    alt="Product">
-                            </a>
+           
+               @foreach ($shop_by_style->chunk(4) as $chunk)
+    <div class="row" style="padding-top:1rem">
+        @foreach ($chunk as $shoapby)
+            <div class=" col-lg-3 col-md-4 col-sm-6 col-6 ">
+                <div class="">
+                    <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
+                        <img class="lazyload img-product"
+                             src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                             data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                             alt="Product">
+                    </a>
+                </div>
 
+                <div class="card-product_info d-none">
+                    <a href="{{ route('productlist', $shoapby->strSlug) }}" class="name-product"></a>
+                </div>
 
-                        </div>
-                        <div class="card-product_info">
-                            <a href="{{ route('productlist', $shoapby->strSlug) }}" class="name-product"></a>
-
-                            {{-- <a href="{{ route('productlist', $shoapby->strSlug) }}"
-                                class="name-product">{{ $shoapby->strSubCategoryName ?? '' }}</a> --}}
-                        </div>
-                        <div class="price-wrap">
-                            <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                                <i class="fab fa-whatsapp"></i>
-                            </button>
-                        </div>
-
-                    </div>
-                @endforeach
-
-
+                <div class="price-wrap d-none">
+                    <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
+                        <i class="fab fa-whatsapp"></i>
+                    </button>
+                </div>
             </div>
+        @endforeach
+    </div>
+@endforeach
+
+
+            
         </div>
 
     </section>
@@ -264,7 +260,7 @@
 
     <!-- Banner Lookbook -->
     <section class="about-banner style-2">
-        <div class="container">
+        <div class="container-fluid">
             <div class="banner-wrap hover-img wow fadeInUp">
                 <a href="{{ route('alllookbook_product', $Categories->strSlug) }}" class="banner-image img-style">
                     <img src="{{ asset('uploads/category-images/' . $Categories->category_img) }}"
@@ -298,7 +294,7 @@
     <!-- /Banner Lookbook -->
 
     <section class="about-banner style-2 gap-1">
-        <div class="container">
+        <div class="container-fluid">
             <div class=" hover-img  row vid-sec ">
                 <div class="text-right col-lg-4 col-md-6    inner-box ">
                     <div dir="ltr" class="swiper tf-swiper" data-preview="1" data-tablet="1" data-mobile-sm="1"
@@ -384,10 +380,10 @@
 
 
     <section class="about-us style-2 py-3">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row  wow fadeInUp">
                 <!-- About Content -->
-                <div class="col-lg-6 ps-lg-5 order-2 order-md-1 ">
+                <div class="col-lg-6 order-2 order-md-1 ">
                     <div class="sect-title text-left">
                         <h2 class="title mb-4 display-6 fw-bold text-center">
                             About Us

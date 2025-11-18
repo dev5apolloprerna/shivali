@@ -621,23 +621,116 @@ $(document).ready(headerScrollHandler);
 
    
 
-    /* Handle Mobile Menu
-    -------------------------------------------------------------------------*/
-    var handleMobileMenu = function () {
-        const $desktopMenu = $(".box-nav-menu:not(.not-append)").clone();
-        $desktopMenu.find(".list-ver, .list-hor,.mn-none").remove();
+    // /* Handle Mobile Menu
+    // -------------------------------------------------------------------------*/
+    // var handleMobileMenu = function () {
+    //     const $desktopMenu = $(".box-nav-menu:not(.not-append)").clone();
+    //     $desktopMenu.find(".list-ver, .list-hor,.mn-none").remove();
 
-        const $mobileMenu = $('<ul class="nav-ul-mb"></ul>');
+    //     const $mobileMenu = $('<ul class="nav-ul-mb"></ul>');
 
-        $desktopMenu.find("> li.menu-item").each(function (i, menuItem) {
-            const $item = $(menuItem);
-            const text = $item.find("> a.item-link").clone().children().remove().end().text().trim();
-            const submenu = $item.find("> .sub-menu");
-            const id = "dropdown-menu-" + i;
-            if (submenu.length > 0) {
-                const $li = $(`
+    //     $desktopMenu.find("> li.menu-item").each(function (i, menuItem) {
+    //         const $item = $(menuItem);
+    //         const text = $item.find("> a.item-link").clone().children().remove().end().text().trim();
+    //         const submenu = $item.find("> .sub-menu");
+    //         const id = "dropdown-menu-" + i;
+    //         if (submenu.length > 0) {
+    //             const $li = $(`
+    //             <li class="nav-mb-item">
+    //                 <a href="#${id}" class="collapsed mb-menu-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="${id}">
+    //                     <span>${text}</span>
+    //                     <span class="icon icon-caret-down"></span>
+    //                 </a>
+    //                 <div id="${id}" class="collapse"></div>
+    //             </li>
+    //         `);
+
+    //             const $subNav = $('<ul class="sub-nav-menu"></ul>');
+
+    //             submenu.find(".mega-menu-item").each(function (j) {
+    //                 const heading = $(this).find(".menu-heading").text().trim();
+    //                 const subId = `${id}-group-${j}`;
+    //                 const $group = $(`
+    //                 <li>
+    //                     <a href="#${subId}" class="collapsed sub-nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="${subId}">
+    //                         <span>${heading}</span>
+    //                         <span class="icon icon-caret-down"></span>
+    //                     </a>
+    //                     <div id="${subId}" class="collapse">
+    //                         <ul class="sub-nav-menu sub-menu-level-2"></ul>
+    //                     </div>
+    //                 </li>
+    //             `);
+
+    //                 $(this)
+    // .find("ul li a")  // second level items
+    // .each(function () {
+    //     const $link = $(this);
+    //     const linkHref = $link.attr("href") || "#";
+    //     const title = $link.text().trim();
+    //     const isActive = $link.hasClass("active");
+
+    //     if (title !== "") {
+    //         const activeClass = isActive ? "active" : "";
+    //         $group
+    //             .find(".sub-menu-level-2")
+    //             .append(`<li><a href="${linkHref}" class="sub-nav-link ${activeClass}">${title}</a></li>`);
+    //     }
+    // });
+
+    //                 $subNav.append($group);
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+    //             });
+
+    //             if ($subNav.children().length === 0) {
+    //                 submenu.find("a").each(function () {
+    //                     const link = $(this).attr("href") || "#";
+    //                     const title = $(this).text().trim();
+    //                     if (title !== "") {
+    //                         $subNav.append(`<li><a href="${link}" class="sub-nav-link">${title}</a></li>`);
+    //                     }
+    //                 });
+    //             }
+    //             $li.find(`#${id}`).append($subNav);
+    //             $mobileMenu.append($li);
+    //         } else {
+    //             $mobileMenu.append(
+    //                 `<li class="nav-mb-item"><a href="${$item.find("a").attr("href")}" class="mb-menu-link"><span>${text}</span></a></li>`
+    //             );
+    //         }
+    //     });
+
+    //     $("#wrapper-menu-navigation").empty().append($mobileMenu.html());
+    // };
+
+   
+   /* Handle Mobile Menu
+--------------------------------------------------------------*/
+
+var handleMobileMenu = function () {
+    const $desktopMenu = $(".box-nav-menu:not(.not-append)").clone();
+    $desktopMenu.find(".list-ver, .list-hor, .mn-none").remove();
+
+    const $mobileMenu = $('<ul class="nav-ul-mb"></ul>');
+
+    $desktopMenu.find("> li.menu-item").each(function (i, menuItem) {
+        const $item = $(menuItem);
+        const text = $item.find("> a.item-link").clone().children().remove().end().text().trim();
+        const submenu = $item.find("> .sub-menu");
+        const id = "dropdown-menu-" + i;
+
+        if (submenu.length > 0) {
+
+            const $li = $(`
                 <li class="nav-mb-item">
-                    <a href="#${id}" class="collapsed mb-menu-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="${id}">
+                    <a href="#${id}" class="collapsed mb-menu-link" data-bs-toggle="collapse"
+                        aria-expanded="false" aria-controls="${id}">
                         <span>${text}</span>
                         <span class="icon icon-caret-down"></span>
                     </a>
@@ -645,62 +738,76 @@ $(document).ready(headerScrollHandler);
                 </li>
             `);
 
-                const $subNav = $('<ul class="sub-nav-menu"></ul>');
+            const $subNav = $('<ul class="sub-nav-menu"></ul>');
 
-                submenu.find(".mega-menu-item").each(function (j) {
-                    const heading = $(this).find(".menu-heading").text().trim();
-                    const subId = `${id}-group-${j}`;
+            // 🔥 Loop through MAIN categories (li inside .sub-menu_list)
+            submenu.find("> ul.sub-menu_list > li").each(function (j) {
+
+                const $liItem = $(this);
+                const firstLevelLink = $liItem.children("a.sub-menu_link");
+                const subSubMenu = $liItem.children("ul.sub-sub-menu");
+                const groupId = `${id}-group-${j}`;
+
+                // If submenu exists → collapsible group
+                if (subSubMenu.length > 0) {
+
                     const $group = $(`
-                    <li>
-                        <a href="#${subId}" class="collapsed sub-nav-link" data-bs-toggle="collapse" aria-expanded="false" aria-controls="${subId}">
-                            <span>${heading}</span>
-                            <span class="icon icon-caret-down"></span>
-                        </a>
-                        <div id="${subId}" class="collapse">
-                            <ul class="sub-nav-menu sub-menu-level-2"></ul>
-                        </div>
-                    </li>
-                `);
+                        <li>
+                            <a href="#${groupId}" class="collapsed sub-nav-link"
+                                data-bs-toggle="collapse" aria-expanded="false"
+                                aria-controls="${groupId}">
+                                <span>${firstLevelLink.text()}</span>
+                                <span class="icon icon-caret-down"></span>
+                            </a>
+                            <div id="${groupId}" class="collapse">
+                                <ul class="sub-nav-menu sub-menu-level-2"></ul>
+                            </div>
+                        </li>
+                    `);
 
-                    $(this)
-                        .find(".sub-menu_list a")
-                        .each(function () {
-                            const $link = $(this);
-                            const linkHref = $link.attr("href") || "#";
-                            const title = $link.text().trim();
-                            const isActive = $link.hasClass("active");
+                    const $level2 = $group.find(".sub-menu-level-2");
 
-                            if (title !== "") {
-                                const activeClass = isActive ? "active" : "";
-                                $group
-                                    .find(".sub-menu-level-2")
-                                    .append(`<li><a href="${linkHref}" class="sub-nav-link ${activeClass}">${title}</a></li>`);
-                            }
-                        });
-
-                    $subNav.append($group);
-                });
-
-                if ($subNav.children().length === 0) {
-                    submenu.find("a").each(function () {
-                        const link = $(this).attr("href") || "#";
+                    // 🔥 second-level items (inside .sub-sub-menu)
+                    subSubMenu.find("> li > a").each(function () {
+                        const href = $(this).attr("href") || "#";
                         const title = $(this).text().trim();
                         if (title !== "") {
-                            $subNav.append(`<li><a href="${link}" class="sub-nav-link">${title}</a></li>`);
+                            $level2.append(`<li><a href="${href}" class="sub-nav-link">${title}</a></li>`);
                         }
                     });
-                }
-                $li.find(`#${id}`).append($subNav);
-                $mobileMenu.append($li);
-            } else {
-                $mobileMenu.append(
-                    `<li class="nav-mb-item"><a href="${$item.find("a").attr("href")}" class="mb-menu-link"><span>${text}</span></a></li>`
-                );
-            }
-        });
 
-        $("#wrapper-menu-navigation").empty().append($mobileMenu.html());
-    };
+                    $subNav.append($group);
+
+                } else {
+                    // Simple item with no children
+                    $subNav.append(`
+                        <li>
+                            <a href="${firstLevelLink.attr("href")}" class="sub-nav-link">
+                                ${firstLevelLink.text()}
+                            </a>
+                        </li>
+                    `);
+                }
+
+            });
+
+            $li.find(`#${id}`).append($subNav);
+            $mobileMenu.append($li);
+
+        } else {
+            // Simple menu item
+            $mobileMenu.append(`
+                <li class="nav-mb-item">
+                    <a href="${$item.find("a").attr("href")}" class="mb-menu-link">
+                        <span>${text}</span>
+                    </a>
+                </li>
+            `);
+        }
+    });
+
+    $("#wrapper-menu-navigation").empty().append($mobileMenu.html());
+};
 
    
 

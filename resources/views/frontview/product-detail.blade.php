@@ -1,5 +1,15 @@
 @extends('layouts.front')
 @section('content')
+    <section class="page-title">
+        <div class="container-fluid">
+            <h3 class="heading mb-2">Our Products</h3>
+            <ul class="breadcrumbs d-flex ">
+                <li><a href="{{ url('/') }}" class="link">Home</a></li>
+                <li><i class="fa fa-arrow-right mx-2"></i></li>
+                <li>Products</li>
+            </ul>
+        </div>
+    </section>
     @php
         use Illuminate\Support\Str;
 
@@ -53,7 +63,7 @@
     @endphp
 
     <section class="product-detail py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row g-5">
                 <div class="col-lg-5">
                     <div class="product-gallery d-flex">
@@ -119,7 +129,7 @@
     </section>
     <!-- Related Products -->
     <section class="related-products py-5">
-        <div class="container">
+        <div class="container-fluid">
             <h3 class="fw-bold text-center mb-5">You May Also Like</h3>
             <div class="row g-4">
                 @foreach ($relatedProducts as $rel)

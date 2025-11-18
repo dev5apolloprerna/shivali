@@ -2,7 +2,7 @@
 @section('content')
     <!-- Page Title -->
     <div class="page-title">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
                     <h3 class="heading p-0 m-0">About Our Store</h3>
@@ -22,7 +22,7 @@
 
     <!-- Redesigned About Us Section -->
     <section class="about-us-section py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row align-items-center">
                 <!-- Image -->
                 <div class="col-lg-6 mb-4 mb-lg-0 wow fadeInLeft">
@@ -39,7 +39,7 @@
                         <h2 class="display-5 fw-bold mb-3" style="color:#222;">About Us</h2>
                         <hr class="mb-4"
                             style="width:120px; height:3px; border:none; background:linear-gradient(90deg,transparent,#d4af37,transparent);">
-                        <p class="lead text-muted mb-4">
+                        <p class=" text-muted mb-4">
                             Founded in 1988 by <strong>Shivkumar Gogia</strong>, <span class="fw-semibold">Shivali</span>
                             began as a vision to redefine Indian ethnic wear with authenticity, creativity, and excellence.
                             What started as a one-man dedication has grown into <strong>India’s No. 1 wholesale ethnic
