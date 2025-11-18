@@ -21,6 +21,14 @@ class Category extends Model
         'updated_at',
     ];
 
+    public function subcategories()
+    {
+        return $this->hasMany(SubCategory::class, 'iCategoryId', 'iCategoryId')
+            ->where('isDelete', 0)
+            ->where('iStatus', 1);
+    }
+
+
     protected static function booted()
     {
         // don't show soft-deleted (isDelete = 1)

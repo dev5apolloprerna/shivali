@@ -1,5 +1,5 @@
  @php
-     $categories = App\Models\Category::get();
+     $categories = App\Models\Category::with('subcategories')->get();
  @endphp
 
  <div id="wrapper">
@@ -57,14 +57,31 @@
                                  <div class="sub-menu">
                                      <ul class="sub-menu_list">
                                          @foreach ($categories as $cat)
-                                             <li><a href="{{ route('productlist', $cat->strSlug) }}"
-                                                     class="sub-menu_link">{{ $cat->strCategoryName ?? '' }}</a></li>
+                                             <li class="position-relative">
+
+                                                 <a href="{{ route('productlist', $cat->strSlug) }}"
+                                                     class="sub-menu_link">
+                                                     {{ $cat->strCategoryName }}
+                                                 </a>
+
+                                                 @if ($cat->subcategories->count() > 0)
+                                                     <ul class="sub-sub-menu">
+                                                         @foreach ($cat->subcategories as $sub)
+                                                             <li>
+                                                                 <a href="{{ route('productlist', $sub->strSlug) }}"
+                                                                     class="sub-menu_link">
+                                                                     {{ $sub->strSubCategoryName }}
+                                                                 </a>
+                                                             </li>
+                                                         @endforeach
+                                                     </ul>
+                                                 @endif
+                                             </li>
                                          @endforeach
-
-
                                      </ul>
                                  </div>
                              </li>
+
                              <li class="menu-item">
                                  <a href="{{ route('front.contactus') }}" class="item-link">CONTACT US</a>
 
@@ -110,7 +127,7 @@
          </span>
          <div class="canvas-header">
              <p class="text-logo-mb">
-                 <img src="{{ asset('assets/front/assets/images/logo/logo.png') }}" alt="Logo">
+                 <img src="{{ asset('assets/front/images/logo/logo.png') }}" alt="Logo">
              </p>
              <!-- <a href="login.html" class="tf-btn type-small style-2">
                 Login

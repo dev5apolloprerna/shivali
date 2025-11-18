@@ -1,7 +1,7 @@
 @extends('layouts.front')
 @section('content')
     <section class="page-title">
-        <div class="container">
+        <div class="container-fluid">
             <h3 class="heading mb-2">Our Products</h3>
             <ul class="breadcrumbs d-flex ">
                 <li><a href="{{ url('/') }}" class="link">Home</a></li>
@@ -11,7 +11,7 @@
         </div>
     </section>
 
-    <div class="container py-5">
+    <div class="container-fluid py-5">
         <h2 class="text-center mb-5">
             {{ $slugname ? strtoupper(str_replace('-', ' ', $slugname)) : 'ALL PRODUCTS' }}
         </h2>
@@ -93,7 +93,7 @@
                     @forelse ($products as $product)
                         <div class="col">
                             <div class="product-card">
-                                <div class="product-img">
+                                <div class="product-img product-img-2">
                                     <span class="badge-new">New</span>
                                     <a
                                         href="{{ route('productdetail', [$product->category->strSlug ?? '', $product->slug]) }}">
