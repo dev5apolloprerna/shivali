@@ -2112,6 +2112,8 @@ header {
 }
 .cls-content_wrap.ocation .cls-content a{color:#000;
 }
+.cls-content_wrap.ocation .cls-content a.link:hover{color:#000!important;
+}
 
 .wg-cls-2 .tag_cls {
   display: -webkit-box !important;
@@ -2830,3 +2832,4 @@ text-align: center;
 .icon-caret-down.rotate {
     transform: rotate(-180deg);
 }
+.thumb-list{height:450px;}
