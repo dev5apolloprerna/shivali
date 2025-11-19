@@ -196,8 +196,8 @@
                                 <div class="wg-cls-2 type-space-2 d-flex hover-img">
                                     <a href="{{ route('productlist', $subcat->strSlug) }}" class="image img-style">
                                         <img class="lazyload"
-                                            src="{{ asset('uploads/subcategory-images/' . $subcat->subcategory_img) }}"
-                                            data-src="{{ asset('uploads/subcategory-images/' . $subcat->subcategory_img) }}"
+                                            src="{{ asset($subcat->subcategory_img) }}"
+                                            data-src="{{ asset($subcat->subcategory_img) }}"
                                             alt="Slider">
                                     </a>
                                     <div class="cls-content_wrap ocation">
@@ -227,12 +227,12 @@
                @foreach ($shop_by_style->chunk(4) as $chunk)
     <div class="row" style="padding-top:1rem">
         @foreach ($chunk as $shoapby)
-            <div class=" col-lg-3 col-md-4 col-sm-6 col-6 ">
+            <div class=" col-lg-3 col-md-4 col-sm-6 col-6 pb-3 pb-md-0">
                 <div class="">
                     <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
                         <img class="lazyload img-product"
-                             src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
-                             data-src="{{ asset('uploads/subcategory-images/' . $shoapby->subcategory_img) }}"
+                             src="{{ asset($shoapby->subcategory_img) }}"
+                             data-src="{{ asset($shoapby->subcategory_img) }}"
                              alt="Product">
                     </a>
                 </div>
@@ -382,8 +382,14 @@
     <section class="about-us style-2 py-3">
         <div class="container-fluid">
             <div class="row  wow fadeInUp">
+                <!-- About Image -->
+                <div class="col-lg-6 mb-lg-0 mb-5 order-1 order-md-1">
+                    <img src="{{ asset('assets/front/images/about-img.jpg') }}"
+                        data-src="{{ asset('assets/front/images/about-img.jpg') }}" alt="About Us"
+                        class="lazyload img-fluid rounded-3 shadow">
+                </div>
                 <!-- About Content -->
-                <div class="col-lg-6 order-2 order-md-1 ">
+                <div class="col-lg-6 order-2 order-md-2 ">
                     <div class="sect-title text-left">
                         <h2 class="title mb-4 display-6 fw-bold text-center">
                             About Us
@@ -420,12 +426,7 @@
                         <i class="icon icon-arrow-right"></i>
                     </a>
                 </div>
-                <!-- About Image -->
-                <div class="col-lg-6 mb-lg-0 mb-5 order-1 order-md-2">
-                    <img src="{{ asset('assets/front/images/about-img.jpg') }}"
-                        data-src="{{ asset('assets/front/images/about-img.jpg') }}" alt="About Us"
-                        class="lazyload img-fluid rounded-3 shadow">
-                </div>
+                
 
 
 
