@@ -33,18 +33,21 @@ class SubCategoryController extends Controller
         ]);
 
         $img = "";
-        if ($request->hasFile('subcategory_img')) {
-            $root = $_SERVER['DOCUMENT_ROOT'];
-            $image = $request->file('subcategory_img');
-            $img = time() . '_' . date('dmYHis') . '.' . $image->getClientOriginalExtension();
-            $destinationpath = $root . '/uploads/subcategory-images/';
+        // if ($request->hasFile('subcategory_img')) {
+        //     $root = $_SERVER['DOCUMENT_ROOT'];
+        //     $image = $request->file('subcategory_img');
+        //     $img = time() . '_' . date('dmYHis') . '.' . $image->getClientOriginalExtension();
+        //     $destinationpath = $root . '/uploads/subcategory-images/';
 
-            if (!file_exists($destinationpath)) {
-                mkdir($destinationpath, 0755, true);
-            }
+        //     if (!file_exists($destinationpath)) {
+        //         mkdir($destinationpath, 0755, true);
+        //     }
 
-            $image->move($destinationpath, $img);
-        }
+        //     // $image->move($destinationpath, $img);
+        //     $image->move(anx_upload('/uploads/subcategory-images'), $img);
+
+        // }
+        $img = anx_upload($request->file('subcategory_img'), 'subcategory-images');
 
         $validated['subcategory_img'] = $img;
         $validated['iStatus'] = 1;
@@ -75,28 +78,24 @@ class SubCategoryController extends Controller
             'iCategoryId' => 'required|exists:category,iCategoryId',
         ]);
 
-        $img = "";
-        if ($request->hasFile('subcategory_img')) {
-            $root = $_SERVER['DOCUMENT_ROOT'];
-            $image = $request->file('subcategory_img');
-
-            $img = time() . '_' . date('dmYHis') . '.' . $image->getClientOriginalExtension();
-            $destinationpath = $root . '/uploads/subcategory-images/';
-
-            if (!file_exists($destinationpath)) {
-                mkdir($destinationpath, 0755, true);
-            }
-            $image->move($destinationpath, $img);
-            $oldImg = $request->input('hiddenimagePhoto');
-            if ($oldImg && file_exists($destinationpath . '/' . $oldImg)) {
-                unlink($destinationpath . '/' . $oldImg);
-            }
+          if ($request->hasFile('subcategory_img')) {
+    
+            // delete old
+            anx_delete($subcategory->subcategory_img);
+    
+            // upload new (returns string)
+            $newImage = anx_upload($request->file('subcategory_img'), 'subcategory-images');
+    
+            // store in DB
+            $validated['subcategory_img'] = $newImage;
+    
         } else {
-            $img = $request->input('hiddenimagePhoto');
+    
+            // keep old image
+            $validated['subcategory_img'] = $subcategory->subcategory_img;
         }
-
-        $validated['subcategory_img'] = $img;
-
+        
+      
         $validated['strIP'] = $request->ip();
 
         $subcategory->update($validated);

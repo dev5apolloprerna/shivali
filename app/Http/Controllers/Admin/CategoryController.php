@@ -31,7 +31,7 @@ class CategoryController extends Controller
             $root = $_SERVER['DOCUMENT_ROOT'];
             $image = $request->file('category_img');
             $img = time() . '_' . date('dmYHis') . '.' . $image->getClientOriginalExtension();
-            $destinationpath = $root . '/uploads/category-images/';
+            $destinationpath = $root . '/Shivali/uploads/category-images/';
 
             if (!file_exists($destinationpath)) {
                 mkdir($destinationpath, 0755, true);
@@ -71,7 +71,7 @@ class CategoryController extends Controller
             $image = $request->file('category_img');
 
             $img = time() . '_' . date('dmYHis') . '.' . $image->getClientOriginalExtension();
-            $destinationpath = $root . '/uploads/category-images/';
+            $destinationpath = $root . '/Shivali/uploads/category-images/';
 
             if (!file_exists($destinationpath)) {
                 mkdir($destinationpath, 0755, true);

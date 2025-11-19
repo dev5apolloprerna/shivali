@@ -26,7 +26,7 @@ class FrontviewController extends Controller
     public function index(Request $request, $slugname = null)
     {
         try {
-            $newinProducts = Product::with('category')->where('isDelete', 0)->orderBy('product_id', 'desc')->take(4)->get();
+            $newinProducts = Product::with('category')->where('isDelete', 0)->orderBy('product_id', 'desc')->take(10)->get();
 
             $banners = Banner::orderBy('id', 'desc')->get();
             $bestProducts = Product::with('category')->where(['best_product' => 1, 'isDelete' => 0])->get();
@@ -78,68 +78,7 @@ class FrontviewController extends Controller
         }
     }
 
-    // public function productlist(Request $request, $slugname = null)
-    // {
-    //     // try {
-    //     if ($slugname === 'index.html') {
-    //         $slugname = null;
-    //     }
-    //     $subcategory = SubCategory::where('strSlug', $slugname)->first();
-    //     $category = Category::where('strSlug', $slugname)->first();
-    //     $tagmaster = TagMaster::get();
-
-    //     $query = Product::with(['category', 'subcategory', 'tags'])->where('isDelete', 0);
-
-    //     // Filter by slug
-    //     if ($subcategory) {
-    //         $query->where('subcategory_id', $subcategory->iSubCategoryId);
-    //     } elseif ($category) {
-    //         $query->where('category_id', $category->iCategoryId);
-    //     }
-
-    //     // Filter by tags (any product having any selected tag)
-    //     if ($request->filled('tags')) {
-    //         $tagIds = $request->input('tags'); // must be IDs like [1,2,3]
-    //         $query->whereHas('tags', function ($q) use ($tagIds) {
-    //             $q->whereIn('tag_id', $tagIds); // adjust to your actual PK
-    //         });
-    //     }
-
-    //     // Filter by categories
-    //     if ($request->filled('categories')) {
-    //         $query->whereIn('category_id', $request->categories);
-    //     }
-
-    //     $query->orderBy('priority', 'asc');
-
-    //     // Sorting
-    //     $sort = '';
-    //     if ($request->sort === 'Recommended' || $slugname == 'Recommended') {
-    //         $sort = 'Recommended';
-    //         $query->orderBy('product_id', 'desc');
-    //     } elseif ($request->sort === 'best-selling' || $slugname == 'best-selling') {
-    //         $sort = 'best-selling';
-    //         $query->where('best_product', 1)->orderBy('product_id', 'desc');
-    //     } elseif ($request->sort === 'newest' || $slugname == 'newest') {
-    //         $sort = 'newest';
-    //         $query->orderBy('product_id', 'desc');
-    //     } else {
-    //         // ✅ Allow index.html or other valid category/subcategory slugs
-    //         //return redirect()->route('front.index');
-    //     }
-
-
-    //     //dd($query->toSql());
-    //     $products = $query->paginate(config('app.per_page'));
-
-    //     return view('frontview.product-list', compact('products', 'tagmaster', 'sort', 'slugname'));
-    //     // } catch (\Throwable $th) {
-    //     //     \Log::error($th);
-    //     //     return redirect()->back()->withInput();
-    //     // }
-    // }
-
-    public function productlist(Request $request, $slugname = null)
+      public function productlist(Request $request, $slugname = null)
     {
         // 1) Ignore index.html completely → treat as NO slug
         // if ($slugname === 'index.html') {
