@@ -73,6 +73,13 @@ if (auth()->user()) {
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link menu-link @if (request()->routeIs('Celebrity_Designer.index')) {{ 'active' }} @endif"
+                            href="{{ route('Celebrity_Designer.index') }}">
+                            <i class="fa-solid fa-play-circle"></i>
+                            <span data-key="t-dashboards">Celebrity or Designer</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link menu-link @if (request()->routeIs('TageMaster.index')) {{ 'active' }} @endif"
                             href="{{ route('TageMaster.index') }}">
                             <i class="fa-solid fa-tag"></i>

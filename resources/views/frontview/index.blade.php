@@ -195,10 +195,8 @@
                             <div class="swiper-slide">
                                 <div class="wg-cls-2 type-space-2 d-flex hover-img">
                                     <a href="{{ route('productlist', $subcat->strSlug) }}" class="image img-style">
-                                        <img class="lazyload"
-                                            src="{{ asset($subcat->subcategory_img) }}"
-                                            data-src="{{ asset($subcat->subcategory_img) }}"
-                                            alt="Slider">
+                                        <img class="lazyload" src="{{ asset($subcat->subcategory_img) }}"
+                                            data-src="{{ asset($subcat->subcategory_img) }}" alt="Slider">
                                     </a>
                                     <div class="cls-content_wrap ocation">
                                         <div class="cls-content">
@@ -223,36 +221,34 @@
             <div class="sect-title text-center wow fadeInUp"style="padding-top:5px!important">
                 <h2 class="title " style="margin-bottom:0px!important">Shop by style</h2>
             </div>
-           
-               @foreach ($shop_by_style->chunk(4) as $chunk)
-    <div class="row" style="padding-top:1rem">
-        @foreach ($chunk as $shoapby)
-            <div class=" col-lg-3 col-md-4 col-sm-6 col-6 pb-3 pb-md-0">
-                <div class="">
-                    <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
-                        <img class="lazyload img-product"
-                             src="{{ asset($shoapby->subcategory_img) }}"
-                             data-src="{{ asset($shoapby->subcategory_img) }}"
-                             alt="Product">
-                    </a>
+
+            @foreach ($shop_by_style->chunk(4) as $chunk)
+                <div class="row" style="padding-top:1rem">
+                    @foreach ($chunk as $shoapby)
+                        <div class=" col-lg-3 col-md-4 col-sm-6 col-6 pb-3 pb-md-0">
+                            <div class="">
+                                <a href="{{ route('productlist', $shoapby->strSlug) }}" class="product-img">
+                                    <img class="lazyload img-product" src="{{ asset($shoapby->subcategory_img) }}"
+                                        data-src="{{ asset($shoapby->subcategory_img) }}" alt="Product">
+                                </a>
+                            </div>
+
+                            <div class="card-product_info d-none">
+                                <a href="{{ route('productlist', $shoapby->strSlug) }}" class="name-product"></a>
+                            </div>
+
+                            <div class="price-wrap d-none">
+                                <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
+                                    <i class="fab fa-whatsapp"></i>
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
-
-                <div class="card-product_info d-none">
-                    <a href="{{ route('productlist', $shoapby->strSlug) }}" class="name-product"></a>
-                </div>
-
-                <div class="price-wrap d-none">
-                    <button class="tf-btn btn-primary" href="#shoppingCart" data-bs-toggle="offcanvas">
-                        <i class="fab fa-whatsapp"></i>
-                    </button>
-                </div>
-            </div>
-        @endforeach
-    </div>
-@endforeach
+            @endforeach
 
 
-            
+
         </div>
 
     </section>
@@ -302,33 +298,15 @@
                         data-pagination-sm="1" data-loop="true" data-pagination-md="1" data-pagination-lg="1"
                         data-auto="true" data-speed="3000" data-effect="fade" data-delay="5000">
                         <div class="swiper-wrapper" data-loop="true">
-                            <!-- item 1 -->
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/celebrity.webp') }}" alt="Banner">
-                                <!--</a>-->
-                            </div>
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/product-10.webp') }}"
+                            @foreach ($Designer as $Desig)
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('uploads/CelebrityORDesigner/' . $Desig->image) }}"
                                         alt="Banner">
-                                <!--</a>-->
-                            </div>
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
-                                <!--</a>-->
-                            </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="txtonimg">
-                        <h6 class=" text-black text-center">
-                            <!--<a href="#" class="link text-black fw-normal">-->
-                                Designs of the week
-                            <!--</a>-->
-                        </h6>
-                        <p class="text-center">Best product of the week</p>
-                    </div>
+
                 </div>
                 <div class=" col-lg-4  col-md-6 inner-box  ">
                     <div dir="rtl" class="swiper tf-swiper" data-preview="1" data-tablet="1" data-mobile-sm="1"
@@ -337,35 +315,16 @@
                         data-auto="true" data-speed="3000" data-effect="fade" data-delay="5000">
                         <div class="swiper-wrapper" data-loop="true">
                             <!-- item 1 -->
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/product-1.webp') }}" alt="Banner">
-                                <!--</a>-->
-                            </div>
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/product-3.webp') }}" alt="Banner">
-                                <!--</a>-->
-                            </div>
-                            <div class="swiper-slide">
-                                <!--<a href="#" class="img-style">-->
-                                    <img src="{{ asset('assets/front/images/products/product-8.webp') }}" alt="Banner">
-                                <!--</a>-->
-                            </div>
+                            @foreach ($celebrity as $celebrity)
+                                <div class="swiper-slide">
+                                    <img src="{{ asset('uploads/CelebrityORDesigner/' . $celebrity->image) }}"
+                                        alt="Banner">
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
-                    <div class="txtonimg right">
-                        <h6 class="title  text-black text-center">
-                            <!--<a href="#" class="link text-black fw-normal">-->
-                                <span>Celebrity</span> Spotting
 
-
-                            <!--</a>-->
-                        </h6>
-                        <!--<p class="text-center">&nbsp;-->
-                            <!--Malaika Arora in DiyaRajvvir-->
-                        <!--    </p>-->
-                    </div>
                 </div>
                 <div class=" col-lg-4  col-md-6 inner-box ">
                     <video autoplay muted loop playsinline>
@@ -426,7 +385,7 @@
                         <i class="icon icon-arrow-right"></i>
                     </a>
                 </div>
-                
+
 
 
 

@@ -8,6 +8,7 @@ use App\Models\SubCategory;
 use App\Models\Category;
 use App\Models\Inquiry;
 use App\Models\TagMaster;
+use App\Models\CelebrityORDesigner;
 use Illuminate\Http\Request;
 use GPBMetadata\Google\Api\Service;
 use Illuminate\Support\Facades\DB;
@@ -32,10 +33,11 @@ class FrontviewController extends Controller
             $bestProducts = Product::with('category')->where(['best_product' => 1, 'isDelete' => 0])->get();
             $explore_by_occasion = SubCategory::where('iCategoryId', 12)->get();
             $shop_by_style = SubCategory::where('iCategoryId', 13)->get();
-
             $Categories = Category::where('iCategoryId', 14)->first();
+            $celebrity = CelebrityORDesigner::where('Type', 1)->orderBy('id', 'desc')->get();
+            $Designer = CelebrityORDesigner::where('Type', 2)->orderBy('id', 'desc')->get();
 
-            return view('frontview.index', compact('Categories', 'newinProducts', 'banners', 'bestProducts', 'explore_by_occasion', 'shop_by_style'));
+            return view('frontview.index', compact('celebrity', 'Designer', 'Categories', 'newinProducts', 'banners', 'bestProducts', 'explore_by_occasion', 'shop_by_style'));
         } catch (\Throwable $th) {
             // ✅ Log detailed error info
             Log::error('Error in FrontController@index: ' . $th->getMessage(), [
@@ -78,7 +80,7 @@ class FrontviewController extends Controller
         }
     }
 
-      public function productlist(Request $request, $slugname = null)
+    public function productlist(Request $request, $slugname = null)
     {
         // 1) Ignore index.html completely → treat as NO slug
         // if ($slugname === 'index.html') {
