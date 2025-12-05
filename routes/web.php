@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\TagMasterController;
 
+use App\Http\Controllers\Admin\CelebrityOrDesignerController;
+
 use App\Http\Controllers\Admin\SubCategoryController;
 use App\Http\Controllers\Admin\InquiryController;
 use App\Http\Controllers\Admin\TopViewController;
@@ -149,6 +151,16 @@ Route::prefix('admin')->name('Banner.')->middleware('auth')->group(function () {
     Route::post('/Banner/update', [BannerController::class, 'update'])->name('update');
     Route::delete('/Banner/delete/{id?}', [BannerController::class, 'delete'])->name('delete');
     Route::delete('/Banner/deleteselected', [BannerController::class, 'deleteselected'])->name('deleteselected');
+});
+
+Route::prefix('admin')->name('Celebrity_Designer.')->middleware('auth')->group(function () {
+    Route::any('/Celebrity_Designer/index', [CelebrityOrDesignerController::class, 'index'])->name('index');
+    Route::get('/Celebrity_Designer/add', [CelebrityOrDesignerController::class, 'add'])->name('add');
+    Route::post('/Celebrity_Designer/store', [CelebrityOrDesignerController::class, 'store'])->name('store');
+    Route::get('/Celebrity_Designer/edit/{id?}', [CelebrityOrDesignerController::class, 'edit'])->name('edit');
+    Route::post('/Celebrity_Designer/update', [CelebrityOrDesignerController::class, 'update'])->name('update');
+    Route::delete('/Celebrity_Designer/delete/{id?}', [CelebrityOrDesignerController::class, 'delete'])->name('delete');
+    Route::delete('/Celebrity_Designer/deleteselected', [CelebrityOrDesignerController::class, 'deleteselected'])->name('deleteselected');
 });
 
 Route::prefix('admin')->middleware(['auth'])->group(function () {
