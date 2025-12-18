@@ -37,9 +37,9 @@
                                     </div>
 
                                     <!-- <div class="mb-3">
-                                                                                                                                                                                                            <label for="strSlug" class="form-label">Slug <span class="text-danger">*</span></label>
-                                                                                                                                                                                                            <input type="text" class="form-control" id="strSlug" name="strSlug" maxlength="50" required>
-                                                                                                                                                                                                        </div> -->
+                                           <label for="strSlug" class="form-label">Slug <span class="text-danger">*</span></label>
+                                           <input type="text" class="form-control" id="strSlug" name="strSlug" maxlength="50" required>
+                                        </div> -->
 
                                     <div class="d-flex ">
                                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -61,7 +61,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- <form method="POST" id="bulkDeleteForm" action="{{ route('admin.category.bulk-delete') }}">
-                                                                                                                                                                                                        @csrf -->
+                                                                                                                                                                                                            @csrf -->
                                 <table class="table table-bordered table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -170,9 +170,9 @@
                         </div>
 
                         <!-- <div class="mb-3">
-                                                                                                                                                                                                <label for="editStrSlug" class="form-label">Slug <span class="text-danger">*</span></label>
-                                                                                                                                                                                                <input type="text" class="form-control" id="editStrSlug" name="strSlug" maxlength="50" required>
-                                                                                                                                                                                            </div> -->
+                                                                                                                                                                                                    <label for="editStrSlug" class="form-label">Slug <span class="text-danger">*</span></label>
+                                                                                                                                                                                                    <input type="text" class="form-control" id="editStrSlug" name="strSlug" maxlength="50" required>
+                                                                                                                                                                                                </div> -->
                     </div>
                     <div class="modal-footer d-flex">
                         <button type="submit" class="btn btn-primary">Update</button>
