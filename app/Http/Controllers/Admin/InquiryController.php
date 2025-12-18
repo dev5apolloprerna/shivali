@@ -120,4 +120,22 @@ class InquiryController extends Controller
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
     }
+
+    public function bulkDelete(Request $request)
+    {
+
+        $ids = $request->input('ids', []);
+
+
+        if (!empty($ids)) {
+            inquiry::whereIn('inquiry_id', $ids)
+                ->delete();
+
+            return redirect()->route('admin.category.index')
+                ->with('success', 'Selected categories deleted successfully!');
+        }
+
+        return redirect()->route('admin.category.index')
+            ->with('error', 'No categories selected for deletion.');
+    }
 }

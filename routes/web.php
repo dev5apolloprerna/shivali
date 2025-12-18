@@ -111,6 +111,7 @@ Route::prefix('admin')->name('Inquiry.')->middleware('auth')->group(function () 
     Route::get('Inquiry/index', [InquiryController::class, 'index'])->name('index');
     Route::delete('/Inquiry-delete', [InquiryController::class, 'delete'])->name('delete');
     Route::get('Inquiry/view/{id?}', [InquiryController::class, 'view'])->name('view');
+    Route::post('Inquiry/bulk-delete', [InquiryController::class, 'bulkDelete'])->name('bulk-delete');
 });
 Route::get('/admin/inquiry/export', [InquiryController::class, 'exportCsv'])->name('Inquiry.export');
 
